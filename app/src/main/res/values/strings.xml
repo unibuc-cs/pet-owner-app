@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Pet Owner</string>
+
+    <string name="tab_home">Home</string>
+    <string name="tab_activities">Activities</string>
+    <string name="tab_group">Group</string>
+    <string name="tab_analytics">Analytics</string>
 </resources>

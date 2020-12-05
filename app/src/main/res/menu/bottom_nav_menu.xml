@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_home"
+        android:title="@string/tab_home" />
+
+    <item
+        android:id="@+id/activitiesFragment"
+        android:icon="@drawable/ic_activities"
+        android:title="@string/tab_activities" />
+
+    <item
+        android:id="@+id/groupFragment"
+        android:icon="@drawable/ic_group"
+        android:title="@string/tab_group" />
+
+    <item
+        android:id="@+id/analyticsFragment"
+        android:icon="@drawable/ic_analytics"
+        android:title="@string/tab_analytics" />
+</menu>
