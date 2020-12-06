@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navgraph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="ip.team13.petowner.ui.home.HomeFragment"
+        android:label="HomeFragment" />
+    <fragment
+        android:id="@+id/activitiesFragment"
+        android:name="ip.team13.petowner.ui.activities.ActivitiesFragment"
+        android:label="ActivitiesFragment" />
+    <fragment
+        android:id="@+id/groupFragment"
+        android:name="ip.team13.petowner.ui.group.GroupFragment"
+        android:label="GroupFragment" />
+    <fragment
+        android:id="@+id/analyticsFragment"
+        android:name="ip.team13.petowner.ui.cost.CostTrackerFragment"
+        android:label="AnalyticsFragment" />
+
+
+</navigation>
