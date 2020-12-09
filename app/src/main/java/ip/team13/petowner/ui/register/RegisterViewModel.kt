@@ -1,9 +1,9 @@
 package ip.team13.petowner.ui.register
 
-import android.util.Patterns
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import ip.team13.petowner.data.repository.AuthRepository
+import ip.team13.petowner.helpers.isValidEmail
 
 class RegisterViewModel : ViewModel() {
 
@@ -24,7 +24,4 @@ class RegisterViewModel : ViewModel() {
 
         authRepository.register(userEmail, userPassword)
     }
-
-    private fun CharSequence?.isValidEmail() =
-        !isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
 }
