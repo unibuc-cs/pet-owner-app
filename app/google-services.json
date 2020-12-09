@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "380232949060",
+    "project_id": "petowner-9e1c0",
+    "storage_bucket": "petowner-9e1c0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:380232949060:android:3d62d9b3b67edfcbf68b11",
+        "android_client_info": {
+          "package_name": "ip.team13.petowner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "380232949060-u1etvk2h44sers4ml6iph2j29132a94j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ip.team13.petowner",
+            "certificate_hash": "c1f7ecb747bf350366f13144fa81fbd23d7a0c06"
+          }
+        },
+        {
+          "client_id": "380232949060-kuhphgcboc3reiieflvvhaqcfski00pg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1I-Mh_KLScftznowxUL1X6eN0V1_zDxc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "380232949060-kuhphgcboc3reiieflvvhaqcfski00pg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
