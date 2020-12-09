@@ -5,4 +5,10 @@
     <string name="tab_activities">Activities</string>
     <string name="tab_group">Group</string>
     <string name="tab_analytics">Analytics</string>
+    <string name="e_mail">E-mail</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="register">Register</string>
+    <string name="sign_up_with_google">Sign up with Google</string>
+    <string name="invite_code_optional">Invite code (optional)</string>
 </resources>

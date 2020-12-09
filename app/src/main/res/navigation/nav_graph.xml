@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navgraph"
-    app:startDestination="@id/homeFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navgraph"
+    app:startDestination="@id/registerFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -19,6 +20,14 @@
         android:id="@+id/analyticsFragment"
         android:name="ip.team13.petowner.ui.cost.CostTrackerFragment"
         android:label="AnalyticsFragment" />
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="ip.team13.petowner.ui.register.RegisterFragment"
+        android:label="RegisterFragment">
+        <action
+            android:id="@+id/action_registerFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 
 
 </navigation>

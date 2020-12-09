@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -8,7 +9,128 @@
             type="ip.team13.petowner.ui.register.RegisterViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/civ_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="64dp"
+                android:scaleX="3"
+                android:scaleY="3"
+                android:src="@drawable/ic_group"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.1" />
+
+            <EditText
+                android:id="@+id/et_email_register"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="64dp"
+                android:hint="@string/e_mail"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/padding_8"
+                android:text="@={viewModel.email}"
+                android:textColor="#7e7e7e"
+                android:textColorHint="#7e7e7e"
+                android:theme="@android:style/Theme.Light"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/civ_logo" />
+
+            <EditText
+                android:id="@+id/et_password_register"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_64"
+                android:layout_marginTop="@dimen/padding_16"
+                android:layout_marginEnd="@dimen/padding_64"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:padding="@dimen/padding_8"
+                android:text="@={viewModel.password}"
+                android:textColor="#7e7e7e"
+                android:textColorHint="#7e7e7e"
+                android:theme="@android:style/Theme.Light"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_email_register" />
+
+            <EditText
+                android:id="@+id/et_confirm_password_register"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_64"
+                android:layout_marginTop="@dimen/padding_16"
+                android:layout_marginEnd="@dimen/padding_64"
+                android:hint="@string/confirm_password"
+                android:inputType="textPassword"
+                android:padding="@dimen/padding_8"
+                android:text="@={viewModel.confirmPassword}"
+                android:textColor="#7e7e7e"
+                android:textColorHint="#7e7e7e"
+                android:theme="@android:style/Theme.Light"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_password_register" />
+
+            <EditText
+                android:id="@+id/et_invite_code_register"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_64"
+                android:layout_marginTop="@dimen/padding_16"
+                android:layout_marginEnd="@dimen/padding_64"
+                android:hint="@string/invite_code_optional"
+                android:inputType="text"
+                android:padding="@dimen/padding_8"
+                android:text="@={viewModel.inviteCode}"
+                android:textColor="#7e7e7e"
+                android:textColorHint="#7e7e7e"
+                android:theme="@android:style/Theme.Light"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_confirm_password_register" />
+
+            <Button
+                android:id="@+id/btn_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/padding_32"
+                android:background="@drawable/button_background"
+                android:onClick="@{_ -> viewModel.register()}"
+                android:paddingStart="@dimen/padding_32"
+                android:paddingEnd="@dimen/padding_32"
+                android:text="@string/register"
+                android:textSize="@dimen/text_size_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_invite_code_register" />
+
+            <!--            <Button-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_centerInParent="true"-->
+            <!--                android:layout_margin="@dimen/default_padding_double"-->
+            <!--                android:text="@string/google_sign_up"-->
+            <!--                android:textSize="@dimen/material_text_subhead"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/btn_register" />-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
 </layout>
