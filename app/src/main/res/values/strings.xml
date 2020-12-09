@@ -5,4 +5,6 @@
     <string name="tab_activities">Activities</string>
     <string name="tab_group">Group</string>
     <string name="tab_analytics">Analytics</string>
+
+    <string name="preference_file_key">ip.team13.petowner.PREFERENCE_FILE_KEY</string>
 </resources>
