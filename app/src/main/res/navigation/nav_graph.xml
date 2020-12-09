@@ -1,24 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navgraph"
-    app:startDestination="@id/homeFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navgraph"
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="ip.team13.petowner.ui.home.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment"
+        tools:layout="@layout/home_screen"/>
     <fragment
         android:id="@+id/activitiesFragment"
         android:name="ip.team13.petowner.ui.activities.ActivitiesFragment"
-        android:label="ActivitiesFragment" />
+        android:label="ActivitiesFragment"
+        tools:layout="@layout/activities_screen"/>
     <fragment
         android:id="@+id/groupFragment"
         android:name="ip.team13.petowner.ui.group.GroupFragment"
-        android:label="GroupFragment" />
+        android:label="GroupFragment"
+        tools:layout="@layout/group_screen" />
     <fragment
         android:id="@+id/analyticsFragment"
         android:name="ip.team13.petowner.ui.cost.CostTrackerFragment"
-        android:label="AnalyticsFragment" />
+        android:label="AnalyticsFragment"
+        tools:layout="@layout/cost_details_screen" />
 
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="ip.team13.petowner.ui.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/login_screen">
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment"/>
+    </fragment>
 
 </navigation>
