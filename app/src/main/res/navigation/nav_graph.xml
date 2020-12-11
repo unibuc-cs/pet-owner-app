@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navgraph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/registerFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -25,6 +25,14 @@
         android:name="ip.team13.petowner.ui.cost.CostTrackerFragment"
         android:label="AnalyticsFragment"
         tools:layout="@layout/cost_details_screen" />
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="ip.team13.petowner.ui.register.RegisterFragment"
+        android:label="RegisterFragment">
+        <action
+            android:id="@+id/action_registerFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/loginFragment"
