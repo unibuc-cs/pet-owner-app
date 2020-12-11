@@ -2,6 +2,7 @@
 <resources>
     <dimen name="padding_0">0dp</dimen>
     <dimen name="padding_2">2dp</dimen>
+    <dimen name="padding_3">3dp</dimen>
     <dimen name="padding_4">4dp</dimen>
     <dimen name="padding_6">6dp</dimen>
     <dimen name="padding_8">8dp</dimen>

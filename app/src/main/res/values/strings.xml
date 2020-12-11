@@ -13,4 +13,6 @@
     <string name="register">Register</string>
     <string name="sign_up_with_google">Sign up with Google</string>
     <string name="invite_code_optional">Invite code (optional)</string>
+    <string name="add_activity">Add Activity</string>
+    <string name="select_pet">Select pet</string>
 </resources>

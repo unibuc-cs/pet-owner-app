@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="ip.team13.petowner.ui.activities.viewModels.ItemPetViewModel" />
+    </data>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="@dimen/padding_8"
+        android:onClick="@{() -> viewModel.onSelect()}"
+        app:animateSelected="@{viewModel.model.selected}"
+        app:blackAndWhite="@{!viewModel.model.selected}"
+        app:civ_border_color="@android:color/holo_orange_light"
+        app:civ_border_width="@dimen/padding_3"
+        app:loadImageUrl="@{viewModel.model.pictureUrl}" />
+
+</layout>
