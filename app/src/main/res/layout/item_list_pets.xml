@@ -5,6 +5,10 @@
     <data>
 
         <variable
+            name="viewModel"
+            type="ip.team13.petowner.ui.activities.viewModels.ItemPetListViewModel" />
+
+        <variable
             name="adapter"
             type="ip.team13.petowner.ui.activities.adapters.PetsAdapter" />
     </data>

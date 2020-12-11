@@ -52,7 +52,7 @@ class ActivitiesFragment : BaseFragment() {
             ActivitySelectPet(),
             ActivityPets(
                 arrayListOf(
-                    PetDataModel.getPlaceholder().apply { selected = true },
+                    PetDataModel.getPlaceholder(),
                     PetDataModel.getPlaceholder(),
                     PetDataModel.getPlaceholder(),
                     PetDataModel.getPlaceholder(),

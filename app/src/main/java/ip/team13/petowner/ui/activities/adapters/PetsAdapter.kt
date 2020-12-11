@@ -3,6 +3,7 @@ package ip.team13.petowner.ui.activities.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.ObservableField
 import androidx.recyclerview.widget.RecyclerView
 import ip.team13.petowner.R
 import ip.team13.petowner.data.dto.pet.PetDataModel
@@ -11,7 +12,8 @@ import ip.team13.petowner.ui.activities.models.ActivityPets
 import ip.team13.petowner.ui.activities.viewModels.ItemPetViewModel
 
 class PetsAdapter(
-    private val data: ActivityPets
+    private val data: ActivityPets,
+    private val selectedPet: ObservableField<PetDataModel>
 ) : RecyclerView.Adapter<PetsAdapter.PetViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetViewHolder {
@@ -37,9 +39,7 @@ class PetsAdapter(
         fun bind(pet: PetDataModel) {
             binding.viewModel = ItemPetViewModel(
                 model = pet,
-                onSelectPet = { petId ->
-                    data.selectPet(petId)
-                }
+                selectedPet = selectedPet
             )
         }
     }

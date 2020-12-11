@@ -10,6 +10,7 @@ import ip.team13.petowner.databinding.*
 import ip.team13.petowner.ui.activities.models.*
 import ip.team13.petowner.ui.activities.viewModels.ItemActivityAddViewModel
 import ip.team13.petowner.ui.activities.viewModels.ItemActivityViewModel
+import ip.team13.petowner.ui.activities.viewModels.ItemPetListViewModel
 
 class ActivityAdapter(
     private val data: ArrayList<ActivityData>
@@ -116,7 +117,9 @@ class ActivityAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(model: ActivityPets) {
-            binding.adapter = PetsAdapter(model)
+            val viewModel = ItemPetListViewModel()
+            binding.viewModel = viewModel
+            binding.adapter = PetsAdapter(model,viewModel.selectedPet)
             binding.rvPets.layoutManager =
                 LinearLayoutManager(binding.root.context, LinearLayoutManager.HORIZONTAL, false)
         }

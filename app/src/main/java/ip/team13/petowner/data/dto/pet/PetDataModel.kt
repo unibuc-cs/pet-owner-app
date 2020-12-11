@@ -1,25 +1,13 @@
 package ip.team13.petowner.data.dto.pet
 
-import androidx.databinding.BaseObservable
-import androidx.databinding.Bindable
 import kotlin.random.Random
-import androidx.databinding.library.baseAdapters.BR
 
 data class PetDataModel(
     val id: String,
     val name: String?,
     val groupId: String?,
-    val pictureUrl: String?,
-    @Transient
-    private var _isSelected: Boolean = false
-) : BaseObservable(){
-
-    var selected: Boolean
-        @Bindable get() = _isSelected
-        set(value) {
-            _isSelected = value
-            notifyPropertyChanged(BR.selected)
-        }
+    val pictureUrl: String?
+) {
 
     companion object {
         fun getPlaceholder(): PetDataModel {

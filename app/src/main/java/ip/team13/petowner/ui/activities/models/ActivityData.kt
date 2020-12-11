@@ -15,17 +15,11 @@ sealed class ActivityData(
     val type: ActivityDataType
 )
 
-class ActivitySelectPet() : ActivityData(type = ActivityDataType.ACTIVITY_SELECT_PET)
+class ActivitySelectPet : ActivityData(type = ActivityDataType.ACTIVITY_SELECT_PET)
 
 class ActivityPets(
     val pets: ArrayList<PetDataModel>
-) : ActivityData(type = ActivityDataType.ACTIVITY_PETS) {
-
-    fun selectPet(petId: String) {
-        pets.find { it.selected }?.selected = false
-        pets.find { it.id == petId }?.selected = true
-    }
-}
+) : ActivityData(type = ActivityDataType.ACTIVITY_PETS)
 
 class ActivityAdd(
     val onAddActivity: () -> Unit
