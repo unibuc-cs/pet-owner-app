@@ -9,15 +9,28 @@
             type="ip.team13.petowner.ui.activities.viewModels.ItemPetViewModel" />
     </data>
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_margin="@dimen/padding_8"
-        android:onClick="@{() -> viewModel.onSelect()}"
-        app:animateSelected="@{viewModel.model.selected}"
-        app:blackAndWhite="@{!viewModel.model.selected}"
-        app:civ_border_color="@android:color/holo_orange_light"
-        app:civ_border_width="@dimen/padding_3"
-        app:loadImageUrl="@{viewModel.model.pictureUrl}" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/padding_8"
+            android:onClick="@{() -> viewModel.onSelect()}"
+            app:animateSelected="@{viewModel.model.selected}"
+            app:blackAndWhite="@{!viewModel.model.selected}"
+            app:civ_border_color="@android:color/holo_orange_light"
+            app:civ_border_width="@dimen/padding_3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="W, 1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.84"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.84"
+            app:loadImageUrl="@{viewModel.model.pictureUrl}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
