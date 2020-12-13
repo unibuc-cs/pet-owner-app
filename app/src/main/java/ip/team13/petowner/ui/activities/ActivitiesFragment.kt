@@ -1,10 +1,7 @@
 package ip.team13.petowner.ui.activities
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import ip.team13.petowner.R
 import ip.team13.petowner.core.BaseFragment
@@ -23,22 +20,6 @@ class ActivitiesFragment : BaseFragment<ActivitiesScreenBinding>() {
     }
 
     override val viewModel: ActivitiesViewModel by viewModel { parametersOf(onAddActivity) }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = DataBindingUtil.inflate(
-            layoutInflater,
-            R.layout.activities_screen,
-            container,
-            false
-        )
-        binding.lifecycleOwner = viewLifecycleOwner
-
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
