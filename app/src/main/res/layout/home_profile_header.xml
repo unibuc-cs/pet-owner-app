@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="ip.team13.petowner.ui.home.HomeViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/home_profile_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_rect_round_bottom"
+        android:clickable="true"
+        android:elevation="@dimen/padding_10"
+        android:focusable="true"
+        android:foreground="?android:selectableItemBackground">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/home_profile_image"
+            android:layout_width="@dimen/padding_64"
+            android:layout_height="@dimen/padding_64"
+            android:layout_margin="@dimen/padding_8"
+            android:src="@drawable/ic_user_placeholder"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/home_profile_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10 VIP days left"
+            android:textSize="@dimen/text_size_18"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/home_profile_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/home_profile_image"
+            app:layout_constraintTop_toTopOf="@id/home_profile_image" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

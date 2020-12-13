@@ -109,7 +109,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/padding_32"
                 android:background="@drawable/button_background"
-                android:onClick="@{_ -> viewModel.register()}"
                 android:paddingStart="@dimen/padding_32"
                 android:paddingEnd="@dimen/padding_32"
                 android:text="@string/register"

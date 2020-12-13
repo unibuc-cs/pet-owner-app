@@ -2,6 +2,7 @@ package ip.team13.petowner.ui.login
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.databinding.ViewDataBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -12,7 +13,7 @@ import ip.team13.petowner.core.BaseFragment
 import ip.team13.petowner.helpers.logErrorAndToast
 
 
-abstract class GoogleLoginFragment : BaseFragment() {
+abstract class GoogleLoginFragment<B : ViewDataBinding> : BaseFragment<B>() {
 
     companion object {
         const val REQUEST_CODE_SIGN_IN = 3471
