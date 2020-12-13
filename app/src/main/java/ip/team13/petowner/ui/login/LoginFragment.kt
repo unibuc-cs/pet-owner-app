@@ -5,11 +5,10 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.common.SignInButton
 import ip.team13.petowner.R
-import ip.team13.petowner.core.BaseFragment
 import ip.team13.petowner.databinding.LoginScreenBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LoginFragment : BaseFragment<LoginScreenBinding>() {
+class LoginFragment : GoogleLoginFragment<LoginScreenBinding>() {
 
     override val layout: Int
         get() = R.layout.login_screen
