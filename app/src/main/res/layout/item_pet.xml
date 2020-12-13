@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="ip.team13.petowner.ui.activities.viewModels.ItemPetViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_8">
+
+        <ImageView
+            android:id="@+id/imv_background"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/shape_rectangle_purple_round_corners"
+            android:visibility="@{viewModel.isSelected ? View.VISIBLE : View.GONE, default=gone}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/civ_pet_profile"
+                android:layout_width="@dimen/padding_64"
+                android:layout_height="@dimen/padding_64"
+                android:layout_margin="@dimen/padding_8"
+                android:onClick="@{() -> viewModel.onSelect()}"
+                app:blackAndWhite="@{!viewModel.isSelected}"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="@dimen/padding_4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:loadImageUrl="@{viewModel.model.pictureUrl}" />
+
+            <ImageView
+                android:id="@+id/imv_selected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/padding_8"
+                android:paddingBottom="@dimen/padding_8"
+                android:src="@drawable/ic_group"
+                android:visibility="@{viewModel.isSelected ? View.VISIBLE : View.GONE, default=gone}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/civ_pet_profile"
+                app:tint="@color/white"
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

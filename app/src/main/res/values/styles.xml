@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.PetOwner" />
+
+    <style name="TextTitle" parent="AppTheme">
+        <item name="android:textColor">@color/colorTextTitle</item>
+        <item name="android:textSize">@dimen/text_size_18</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextBody" parent="AppTheme">
+        <item name="android:textColor">@color/colorTextBody</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
+    </style>
+
+    <style name="TextExtra" parent="AppTheme">
+        <item name="android:textColor">@color/colorTextExtra</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
+    </style>
+
+</resources>
