@@ -1,9 +1,9 @@
-package ip.team13.petowner.services
+package ip.team13.petowner.core.services
 
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import ip.team13.petowner.helpers.saveFcmToken
-import ip.team13.petowner.utils.AppNotificationManager
+import ip.team13.petowner.core.helpers.saveFcmToken
+import ip.team13.petowner.core.helpers.AppNotificationManager
 
 class AppFirebaseMessagingService : FirebaseMessagingService() {
 

@@ -1,4 +1,4 @@
-package ip.team13.petowner.helpers
+package ip.team13.petowner.core.helpers
 
 import androidx.databinding.Observable
 

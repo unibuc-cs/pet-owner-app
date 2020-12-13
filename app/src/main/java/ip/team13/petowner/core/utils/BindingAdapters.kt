@@ -1,4 +1,4 @@
-package ip.team13.petowner.utils
+package ip.team13.petowner.core.utils
 
 import android.graphics.ColorMatrix
 import android.graphics.ColorMatrixColorFilter

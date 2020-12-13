@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="ip.team13.petowner.ui.activities.viewModels.ItemPetViewModel" />
+            type="ip.team13.petowner.ui.activities.list.ItemPetViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

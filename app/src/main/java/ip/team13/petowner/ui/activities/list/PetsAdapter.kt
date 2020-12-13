@@ -9,7 +9,6 @@ import ip.team13.petowner.R
 import ip.team13.petowner.data.domain.ActivityPets
 import ip.team13.petowner.data.dto.PetEntryModel
 import ip.team13.petowner.databinding.ItemPetBinding
-import ip.team13.petowner.ui.activities.viewModels.ItemPetViewModel
 
 class PetsAdapter(
     private val data: ActivityPets,

@@ -1,4 +1,4 @@
-package ip.team13.petowner.utils
+package ip.team13.petowner.core.helpers
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
