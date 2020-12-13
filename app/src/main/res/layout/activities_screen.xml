@@ -6,7 +6,7 @@
 
         <variable
             name="adapter"
-            type="ip.team13.petowner.ui.activities.adapters.ActivityAdapter" />
+            type="ip.team13.petowner.ui.activities.list.ActivityAdapter" />
 
         <variable
             name="viewModel"

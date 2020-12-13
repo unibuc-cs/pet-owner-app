@@ -1,7 +1,7 @@
-package ip.team13.petowner.ui.activities.models
+package ip.team13.petowner.data.domain
 
-import ip.team13.petowner.data.dto.activities.ActivityDataModel
-import ip.team13.petowner.data.dto.pet.PetDataModel
+import ip.team13.petowner.data.dto.ActivityEntryModel
+import ip.team13.petowner.data.dto.PetEntryModel
 
 enum class ActivityDataType {
     ACTIVITY_SELECT_PET,
@@ -18,7 +18,7 @@ sealed class ActivityData(
 class ActivitySelectPet : ActivityData(type = ActivityDataType.ACTIVITY_SELECT_PET)
 
 class ActivityPets(
-    val pets: ArrayList<PetDataModel>
+    val pets: List<PetEntryModel>
 ) : ActivityData(type = ActivityDataType.ACTIVITY_PETS)
 
 class ActivityAdd(
@@ -30,7 +30,7 @@ class ActivityDate(
 ) : ActivityData(type = ActivityDataType.ACTIVITY_DATE)
 
 data class ActivityItem(
-    val model: ActivityDataModel
+    val model: ActivityEntryModel
 ) : ActivityData(
     type = ActivityDataType.ACTIVITY_ITEM
 )

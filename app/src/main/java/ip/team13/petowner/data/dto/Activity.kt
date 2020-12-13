@@ -1,8 +1,8 @@
-package ip.team13.petowner.data.dto.activities
+package ip.team13.petowner.data.dto
 
 import kotlin.random.Random
 
-data class ActivityDataModel(
+data class ActivityEntryModel(
     val id: String? = null,
     val title: String? = null,
     val description: String? = null,
@@ -11,12 +11,14 @@ data class ActivityDataModel(
     val petId: String? = null
 ) {
     companion object {
-        fun getPlaceholder(): ActivityDataModel {
+        fun getPlaceholder(): ActivityEntryModel {
             val random = Random.nextInt() % 100
-            return ActivityDataModel(
+            val dueTimes = arrayListOf( "25 Apr 2020", "26 Apr 2020", "27 Apr 2020", "28 Apr 2020")
+            return ActivityEntryModel(
                 title = "Title $random",
                 description = "Lorem ipsum dolor sit amet $random",
-                expPoints = random * 3
+                expPoints = random * 3,
+                dueTime = dueTimes.random()
             )
         }
     }

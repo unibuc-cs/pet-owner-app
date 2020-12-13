@@ -1,15 +1,15 @@
 package ip.team13.petowner.ui.activities.viewModels
 
 import androidx.databinding.ObservableField
-import ip.team13.petowner.data.dto.pet.PetDataModel
+import ip.team13.petowner.data.dto.PetEntryModel
 import ip.team13.petowner.helpers.addOnPropertyChanged
 
 class ItemPetViewModel (
-    val model: PetDataModel,
-    val selectedPet: ObservableField<PetDataModel>
+    val model: PetEntryModel,
+    val selectedPet: ObservableField<PetEntryModel>
 ) {
 
-    val isSelected = ObservableField(false)
+    val isSelected = ObservableField(selectedPet.get() == model)
 
     init {
         selectedPet.addOnPropertyChanged {

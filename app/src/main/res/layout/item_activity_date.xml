@@ -7,7 +7,7 @@
 
         <variable
             name="model"
-            type="ip.team13.petowner.ui.activities.models.ActivityDate" />
+            type="ip.team13.petowner.data.domain.ActivityDate" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

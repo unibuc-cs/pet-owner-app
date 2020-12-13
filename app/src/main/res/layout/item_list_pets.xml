@@ -10,7 +10,7 @@
 
         <variable
             name="adapter"
-            type="ip.team13.petowner.ui.activities.adapters.PetsAdapter" />
+            type="ip.team13.petowner.ui.activities.list.PetsAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

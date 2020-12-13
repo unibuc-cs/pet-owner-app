@@ -1,8 +1,8 @@
-package ip.team13.petowner.data.dto.pet
+package ip.team13.petowner.data.dto
 
 import kotlin.random.Random
 
-data class PetDataModel(
+data class PetEntryModel(
     val id: String,
     val name: String?,
     val groupId: String?,
@@ -10,7 +10,7 @@ data class PetDataModel(
 ) {
 
     companion object {
-        fun getPlaceholder(): PetDataModel {
+        fun getPlaceholder(): PetEntryModel {
             val random = Random.nextInt() % 100
             val pictures = arrayListOf(
                 "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=1.00xw:0.669xh;0,0.190xh&resize=1200:*",
@@ -20,7 +20,7 @@ data class PetDataModel(
                 "https://i.insider.com/5484d9d1eab8ea3017b17e29?width=600&format=jpeg&auto=webp",
 
             )
-            return PetDataModel(
+            return PetEntryModel(
                 id = "$random",
                 name = "Lex $random",
                 groupId = "$random",

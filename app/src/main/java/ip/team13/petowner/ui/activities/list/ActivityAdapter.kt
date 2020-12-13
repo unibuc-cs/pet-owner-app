@@ -1,19 +1,22 @@
-package ip.team13.petowner.ui.activities.adapters
+package ip.team13.petowner.ui.activities.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.ObservableField
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ip.team13.petowner.R
+import ip.team13.petowner.data.domain.*
+import ip.team13.petowner.data.dto.PetEntryModel
 import ip.team13.petowner.databinding.*
-import ip.team13.petowner.ui.activities.models.*
 import ip.team13.petowner.ui.activities.viewModels.ItemActivityAddViewModel
 import ip.team13.petowner.ui.activities.viewModels.ItemActivityViewModel
 import ip.team13.petowner.ui.activities.viewModels.ItemPetListViewModel
 
 class ActivityAdapter(
-    private val data: ArrayList<ActivityData>
+    private val data: ArrayList<ActivityData>,
+    private val selectedPet: ObservableField<PetEntryModel>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -117,9 +120,8 @@ class ActivityAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(model: ActivityPets) {
-            val viewModel = ItemPetListViewModel()
-            binding.viewModel = viewModel
-            binding.adapter = PetsAdapter(model,viewModel.selectedPet)
+            binding.viewModel = ItemPetListViewModel()
+            binding.adapter = PetsAdapter(model, selectedPet)
             binding.rvPets.layoutManager =
                 LinearLayoutManager(binding.root.context, LinearLayoutManager.HORIZONTAL, false)
         }

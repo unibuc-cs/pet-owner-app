@@ -1,4 +1,4 @@
-package ip.team13.petowner.ui.activities.adapters
+package ip.team13.petowner.ui.activities.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,14 +6,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ObservableField
 import androidx.recyclerview.widget.RecyclerView
 import ip.team13.petowner.R
-import ip.team13.petowner.data.dto.pet.PetDataModel
+import ip.team13.petowner.data.domain.ActivityPets
+import ip.team13.petowner.data.dto.PetEntryModel
 import ip.team13.petowner.databinding.ItemPetBinding
-import ip.team13.petowner.ui.activities.models.ActivityPets
 import ip.team13.petowner.ui.activities.viewModels.ItemPetViewModel
 
 class PetsAdapter(
     private val data: ActivityPets,
-    private val selectedPet: ObservableField<PetDataModel>
+    private val selectedPet: ObservableField<PetEntryModel>
 ) : RecyclerView.Adapter<PetsAdapter.PetViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetViewHolder {
@@ -36,7 +36,7 @@ class PetsAdapter(
     inner class PetViewHolder(private val binding: ItemPetBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(pet: PetDataModel) {
+        fun bind(pet: PetEntryModel) {
             binding.viewModel = ItemPetViewModel(
                 model = pet,
                 selectedPet = selectedPet

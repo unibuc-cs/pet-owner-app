@@ -5,22 +5,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import ip.team13.petowner.R
 import ip.team13.petowner.core.BaseFragment
-import ip.team13.petowner.data.dto.activities.ActivityDataModel
-import ip.team13.petowner.data.dto.pet.PetDataModel
 import ip.team13.petowner.databinding.ActivitiesScreenBinding
-import ip.team13.petowner.ui.activities.adapters.ActivityAdapter
-import ip.team13.petowner.ui.activities.models.*
+import ip.team13.petowner.ui.activities.list.ActivityAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class ActivitiesFragment : BaseFragment<ActivitiesScreenBinding>() {
 
     override val layout: Int
         get() = R.layout.activities_screen
 
-    override val viewModel: ActivitiesViewModel by viewModel()
-    
+    private val onAddActivity = {
+        findNavController().navigate(R.id.action_activitiesFragment_to_activityDetailsFragment)
+    }
+
+    override val viewModel: ActivitiesViewModel by viewModel { parametersOf(onAddActivity) }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,43 +43,10 @@ class ActivitiesFragment : BaseFragment<ActivitiesScreenBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.adapter = ActivityAdapter(getMockData())
-        binding.viewModel = viewModel
-    }
-
-    // TODO remove mock data with real data from server
-    private fun getMockData() =
-        arrayListOf(
-            ActivitySelectPet(),
-            ActivityPets(
-                arrayListOf(
-                    PetDataModel.getPlaceholder(),
-                    PetDataModel.getPlaceholder(),
-                    PetDataModel.getPlaceholder(),
-                    PetDataModel.getPlaceholder(),
-                    PetDataModel.getPlaceholder()
-                )
-            ),
-            ActivityAdd({}),
-            ActivityDate(date = "21 Oct 2020"),
-            ActivityItem(ActivityDataModel.getPlaceholder()),
-            ActivityItem(ActivityDataModel.getPlaceholder()),
-            ActivityDate(date = "25 Oct 2020"),
-            ActivityItem(ActivityDataModel.getPlaceholder()),
-            ActivityDate(date = "26 Oct 2020"),
-            ActivityItem(ActivityDataModel.getPlaceholder()),
-            ActivityItem(ActivityDataModel.getPlaceholder()),
-            ActivityItem(ActivityDataModel.getPlaceholder()),
-            ActivityItem(ActivityDataModel.getPlaceholder()),
-            ActivityItem(ActivityDataModel.getPlaceholder()),
-            ActivityItem(ActivityDataModel.getPlaceholder()),
-            ActivityItem(ActivityDataModel.getPlaceholder()),
-            ActivityItem(ActivityDataModel.getPlaceholder()),
-            ActivityDate(date = "28 Oct 2020"),
-            ActivityItem(ActivityDataModel.getPlaceholder()),
-            ActivityItem(ActivityDataModel.getPlaceholder()),
-            ActivityDate(date = "29 Oct 2020"),
-            ActivityItem(ActivityDataModel.getPlaceholder()),
+        binding.adapter = ActivityAdapter(
+            data = viewModel.activityData,
+            selectedPet = viewModel.selectedPet
         )
+    }
 
 }
