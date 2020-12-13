@@ -1,10 +1,10 @@
-package ip.team13.petowner.ui.home
+package ip.team13.petowner.ui.home.leaderboard
 
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import ip.team13.petowner.R
-import ip.team13.petowner.ui.splash.SplashFragment
+import ip.team13.petowner.data.domain.LeaderboardType
 
 private const val TAB_VIP_POSITION = 0
 private const val TAB_FREE_POSITION = 1
@@ -19,7 +19,8 @@ class HomeLeaderboardAdapter(fragment: Fragment) :
     override fun getItemCount(): Int = TABS_COUNT
 
     override fun createFragment(position: Int): Fragment = when (position) {
-        TAB_VIP_POSITION -> SplashFragment()
+        TAB_VIP_POSITION -> HomeLeaderboardTabFragment(LeaderboardType.VIP)
+        TAB_FREE_POSITION -> HomeLeaderboardTabFragment(LeaderboardType.FREE)
         else -> throw IllegalStateException("Unexpected leaderboard tab item position: $position")
     }
 

@@ -6,6 +6,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import ip.team13.petowner.R
 import ip.team13.petowner.core.BaseFragment
 import ip.team13.petowner.databinding.HomeScreenBinding
+import ip.team13.petowner.ui.home.leaderboard.HomeLeaderboardAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : BaseFragment<HomeScreenBinding>() {
