@@ -9,7 +9,7 @@ import ip.team13.petowner.databinding.LeaderboardScreenBinding
 import ip.team13.petowner.ui.leaderboard.adapters.LeaderBoardAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LeaderboardFragment : BaseFragment() {
+class LeaderboardFragment : BaseFragment<LeaderboardScreenBinding>() {
 
     override val layout: Int
         get() = R.layout.leaderboard_screen
@@ -19,7 +19,7 @@ class LeaderboardFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (dataBinding as? LeaderboardScreenBinding)?.adapter = LeaderBoardAdapter(
+        binding.adapter = LeaderBoardAdapter(
             arrayListOf(
                 LeaderBoardDataModel.newInstance(),
                 LeaderBoardDataModel.newInstance(),

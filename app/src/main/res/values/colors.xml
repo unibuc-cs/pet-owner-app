@@ -7,6 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="light_grey">#D8D8D8</color>
     <color name="colorShadeGrey">#7e7e7e</color>
     <color name="colorSilver">#A0A0A0</color>
+
+    <!--  Leaderboard  -->
+    <color name="leaderboard_gold">#FFD700</color>
+    <color name="leaderboard_silver">#C0C0C0</color>
+    <color name="leaderboard_bronze">#CD7F32</color>
+
 </resources>

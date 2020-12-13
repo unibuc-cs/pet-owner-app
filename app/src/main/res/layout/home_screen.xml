@@ -9,18 +9,24 @@
             type="ip.team13.petowner.ui.home.HomeViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
+        android:id="@+id/home_screen"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/text_placeholder"
-            android:layout_width="wrap_content"
+        <include
+            android:id="@+id/home_profile_header"
+            layout="@layout/home_profile_header"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Home screen"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_marginBottom="@dimen/padding_16"
+            app:viewModel="@{viewModel}" />
+
+        <include
+            android:id="@+id/home_leaderboard_layout"
+            layout="@layout/home_leaderboard_layout"
+            app:viewModel="@{viewModel}" />
+
+    </LinearLayout>
 </layout>

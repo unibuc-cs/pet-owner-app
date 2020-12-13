@@ -1,4 +1,4 @@
-package ip.team13.petowner.data.dto.register
+package ip.team13.petowner.data.dto
 
 data class RegisterForm(
     val email: String,
