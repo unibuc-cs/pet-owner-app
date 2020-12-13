@@ -20,7 +20,10 @@ fun loadImageUrl(imageView: ImageView, imageUrl: String?) {
 
 @BindingAdapter("leaderboardEntries")
 fun submitItems(recyclerView: RecyclerView, items: List<LeaderboardEntry>) {
-    (recyclerView.adapter as HomeLeaderboardListAdapter).items = items
+    (recyclerView.adapter as? HomeLeaderboardListAdapter)?.apply {
+        this.items = items
+        this.notifyDataSetChanged()
+    }
 }
 
 @BindingAdapter("drawableRes")

@@ -31,7 +31,10 @@ class LeaderboardFragment : BaseFragment<LeaderboardScreenBinding>() {
                     else -> null
                 }
 
-                tabType?.let { viewModel.leaderboardType.set(it) }
+                tabType?.let {
+                    viewModel.leaderboardType.set(it)
+                    viewModel.notifyChange()
+                }
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) { }
