@@ -7,13 +7,13 @@ import ip.team13.petowner.ui.activities.details.ActivityDetailsViewModel
 import ip.team13.petowner.ui.cost.CostTrackerViewModel
 import ip.team13.petowner.ui.cost.details.CostDetailsViewModel
 import ip.team13.petowner.ui.group.GroupViewModel
-import ip.team13.petowner.ui.pet.details.PetDetailsViewModel
 import ip.team13.petowner.ui.home.HomeViewModel
 import ip.team13.petowner.ui.home.leaderboard.HomeLeaderboardTabViewModel
 import ip.team13.petowner.ui.leaderboard.LeaderboardViewModel
 import ip.team13.petowner.ui.login.LoginViewModel
 import ip.team13.petowner.ui.main.MainViewModel
 import ip.team13.petowner.ui.pet.PetProfileViewModel
+import ip.team13.petowner.ui.pet.details.PetDetailsViewModel
 import ip.team13.petowner.ui.register.RegisterViewModel
 import ip.team13.petowner.ui.splash.SplashViewModel
 import ip.team13.petowner.ui.user.UserProfileViewModel
@@ -36,7 +36,7 @@ val appModule = module {
             get()
         )
     }
-    viewModel { LeaderboardViewModel() }
+    viewModel { LeaderboardViewModel(get()) }
     viewModel { LoginViewModel() }
     viewModel { MainViewModel() }
     viewModel { PetDetailsViewModel() }
