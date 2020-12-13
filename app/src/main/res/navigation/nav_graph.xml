@@ -10,14 +10,20 @@
         android:name="ip.team13.petowner.ui.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/home_screen">
-        <action android:id="@+id/action_homeFragment_to_leaderboardFragment"
-            app:destination="@id/leaderboardFragment"/>
+        <action
+            android:id="@+id/action_homeFragment_to_leaderboardFragment"
+            app:destination="@id/leaderboardFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/activitiesFragment"
         android:name="ip.team13.petowner.ui.activities.ActivitiesFragment"
         android:label="ActivitiesFragment"
-        tools:layout="@layout/activities_screen"/>
+        tools:layout="@layout/activities_screen">
+        <action
+            android:id="@+id/action_activitiesFragment_to_activityDetailsFragment"
+            app:destination="@id/activityDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/groupFragment"
         android:name="ip.team13.petowner.ui.group.GroupFragment"
@@ -44,7 +50,7 @@
         tools:layout="@layout/login_screen">
         <action
             android:id="@+id/action_loginFragment_to_homeFragment"
-            app:destination="@id/homeFragment"/>
+            app:destination="@id/homeFragment" />
     </fragment>
 
     <fragment
@@ -52,5 +58,11 @@
         android:name="ip.team13.petowner.ui.leaderboard.LeaderboardFragment"
         android:label="LeaderboardFragment"
         tools:layout="@layout/leaderboard_screen" />
+
+    <fragment
+        android:id="@+id/activityDetailsFragment"
+        android:name="ip.team13.petowner.ui.activities.details.ActivityDetailsFragment"
+        android:label="ActivityDetails"
+        tools:layout="@layout/activity_details_screen" />
 
 </navigation>
