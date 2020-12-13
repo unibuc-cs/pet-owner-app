@@ -1,14 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
+        <variable
+            name="adapter"
+            type="ip.team13.petowner.ui.leaderboard.adapters.LeaderBoardAdapter" />
 
         <variable
             name="viewModel"
             type="ip.team13.petowner.ui.leaderboard.LeaderboardViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/motionLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="@color/colorSilver"
+        app:layoutDescription="@xml/leaderboard_scene">
+
+        <ImageView
+            android:id="@+id/background"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/background_leaderboard"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_second"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:loadImageUrl="@{viewModel.person2.profilePictureUrl}"
+            app:layout_constraintBottom_toTopOf="@id/rv_leaderboard"
+            app:layout_constraintDimensionRatio="H, 1:1"
+            app:layout_constraintEnd_toStartOf="@id/civ_first"
+            app:layout_constraintHeight_percent="0.20"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.4"
+            app:layout_constraintHorizontal_bias="0.58"
+            app:layout_constraintWidth_percent="0.20"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="@dimen/padding_4" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_first"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:loadImageUrl="@{viewModel.person1.profilePictureUrl}"
+            app:layout_constraintBottom_toTopOf="@id/rv_leaderboard"
+            app:layout_constraintDimensionRatio="H, 1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.20"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.3"
+            app:layout_constraintWidth_percent="0.20"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="@dimen/padding_4"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_third"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:loadImageUrl="@{viewModel.person3.profilePictureUrl}"
+            app:layout_constraintBottom_toTopOf="@id/rv_leaderboard"
+            app:layout_constraintDimensionRatio="H, 1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.20"
+            app:layout_constraintStart_toEndOf="@id/civ_first"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.40"
+            app:layout_constraintVertical_bias="0.5"
+            app:layout_constraintWidth_percent="0.20"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="@dimen/padding_4"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_leaderboard"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/shape_rectangle_white_round_corners_top"
+            app:adapter="@{adapter}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.60"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1" />
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>

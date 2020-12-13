@@ -18,14 +18,16 @@ abstract class BaseFragment : Fragment() {
 
     abstract val viewModel: ViewModel
 
+    protected lateinit var dataBinding: ViewDataBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = DataBindingUtil.inflate<ViewDataBinding>(inflater, layout, container, false)
-        binding.setVariable(BR.viewModel, viewModel)
+        dataBinding = DataBindingUtil.inflate<ViewDataBinding>(inflater, layout, container, false)
+        dataBinding.setVariable(BR.viewModel, viewModel)
 
-        return binding.root
+        return dataBinding.root
     }
 }
