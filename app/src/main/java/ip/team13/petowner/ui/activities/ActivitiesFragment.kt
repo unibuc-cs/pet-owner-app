@@ -14,15 +14,13 @@ import ip.team13.petowner.ui.activities.adapters.ActivityAdapter
 import ip.team13.petowner.ui.activities.models.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ActivitiesFragment : BaseFragment() {
+class ActivitiesFragment : BaseFragment<ActivitiesScreenBinding>() {
 
     override val layout: Int
         get() = R.layout.activities_screen
 
     override val viewModel: ActivitiesViewModel by viewModel()
-
-    private lateinit var binding: ActivitiesScreenBinding
-
+    
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

@@ -6,11 +6,13 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
 import android.widget.ImageView
+import androidx.annotation.DrawableRes
+import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import ip.team13.petowner.data.dto.pet.PetDataModel
-import ip.team13.petowner.ui.activities.adapters.PetsAdapter
+import ip.team13.petowner.data.domain.LeaderboardEntry
+import ip.team13.petowner.ui.home.list.HomeLeaderboardListAdapter
 
 
 @BindingAdapter("adapter")
@@ -58,4 +60,18 @@ fun setSelectedAnimation(view: View, isSelected: Boolean) {
     fadeIn.duration = 250
     fadeIn.fillAfter = true
     view.startAnimation(fadeIn)
+}
+
+@BindingAdapter("leaderboardEntries")
+fun submitItems(recyclerView: RecyclerView, items: List<LeaderboardEntry>) {
+    (recyclerView.adapter as HomeLeaderboardListAdapter).items = items
+}
+
+@BindingAdapter("drawableRes")
+fun setImageDrawable(imageView: ImageView, @DrawableRes drawableRes: Int) {
+    if (drawableRes == 0) return
+
+    imageView.setImageDrawable(
+        ContextCompat.getDrawable(imageView.context, drawableRes)
+    )
 }

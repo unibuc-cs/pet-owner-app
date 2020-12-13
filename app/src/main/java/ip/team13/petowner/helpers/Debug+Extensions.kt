@@ -22,3 +22,10 @@ fun String.toastLongError(context: Context, duration: Int = Toast.LENGTH_LONG) {
         Toast.makeText(context, this, duration).show()
     }
 }
+
+fun String.logErrorAndToast(context: Context, TAG: String? = null, duration: Int = Toast.LENGTH_SHORT) {
+    if (BuildConfig.DEBUG) {
+        logError(TAG)
+        toastShortError(context, duration)
+    }
+}
