@@ -7,4 +7,9 @@ class AuthRepository {
         return "token"
     }
 
+    fun login(email: String, password: String): String {
+        //TODO API LOGIN
+        return "token"
+    }
+
 }

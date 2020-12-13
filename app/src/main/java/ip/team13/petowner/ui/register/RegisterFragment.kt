@@ -21,5 +21,9 @@ class RegisterFragment : BaseFragment<RegisterScreenBinding>() {
         binding.btnRegister.setOnClickListener {
             findNavController().navigate(R.id.action_registerFragment_to_homeFragment)
         }
+
+        binding.tvAlreadyHaveAccount.setOnClickListener {
+            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+        }
     }
 }
