@@ -5,9 +5,7 @@ import androidx.lifecycle.ViewModel
 import ip.team13.petowner.data.repository.AuthRepository
 import ip.team13.petowner.helpers.isValidEmail
 
-class LoginViewModel : ViewModel() {
-
-    private val authRepository = AuthRepository()
+class LoginViewModel(private val authRepository: AuthRepository) : ViewModel() {
 
     val email = ObservableField<String>()
     val password = ObservableField<String>()

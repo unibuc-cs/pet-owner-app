@@ -2,6 +2,7 @@ package ip.team13.petowner.core
 
 import ip.team13.petowner.data.domain.LeaderboardType
 import ip.team13.petowner.data.repository.ActivitiesRepository
+import ip.team13.petowner.data.repository.AuthRepository
 import ip.team13.petowner.data.repository.LeaderboardRepository
 import ip.team13.petowner.data.repository.PetRepository
 import ip.team13.petowner.ui.activities.ActivitiesViewModel
@@ -24,6 +25,7 @@ import org.koin.dsl.module
 
 val appModule = module {
 
+    single { AuthRepository() }
     single { LeaderboardRepository() }
     single { PetRepository() }
     single { ActivitiesRepository() }
@@ -47,11 +49,11 @@ val appModule = module {
         )
     }
     viewModel { LeaderboardViewModel() }
-    viewModel { LoginViewModel() }
+    viewModel { LoginViewModel(get()) }
     viewModel { MainViewModel() }
     viewModel { PetDetailsViewModel() }
     viewModel { PetProfileViewModel() }
-    viewModel { RegisterViewModel() }
+    viewModel { RegisterViewModel(get()) }
     viewModel { SplashViewModel() }
     viewModel { UserProfileViewModel() }
 }
