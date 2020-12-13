@@ -16,6 +16,7 @@
     <string name="tab_analytics">Analytics</string>
 
     <!--  Home screen  -->
+    <string name="leaderboard_weekly_title">Weekly Leaderboard</string>
     <string name="leaderboard_vip">VIP</string>
     <string name="leaderboard_free">Free</string>
 
