@@ -109,6 +109,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/padding_32"
                 android:background="@drawable/button_background"
+                android:onClick="@{() -> viewModel.register()}"
                 android:paddingStart="@dimen/padding_32"
                 android:paddingEnd="@dimen/padding_32"
                 android:text="@string/register"
@@ -116,6 +117,19 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/et_invite_code_register" />
+
+            <TextView
+                android:id="@+id/tv_already_have_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/padding_32"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="Already have an account? Click here"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_register" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

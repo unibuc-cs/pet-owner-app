@@ -29,6 +29,7 @@ class MainActivity : FragmentActivity() {
             addOnDestinationChangedListener { _, destination, _ ->
                 when (destination.id) {
                     R.id.registerFragment -> binding.bottomNav.visibility = View.GONE
+                    R.id.loginFragment -> binding.bottomNav.visibility = View.GONE
                     else -> binding.bottomNav.visibility = View.VISIBLE
                 }
             }
