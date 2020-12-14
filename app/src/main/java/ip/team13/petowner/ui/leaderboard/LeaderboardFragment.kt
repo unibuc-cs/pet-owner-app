@@ -32,8 +32,7 @@ class LeaderboardFragment : BaseFragment<LeaderboardScreenBinding>() {
                 }
 
                 tabType?.let {
-                    viewModel.leaderboardType.set(it)
-                    viewModel.notifyChange()
+                    viewModel.leaderboardType = it
                 }
             }
 
