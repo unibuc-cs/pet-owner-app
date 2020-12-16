@@ -21,5 +21,7 @@
     <string name="leaderboard_weekly_title">Weekly Leaderboard</string>
     <string name="leaderboard_vip">VIP</string>
     <string name="leaderboard_free">Free</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">CANCEL</string>
 
 </resources>

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
@@ -21,6 +22,16 @@ fun loadImageUrl(imageView: ImageView, imageUrl: String?) {
             .load(imageUrl)
             .into(imageView)
     }
+}
+
+@BindingAdapter("loadImageResource")
+fun loadImageResource(imageView: ImageView, imageResource: Int) {
+    imageView.setImageResource(imageResource)
+}
+
+@BindingAdapter("loadTextResource")
+fun loadTextResource(textView: TextView, textResource: Int) {
+    textView.text = textView.context.getString(textResource)
 }
 
 @BindingAdapter("adapter")
