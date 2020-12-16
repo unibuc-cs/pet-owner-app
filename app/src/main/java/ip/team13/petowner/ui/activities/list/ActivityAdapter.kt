@@ -10,9 +10,6 @@ import ip.team13.petowner.R
 import ip.team13.petowner.data.domain.*
 import ip.team13.petowner.data.dto.PetEntryModel
 import ip.team13.petowner.databinding.*
-import ip.team13.petowner.ui.activities.viewModels.ItemActivityAddViewModel
-import ip.team13.petowner.ui.activities.viewModels.ItemActivityViewModel
-import ip.team13.petowner.ui.activities.viewModels.ItemPetListViewModel
 
 class ActivityAdapter(
     private val data: ArrayList<ActivityData>,

@@ -10,7 +10,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import ip.team13.petowner.core.BaseFragment
-import ip.team13.petowner.helpers.logErrorAndToast
+import ip.team13.petowner.core.helpers.logErrorAndToast
 
 
 abstract class GoogleLoginFragment<B : ViewDataBinding> : BaseFragment<B>() {

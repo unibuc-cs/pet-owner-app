@@ -20,7 +20,7 @@
         </activity>
 
         <service
-            android:name=".services.AppFirebaseMessagingService"
+            android:name="ip.team13.petowner.core.services.AppFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="ip.team13.petowner.ui.activities.viewModels.ItemActivityViewModel" />
+            type="ip.team13.petowner.ui.activities.list.ItemActivityViewModel" />
     </data>
 
     <androidx.cardview.widget.CardView

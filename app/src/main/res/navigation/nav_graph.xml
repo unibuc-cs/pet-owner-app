@@ -3,13 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navgraph"
-    app:startDestination="@id/registerFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="ip.team13.petowner.ui.home.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/home_screen" />
+        tools:layout="@layout/home_screen">
+        <action
+            android:id="@+id/action_homeFragment_to_leaderboardFragment"
+            app:destination="@id/leaderboardFragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/activitiesFragment"
         android:name="ip.team13.petowner.ui.activities.ActivitiesFragment"
@@ -53,6 +58,12 @@
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/leaderboardFragment"
+        android:name="ip.team13.petowner.ui.leaderboard.LeaderboardFragment"
+        android:label="LeaderboardFragment"
+        tools:layout="@layout/leaderboard_screen" />
 
     <fragment
         android:id="@+id/activityDetailsFragment"

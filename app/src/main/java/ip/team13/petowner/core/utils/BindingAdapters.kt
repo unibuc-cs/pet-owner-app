@@ -1,4 +1,4 @@
-package ip.team13.petowner.utils
+package ip.team13.petowner.core.utils
 
 import android.graphics.ColorMatrix
 import android.graphics.ColorMatrixColorFilter
@@ -14,6 +14,14 @@ import com.bumptech.glide.Glide
 import ip.team13.petowner.data.domain.LeaderboardEntry
 import ip.team13.petowner.ui.home.list.HomeLeaderboardListAdapter
 
+@BindingAdapter("loadImageUrl")
+fun loadImageUrl(imageView: ImageView, imageUrl: String?) {
+    imageUrl?.let {
+        Glide.with(imageView.context)
+            .load(imageUrl)
+            .into(imageView)
+    }
+}
 
 @BindingAdapter("adapter")
 fun setRecyclerViewAdapter(
@@ -21,13 +29,6 @@ fun setRecyclerViewAdapter(
     adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>
 ) {
     recyclerView.adapter = adapter
-}
-
-@BindingAdapter("loadImageUrl")
-fun loadImageFromUrl(imageView: ImageView, url: String?) {
-    Glide.with(imageView.context)
-        .load(url)
-        .into(imageView)
 }
 
 @BindingAdapter("blackAndWhite")
@@ -64,7 +65,10 @@ fun setSelectedAnimation(view: View, isSelected: Boolean) {
 
 @BindingAdapter("leaderboardEntries")
 fun submitItems(recyclerView: RecyclerView, items: List<LeaderboardEntry>) {
-    (recyclerView.adapter as HomeLeaderboardListAdapter).items = items
+    (recyclerView.adapter as? HomeLeaderboardListAdapter)?.apply {
+        this.items = items
+        this.notifyDataSetChanged()
+    }
 }
 
 @BindingAdapter("drawableRes")

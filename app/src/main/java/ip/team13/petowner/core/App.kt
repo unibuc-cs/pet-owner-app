@@ -3,8 +3,8 @@ package ip.team13.petowner.core
 import android.app.Application
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
-import ip.team13.petowner.helpers.logError
-import ip.team13.petowner.helpers.saveFcmToken
+import ip.team13.petowner.core.helpers.logError
+import ip.team13.petowner.core.helpers.saveFcmToken
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.loadKoinModules

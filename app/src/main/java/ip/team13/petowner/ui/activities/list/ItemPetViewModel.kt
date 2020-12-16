@@ -1,8 +1,8 @@
-package ip.team13.petowner.ui.activities.viewModels
+package ip.team13.petowner.ui.activities.list
 
 import androidx.databinding.ObservableField
 import ip.team13.petowner.data.dto.PetEntryModel
-import ip.team13.petowner.helpers.addOnPropertyChanged
+import ip.team13.petowner.core.helpers.addOnPropertyChanged
 
 class ItemPetViewModel (
     val model: PetEntryModel,

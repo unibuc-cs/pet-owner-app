@@ -2,8 +2,8 @@ package ip.team13.petowner.ui.login
 
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
+import ip.team13.petowner.core.helpers.isValidEmail
 import ip.team13.petowner.data.repository.AuthRepository
-import ip.team13.petowner.helpers.isValidEmail
 
 class LoginViewModel(private val authRepository: AuthRepository) : ViewModel() {
 

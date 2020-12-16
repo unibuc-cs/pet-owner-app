@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <style name="TabLayoutTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="TabLayoutNoCaps" parent="Widget.Design.TabLayout">
+        <item name="tabTextAppearance">@style/TabLayoutTextAppearance</item>
+    </style>
+
+    <style name="TabLayoutNoCaps.Small">
+        <item name="android:textSize">@dimen/text_size_14</item>
+    </style>
+
+
     <style name="AppTheme" parent="Theme.PetOwner" />
 
     <style name="TextTitle" parent="AppTheme">
@@ -15,7 +30,6 @@
 
     <style name="TextExtra" parent="AppTheme">
         <item name="android:textColor">@color/colorTextExtra</item>
-        <item name="android:textSize">@dimen/text_size_14</item>
     </style>
 
 </resources>

@@ -2,6 +2,7 @@ package ip.team13.petowner.ui.home
 
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import ip.team13.petowner.R
 import ip.team13.petowner.core.BaseFragment
@@ -19,6 +20,10 @@ class HomeFragment : BaseFragment<HomeScreenBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupViews()
+    }
+
+    private fun setupViews() {
         binding.homeLeaderboardLayout.homeLeaderboardPager.apply {
             adapter = HomeLeaderboardAdapter(this@HomeFragment)
 
@@ -28,6 +33,10 @@ class HomeFragment : BaseFragment<HomeScreenBinding>() {
             ) { tab, position ->
                 tab.text = getString(HomeLeaderboardAdapter.getTabTitle(position))
             }.attach()
+        }
+
+        binding.homeLeaderboardLayout.homeLeaderboardTitle.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_leaderboardFragment)
         }
     }
 }
