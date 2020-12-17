@@ -34,6 +34,11 @@ fun loadTextResource(textView: TextView, textResource: Int) {
     textView.text = textView.context.getString(textResource)
 }
 
+@BindingAdapter("loadBackgroundColorResource")
+fun loadBackgroundColorResource(view: View, colorResource: Int) {
+    view.setBackgroundColor(ContextCompat.getColor(view.context, colorResource))
+}
+
 @BindingAdapter("adapter")
 fun setRecyclerViewAdapter(
     recyclerView: RecyclerView,

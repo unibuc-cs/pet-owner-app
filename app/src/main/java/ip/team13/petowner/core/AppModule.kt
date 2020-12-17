@@ -37,7 +37,12 @@ val appModule = module {
             activityRepository = get()
         )
     }
-    viewModel { ActivityDetailsViewModel() }
+    viewModel { (onAddActivity: () -> Unit, onCancel: () -> Unit) ->
+        ActivityDetailsViewModel(
+            onAddActivity = onAddActivity,
+            onCancel = onCancel
+        )
+    }
     viewModel { CostDetailsViewModel() }
     viewModel { CostTrackerViewModel() }
     viewModel { GroupViewModel() }

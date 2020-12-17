@@ -23,5 +23,6 @@
     <string name="leaderboard_free">Free</string>
     <string name="confirm">Confirm</string>
     <string name="cancel">CANCEL</string>
+    <string name="add_a_new_activity">Add a new activity</string>
 
 </resources>

@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- App colors -->
+    <color name="colorAppCyanDark">#095688</color>
+    <color name="colorAppCyanDark_99">#99095688</color>
+    <color name="colorAppYellowBright">#FAD161</color>
+    <color name="colorAppOrangeBright">#F3954F</color>
+    <color name="colorAppGreen">#6CC7A5</color>
+
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -11,11 +19,11 @@
     <color name="colorShadeGrey">#7e7e7e</color>
     <color name="colorSilver">#A0A0A0</color>
     <color name="colorWhiteSmoke">#f5f5f5</color>
-    
+
     <color name="colorTextTitle">#383838</color>
     <color name="colorTextBody">#686868</color>
     <color name="colorTextExtra">#909090</color>
-    
+
     <color name="light_grey">#D8D8D8</color>
 
     <!--  Leaderboard  -->

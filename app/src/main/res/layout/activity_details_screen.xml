@@ -27,8 +27,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <TextView
+                    android:id="@+id/tv_add_new_activity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_32"
+                    android:paddingStart="@dimen/padding_8"
+                    android:paddingEnd="@dimen/padding_8"
+                    android:text="@string/add_a_new_activity"
+                    android:textSize="@dimen/text_size_20"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <include
-                    android:id="@+id/field_description"
+                    android:id="@+id/field_title"
                     layout="@layout/item_activity_details_field"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -36,7 +50,19 @@
                     android:layout_marginTop="@dimen/padding_32"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_add_new_activity"
+                    bind:viewModel="@{viewModel.title}" />
+
+                <include
+                    android:id="@+id/field_description"
+                    layout="@layout/item_activity_details_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="@dimen/padding_16"
+                    android:layout_marginTop="@dimen/padding_16"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/field_title"
                     bind:viewModel="@{viewModel.description}" />
 
                 <include
@@ -44,7 +70,8 @@
                     layout="@layout/item_activity_details_field"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_margin="@dimen/padding_16"
+                    android:layout_marginHorizontal="@dimen/padding_16"
+                    android:layout_marginTop="@dimen/padding_16"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/field_description"
@@ -55,7 +82,8 @@
                     layout="@layout/item_activity_details_field"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_margin="@dimen/padding_16"
+                    android:layout_marginHorizontal="@dimen/padding_16"
+                    android:layout_marginTop="@dimen/padding_16"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/field_due_time"
@@ -66,7 +94,8 @@
                     layout="@layout/item_activity_details_field"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_margin="@dimen/padding_16"
+                    android:layout_marginHorizontal="@dimen/padding_16"
+                    android:layout_marginTop="@dimen/padding_16"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/field_repeat"
@@ -91,7 +120,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/text_size_16"
+                android:background="@drawable/shape_rectangle_green_round_corners"
+                android:onClick="@{() -> viewModel.onConfirm()}"
                 android:text="@string/confirm"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/cancel_button_add_new_activity"
                 app:layout_constraintStart_toStartOf="parent"
@@ -102,7 +134,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/text_size_16"
+                android:background="@drawable/shape_rectangle_orange_round_corners"
+                android:onClick="@{() -> viewModel.onCancel()}"
                 android:text="@string/cancel"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/confirm_button_add_new_activity"

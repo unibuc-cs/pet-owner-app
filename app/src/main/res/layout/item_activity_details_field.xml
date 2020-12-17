@@ -14,13 +14,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/padding_16"
-        app:cardBackgroundColor="@color/colorSilver"
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:loadBackgroundColorResource="@{viewModel.backgroundColor}">
 
             <ImageView
                 android:id="@+id/iv_add_activity_field"
