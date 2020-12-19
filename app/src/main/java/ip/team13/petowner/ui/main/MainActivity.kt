@@ -1,6 +1,5 @@
 package ip.team13.petowner.ui.main
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
@@ -15,10 +14,6 @@ class MainActivity : FragmentActivity() {
 
     private val viewModel: MainViewModel = MainViewModel()
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -26,10 +21,11 @@ class MainActivity : FragmentActivity() {
         binding.viewModel = viewModel
 
         val navController = findNavController(R.id.nav_host_fragment).apply {
-            addOnDestinationChangedListener { _, destination, _ ->
+            addOnDestinationChangedListener { controller, destination, _ ->
+
                 when (destination.id) {
-                    R.id.registerFragment -> binding.bottomNav.visibility = View.GONE
-                    R.id.loginFragment -> binding.bottomNav.visibility = View.GONE
+                    R.id.splashFragment, R.id.loginFragment, R.id.registerFragment ->
+                        binding.bottomNav.visibility = View.GONE
                     else -> binding.bottomNav.visibility = View.VISIBLE
                 }
             }
