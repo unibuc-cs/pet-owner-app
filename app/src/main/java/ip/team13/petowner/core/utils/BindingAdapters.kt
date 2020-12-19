@@ -2,10 +2,13 @@ package ip.team13.petowner.core.utils
 
 import android.graphics.ColorMatrix
 import android.graphics.ColorMatrixColorFilter
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
@@ -78,4 +81,11 @@ fun setImageDrawable(imageView: ImageView, @DrawableRes drawableRes: Int) {
     imageView.setImageDrawable(
         ContextCompat.getDrawable(imageView.context, drawableRes)
     )
+}
+
+@BindingAdapter("drawableTintRes")
+fun setDrawableTintRes(textView: TextView, color: Int) {
+    textView.compoundDrawablesRelative.forEach {
+        it?.colorFilter = PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN)
+    }
 }

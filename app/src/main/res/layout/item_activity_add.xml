@@ -21,14 +21,14 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/shape_rectangle_purple_round_corners">
+            android:background="@drawable/shape_rectangle_cyan_dark_round_corners">
 
             <ImageView
                 android:id="@+id/imv_add"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="@dimen/padding_16"
-                android:src="@android:drawable/ic_menu_add"
+                android:src="@drawable/ic_add"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent="0.35"
                 app:layout_constraintStart_toStartOf="parent"
