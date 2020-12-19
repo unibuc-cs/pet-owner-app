@@ -76,7 +76,7 @@
                 android:onClick="@{() -> viewModel.login()}"
                 android:paddingStart="@dimen/padding_32"
                 android:paddingEnd="@dimen/padding_32"
-                android:text="@string/register"
+                android:text="@string/login"
                 android:textSize="@dimen/text_size_16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
