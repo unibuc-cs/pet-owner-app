@@ -23,13 +23,17 @@ class ActivitiesViewModel(
 
     @get: Bindable
     private val pets: List<PetEntryModel>
-        get() = petRepository.getPets()
+        get() {
+            val pets = petRepository.getPets()
+            selectedPet.set(pets.firstOrNull())
+            return pets
+        }
 
     @get: Bindable
     val activityData: ArrayList<ActivityData>
         get() {
             val items = ArrayList<ActivityData>()
-            selectedPet.get() ?: selectedPet.set(pets.firstOrNull())
+            if (pets.isEmpty()) return items
 
             items.addAll(arrayListOf(
                 ActivitySelectPet(),

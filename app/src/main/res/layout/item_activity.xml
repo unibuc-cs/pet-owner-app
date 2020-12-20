@@ -27,7 +27,7 @@
                 android:id="@+id/v_color_line"
                 android:layout_width="@dimen/padding_6"
                 android:layout_height="0dp"
-                android:background="@android:color/holo_orange_light"
+                android:background="@color/colorAppGreen"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

@@ -21,7 +21,7 @@
             android:id="@+id/imv_background"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/shape_rectangle_purple_round_corners"
+            android:background="@drawable/shape_rectangle_cyan_dark_round_corners"
             android:visibility="@{viewModel.isSelected ? View.VISIBLE : View.GONE, default=gone}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
