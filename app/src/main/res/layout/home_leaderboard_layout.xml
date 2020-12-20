@@ -54,6 +54,8 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/home_leaderboard_pager"
             android:layout_width="match_parent"
+            android:clickable="true"
+            android:focusable="true"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

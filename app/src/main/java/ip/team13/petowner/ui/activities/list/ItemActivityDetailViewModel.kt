@@ -1,16 +1,14 @@
 package ip.team13.petowner.ui.activities.list
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.view.View
-import android.widget.DatePicker
-import android.widget.TextView
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.databinding.ObservableField
-import ip.team13.petowner.core.BaseViewModel
-import ip.team13.petowner.core.helpers.addOnPropertyChanged
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -39,8 +37,18 @@ class ItemActivityDetailViewModel(
             onShowCalendar(view.context)
         }
         ItemDetailType.REPEAT -> {
+            onShowRepeatDialog(
+                view.context,
+                arrayOf("Daily", "Weekly", "Monthly"),
+                "Select repeat time"
+            )
         }
         ItemDetailType.REMINDER -> {
+            onShowRepeatDialog(
+                view.context,
+                arrayOf("5 Minutes before", "10 Minutes before", "30 Minutes before"),
+                "Select notification time"
+            )
         }
     }
 
@@ -56,7 +64,7 @@ class ItemActivityDetailViewModel(
             calendar.set(Calendar.MONTH, monthOfYear)
             calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
 
-            fieldValue.set(SimpleDateFormat("MM/dd/yyyy", Locale.US).format(calendar.time))
+            fieldValue.set(SimpleDateFormat("dd MMM yyyy", Locale.US).format(calendar.time))
         }
 
     private fun onShowCalendar(context: Context) {
@@ -67,6 +75,20 @@ class ItemActivityDetailViewModel(
             calendar.get(Calendar.MONTH),
             calendar.get(Calendar.DAY_OF_MONTH)
         ).show()
+    }
+
+    private fun onShowRepeatDialog(context: Context, choices: Array<CharSequence>, title: String) {
+
+        val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
+        alertDialogBuilder.setTitle(title)
+        alertDialogBuilder.setSingleChoiceItems(
+            choices, -1
+        ) { dialog, item ->
+            fieldValue.set(choices[item].toString())
+            dialog.dismiss()
+        }
+        val alert: AlertDialog = alertDialogBuilder.create()
+        alert.show()
     }
 }
 

@@ -2,15 +2,18 @@ package ip.team13.petowner.ui.activities
 
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableField
+import ip.team13.petowner.BR
 import ip.team13.petowner.core.BaseViewModel
 import ip.team13.petowner.data.domain.*
 import ip.team13.petowner.data.dto.ActivityEntryModel
 import ip.team13.petowner.data.dto.PetEntryModel
 import ip.team13.petowner.data.repository.ActivitiesRepository
 import ip.team13.petowner.data.repository.PetRepository
+import okhttp3.internal.notifyAll
 
 class ActivitiesViewModel(
     private val onAddActivity: () -> Unit,
+    private val notifyDataSetChange: (ArrayList<ActivityData>) -> Unit,
     private val petRepository: PetRepository,
     private val activityRepository: ActivitiesRepository
 ) : BaseViewModel() {
@@ -18,7 +21,7 @@ class ActivitiesViewModel(
     val selectedPet = ObservableField<PetEntryModel>()
 
     @get:Bindable
-    private val activities: List<ActivityEntryModel>
+    private val activities: ArrayList<ActivityEntryModel>
         get() = activityRepository.getActivities(selectedPet.get()?.id ?: "")
 
     @get: Bindable
@@ -35,11 +38,13 @@ class ActivitiesViewModel(
             val items = ArrayList<ActivityData>()
             if (pets.isEmpty()) return items
 
-            items.addAll(arrayListOf(
-                ActivitySelectPet(),
-                ActivityPets(pets),
-                ActivityAdd(onAddActivity)
-            ))
+            items.addAll(
+                arrayListOf(
+                    ActivitySelectPet(),
+                    ActivityPets(pets),
+                    ActivityAdd(onAddActivity)
+                )
+            )
             activities.groupBy { it.dueTime }.forEach { entry ->
                 entry.key?.let { dueTime ->
                     items.add(ActivityDate(dueTime))
@@ -49,4 +54,9 @@ class ActivitiesViewModel(
 
             return items
         }
+
+    fun addActivity(activity: ActivityEntryModel) {
+        activityRepository.addActivity(activity)
+        notifyDataSetChange.invoke(activityData)
+    }
 }
