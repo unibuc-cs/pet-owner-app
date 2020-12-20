@@ -48,12 +48,15 @@
                 tools:text="@string/placeholder_string_text_short" />
 
             <EditText
+                android:id="@+id/et_add_activity_field"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/padding_8"
                 android:layout_marginBottom="@dimen/padding_8"
                 android:background="@drawable/shape_rectangle_round_white_stroke"
+                android:focusable="@{viewModel.focusableState}"
                 android:maxLines="5"
+                android:onClick="@{() -> viewModel.onClick(etAddActivityField)}"
                 android:paddingHorizontal="@dimen/padding_8"
                 android:text="@={viewModel.fieldValue}"
                 app:layout_constraintBottom_toBottomOf="parent"
