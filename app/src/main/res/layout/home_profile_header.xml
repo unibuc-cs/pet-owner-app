@@ -25,6 +25,7 @@
             android:elevation="@dimen/padding_10"
             android:focusable="true"
             android:foreground="?android:selectableItemBackground"
+            android:onClick="@{_ -> viewModel.onProfileHeaderClick()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -36,10 +37,11 @@
                 android:layout_marginStart="@dimen/padding_24"
                 android:layout_marginTop="@dimen/padding_8"
                 android:layout_marginBottom="@dimen/padding_8"
-                android:src="@drawable/ic_user_placeholder"
+                android:transitionName="userImage"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:loadImageUrl="@{viewModel.profileImageUrl}" />
 
             <TextView
                 android:id="@+id/tv_level_name"
@@ -50,7 +52,7 @@
                 android:padding="@dimen/padding_4"
                 android:text="Lv. Rookie"
                 app:layout_constraintEnd_toStartOf="@id/tv_level_points"
-                app:layout_constraintStart_toStartOf="@id/tv_exp"
+                app:layout_constraintStart_toStartOf="@id/tv_level"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -63,14 +65,15 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tv_exp"
+                android:id="@+id/tv_level"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_experience"
                 android:drawablePadding="@dimen/padding_4"
                 android:gravity="center"
                 android:padding="@dimen/padding_8"
-                android:text="178"
+                android:text="@{viewModel.profileLevel}"
+                android:transitionName="userLevel"
                 app:drawableTintRes="@{@color/colorAppOrangeBright}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/tv_weekly_exp"
@@ -85,11 +88,12 @@
                 android:drawableEnd="@drawable/ic_weekly_exp"
                 android:drawablePadding="@dimen/padding_4"
                 android:gravity="center"
-                android:text="45"
+                android:text="@{viewModel.profileWeeklyExp}"
+                android:transitionName="userWeeklyExp"
                 app:drawableTintRes="@{@android:color/holo_red_light}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/tv_vip_time"
-                app:layout_constraintStart_toEndOf="@id/tv_exp"
+                app:layout_constraintStart_toEndOf="@id/tv_level"
                 app:layout_constraintTop_toBottomOf="@id/tv_level_name"
                 tools:drawableTint="@android:color/holo_red_light" />
 
