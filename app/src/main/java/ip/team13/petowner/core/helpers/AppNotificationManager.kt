@@ -15,11 +15,13 @@ object AppNotificationManager {
     fun buildNotification(
         context: Context,
         title: String,
-        body: String
+        body: String,
+        time: Long = System.currentTimeMillis()
     ) {
-        val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationManager =
+            context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val notificationChannel = NotificationChannel(
                 NOTIFICATION_CHANNEL_ID,
                 NOTIFICATION_CHANNEL_NAME,
@@ -32,7 +34,7 @@ object AppNotificationManager {
         val notificationBuilder = NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID)
         notificationBuilder.setAutoCancel(true)
             .setSmallIcon(R.drawable.ic_group)
-            .setWhen(System.currentTimeMillis())
+            .setWhen(time)
             .setContentTitle(title)
             .setContentText(body)
             .priority = NotificationCompat.PRIORITY_HIGH

@@ -2,6 +2,7 @@
 <resources>
     <!-- App Colors -->
     <color name="colorAppCyanDark">#095688</color>
+    <color name="colorAppCyanDark_99">#bb095688</color>
     <color name="colorAppYellowBright">#FAD161</color>
     <color name="colorAppOrangeBright">#F3954F</color>
     <color name="colorAppGreen">#6CC7A5</color>

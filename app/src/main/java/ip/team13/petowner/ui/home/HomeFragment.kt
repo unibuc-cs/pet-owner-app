@@ -59,5 +59,6 @@ class HomeFragment : BaseFragment<HomeScreenBinding>() {
         binding.homeLeaderboardLayout.homeLeaderboardTitle.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_leaderboardFragment)
         }
+
     }
 }
