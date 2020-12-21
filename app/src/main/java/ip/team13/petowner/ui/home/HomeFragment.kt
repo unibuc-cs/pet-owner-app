@@ -2,6 +2,7 @@ package ip.team13.petowner.ui.home
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
@@ -22,16 +23,18 @@ class HomeFragment : BaseFragment<HomeScreenBinding>() {
         super.onCreate(savedInstanceState)
 
         viewModel.navigateToUserProfile = {
-            val extras =
-                FragmentNavigatorExtras(
-                    binding.homeProfileHeader.homeProfileImage to "userImage",
-                    binding.homeProfileHeader.tvLevel to "userLevel",
-                    binding.homeProfileHeader.tvWeeklyExp to "userWeeklyExp"
-                )
+
+            val args = bundleOf("isOwnUserProfile" to true)
+
+            val extras = FragmentNavigatorExtras(
+                binding.homeProfileHeader.homeProfileImage to "userImage",
+                binding.homeProfileHeader.tvLevel to "userLevel",
+                binding.homeProfileHeader.tvWeeklyExp to "userWeeklyExp"
+            )
 
             findNavController().navigate(
                 R.id.action_homeFragment_to_userProfileFragment,
-                null,
+                args,
                 null,
                 extras
             )

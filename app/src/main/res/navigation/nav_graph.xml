@@ -112,5 +112,10 @@
     <fragment
         android:id="@+id/userProfileFragment"
         android:name="ip.team13.petowner.ui.user.UserProfileFragment"
-        android:label="UserProfileFragment" />
+        android:label="UserProfileFragment"
+        tools:layout="@layout/user_profile_screen" >
+        <argument
+            android:name="isOwnUserProfile"
+            app:argType="boolean" />
+    </fragment>
 </navigation>

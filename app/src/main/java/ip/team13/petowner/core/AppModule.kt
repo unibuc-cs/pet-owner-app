@@ -61,5 +61,7 @@ val appModule = module {
     viewModel { PetProfileViewModel() }
     viewModel { RegisterViewModel(get()) }
     viewModel { SplashViewModel() }
-    viewModel { UserProfileViewModel(get()) }
+    viewModel { (isOwnUserProfile: Boolean) ->
+        UserProfileViewModel(isOwnUserProfile, get())
+    }
 }
