@@ -1,6 +1,8 @@
 package ip.team13.petowner.core
 
+import ip.team13.petowner.data.domain.ActivityData
 import ip.team13.petowner.data.domain.LeaderboardType
+import ip.team13.petowner.data.dto.ActivityEntryModel
 import ip.team13.petowner.data.repository.ActivitiesRepository
 import ip.team13.petowner.data.repository.AuthRepository
 import ip.team13.petowner.data.repository.LeaderboardRepository
@@ -30,14 +32,20 @@ val appModule = module {
     single { PetRepository() }
     single { ActivitiesRepository() }
 
-    viewModel { (onAddActivity: () -> Unit) ->
+    viewModel { (onAddActivity: () -> Unit, notifyDataSetChange: (ArrayList<ActivityData>) -> Unit) ->
         ActivitiesViewModel(
+            notifyDataSetChange = notifyDataSetChange,
             onAddActivity = onAddActivity,
             petRepository = get(),
             activityRepository = get()
         )
     }
-    viewModel { ActivityDetailsViewModel() }
+    viewModel { (onAddActivity: (ActivityEntryModel) -> Unit, onCancel: () -> Unit) ->
+        ActivityDetailsViewModel(
+            onAddActivity = onAddActivity,
+            onCancel = onCancel
+        )
+    }
     viewModel { CostDetailsViewModel() }
     viewModel { CostTrackerViewModel() }
     viewModel { GroupViewModel() }

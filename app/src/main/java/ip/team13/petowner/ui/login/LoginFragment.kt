@@ -25,6 +25,10 @@ class LoginFragment : GoogleLoginFragment<LoginScreenBinding>() {
         binding.tvDontHaveAccount.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
+
+        binding.btnLogin.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+        }
     }
 
     override fun loginWithGoogleAccount(googleId: String, email: String, username: String) {

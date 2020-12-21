@@ -26,6 +26,21 @@ fun loadImageUrl(imageView: ImageView, imageUrl: String?) {
     }
 }
 
+@BindingAdapter("loadImageResource")
+fun loadImageResource(imageView: ImageView, imageResource: Int) {
+    imageView.setImageResource(imageResource)
+}
+
+@BindingAdapter("loadTextResource")
+fun loadTextResource(textView: TextView, textResource: Int) {
+    textView.text = textView.context.getString(textResource)
+}
+
+@BindingAdapter("loadBackgroundColorResource")
+fun loadBackgroundColorResource(view: View, colorResource: Int) {
+    view.setBackgroundColor(ContextCompat.getColor(view.context, colorResource))
+}
+
 @BindingAdapter("adapter")
 fun setRecyclerViewAdapter(
     recyclerView: RecyclerView,

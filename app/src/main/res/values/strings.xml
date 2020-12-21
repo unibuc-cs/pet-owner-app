@@ -21,5 +21,15 @@
     <string name="leaderboard_weekly_title">Weekly Leaderboard</string>
     <string name="leaderboard_vip">VIP</string>
     <string name="leaderboard_free">Free</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="add_a_new_activity">Add a new activity</string>
+    <string name="login">Login</string>
 
+    <!-- Add activity screen   -->
+    <string name="add_activity_title">Title</string>
+    <string name="add_activity_description">Description</string>
+    <string name="add_activity_repeat">Repeat</string>
+    <string name="add_activity_reminder">Reminder</string>
+    <string name="add_activity_due_time">Due Time</string>
 </resources>

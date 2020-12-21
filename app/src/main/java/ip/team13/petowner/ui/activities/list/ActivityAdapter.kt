@@ -12,7 +12,7 @@ import ip.team13.petowner.data.dto.PetEntryModel
 import ip.team13.petowner.databinding.*
 
 class ActivityAdapter(
-    private val data: ArrayList<ActivityData>,
+    val data: ArrayList<ActivityData>,
     private val selectedPet: ObservableField<PetEntryModel>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
