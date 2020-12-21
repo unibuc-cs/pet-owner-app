@@ -4,9 +4,11 @@ import android.graphics.ColorMatrix
 import android.graphics.ColorMatrixColorFilter
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
+import android.text.TextWatcher
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.DrawableRes
@@ -17,14 +19,7 @@ import com.bumptech.glide.Glide
 import ip.team13.petowner.data.domain.LeaderboardEntry
 import ip.team13.petowner.ui.home.list.HomeLeaderboardListAdapter
 
-@BindingAdapter("loadImageUrl")
-fun loadImageUrl(imageView: ImageView, imageUrl: String?) {
-    imageUrl?.let {
-        Glide.with(imageView.context)
-            .load(imageUrl)
-            .into(imageView)
-    }
-}
+// ********* region View *********
 
 @BindingAdapter("loadImageResource")
 fun loadImageResource(imageView: ImageView, imageResource: Int) {
@@ -41,24 +36,20 @@ fun loadBackgroundColorResource(view: View, colorResource: Int) {
     view.setBackgroundColor(ContextCompat.getColor(view.context, colorResource))
 }
 
-@BindingAdapter("adapter")
-fun setRecyclerViewAdapter(
-    recyclerView: RecyclerView,
-    adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>
-) {
-    recyclerView.adapter = adapter
+@BindingAdapter("android:visibility")
+fun setVisibility(view: View, isVisible: Boolean) {
+    view.visibility = if (isVisible)
+        View.VISIBLE
+    else
+        View.GONE
 }
 
-@BindingAdapter("blackAndWhite")
-fun setBlackAndWhite(imageView: ImageView, isBlackAndWhite: Boolean) {
-    imageView.colorFilter = ColorMatrixColorFilter(ColorMatrix().apply {
-        setSaturation(
-            when (isBlackAndWhite) {
-                true -> 0F
-                else -> 1F
-            }
-        )
-    })
+@BindingAdapter("visibleOrNot")
+fun setInvisible(view: View, isVisible: Boolean) {
+    view.visibility = if (isVisible)
+        View.VISIBLE
+    else
+        View.INVISIBLE
 }
 
 @BindingAdapter("animateSelected")
@@ -81,13 +72,32 @@ fun setSelectedAnimation(view: View, isSelected: Boolean) {
     view.startAnimation(fadeIn)
 }
 
-@BindingAdapter("leaderboardEntries")
-fun submitItems(recyclerView: RecyclerView, items: List<LeaderboardEntry>) {
-    (recyclerView.adapter as? HomeLeaderboardListAdapter)?.apply {
-        this.items = items
-        this.notifyDataSetChanged()
+@BindingAdapter("drawableTintRes")
+fun setDrawableTintRes(textView: TextView, color: Int) {
+    textView.compoundDrawablesRelative.forEach {
+        it?.colorFilter = PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN)
     }
 }
+
+@BindingAdapter("textWatcher")
+fun setTextWatcher(editText: EditText, textWatcher: TextWatcher) {
+    editText.addTextChangedListener(textWatcher)
+}
+
+// ********* end region View *********
+
+
+// ********* region ImageView *********
+
+@BindingAdapter("loadImageUrl")
+fun loadImageUrl(imageView: ImageView, imageUrl: String?) {
+    imageUrl?.let {
+        Glide.with(imageView.context)
+            .load(imageUrl)
+            .into(imageView)
+    }
+}
+// ********* end region RecyclerView *********
 
 @BindingAdapter("drawableRes")
 fun setImageDrawable(imageView: ImageView, @DrawableRes drawableRes: Int) {
@@ -98,9 +108,35 @@ fun setImageDrawable(imageView: ImageView, @DrawableRes drawableRes: Int) {
     )
 }
 
-@BindingAdapter("drawableTintRes")
-fun setDrawableTintRes(textView: TextView, color: Int) {
-    textView.compoundDrawablesRelative.forEach {
-        it?.colorFilter = PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN)
+@BindingAdapter("blackAndWhite")
+fun setBlackAndWhite(imageView: ImageView, isBlackAndWhite: Boolean) {
+    imageView.colorFilter = ColorMatrixColorFilter(ColorMatrix().apply {
+        setSaturation(
+            when (isBlackAndWhite) {
+                true -> 0F
+                else -> 1F
+            }
+        )
+    })
+}
+// ********* end region ImageView *********
+
+
+// ********* region RecyclerView *********
+
+@BindingAdapter("adapter")
+fun setRecyclerViewAdapter(
+    recyclerView: RecyclerView,
+    adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>
+) {
+    recyclerView.adapter = adapter
+}
+
+@BindingAdapter("leaderboardEntries")
+fun submitItems(recyclerView: RecyclerView, items: List<LeaderboardEntry>) {
+    (recyclerView.adapter as? HomeLeaderboardListAdapter)?.apply {
+        this.items = items
+        this.notifyDataSetChanged()
     }
 }
+// ********* end region RecyclerView *********

@@ -33,6 +33,7 @@
             android:layout_marginEnd="@dimen/padding_8"
             android:drawableEnd="@drawable/ic_experience"
             android:drawablePadding="@dimen/padding_4"
+            android:gravity="center"
             android:text="@{viewModel.level}"
             android:transitionName="userLevel"
             app:drawableTintRes="@{@color/colorAppOrangeBright}"
@@ -51,6 +52,7 @@
             android:layout_marginTop="@dimen/padding_24"
             android:drawableEnd="@drawable/ic_weekly_exp"
             android:drawablePadding="@dimen/padding_4"
+            android:gravity="center"
             android:text="@{viewModel.weeklyExp}"
             android:transitionName="userWeeklyExp"
             app:drawableTintRes="@{@android:color/holo_red_light}"
@@ -60,22 +62,119 @@
             app:layout_constraintTop_toBottomOf="@id/profile_image"
             tools:drawableTint="@android:color/holo_red_light" />
 
+        <TextView
+            android:id="@+id/profile_vip_badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_16"
+            android:drawableStart="@drawable/ic_vip"
+            android:drawablePadding="@dimen/padding_4"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:text="@string/leaderboard_vip"
+            android:textColor="@color/leaderboard_gold"
+            android:textSize="@dimen/text_size_18"
+            android:textStyle="bold"
+            android:visibility="@{viewModel.vip}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_weekly_exp" />
+
+        <!-- Dummy view that gains the focus when EditTexts clear focus -->
+        <View
+            android:layout_width="@dimen/padding_1"
+            android:layout_height="@dimen/padding_1"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <EditText
             android:id="@+id/profile_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/padding_32"
-            android:layout_marginTop="@dimen/padding_24"
+            android:layout_marginHorizontal="@dimen/padding_64"
+            android:layout_marginTop="@dimen/padding_64"
             android:background="@android:color/transparent"
             android:drawableEnd="@drawable/ic_edit"
-            android:drawablePadding="@dimen/padding_8"
+            android:drawablePadding="@dimen/padding_4"
+            android:gravity="center_horizontal|top"
             android:imeOptions="actionDone"
+            android:maxWidth="@dimen/padding_256"
+            android:singleLine="true"
+            android:text="@={viewModel.editableName}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:visibility="@{viewModel.ownUserProfile}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_vip_badge"
+            app:textWatcher="@{viewModel.nameChangedWatcher}" />
+
+        <TextView
+            android:id="@+id/profile_name_non_editable"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/padding_64"
+            android:layout_marginTop="@dimen/padding_64"
+            android:ellipsize="end"
             android:singleLine="true"
             android:text="@{viewModel.name}"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profile_level" />
+            app:layout_constraintTop_toBottomOf="@id/profile_level"
+            app:visibleOrNot="@{!viewModel.ownUserProfile}" />
 
+        <TextView
+            android:id="@+id/profile_vip_start_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/padding_16"
+            android:layout_marginTop="@dimen/padding_128"
+            android:text="VIP since: 02-11-2020"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_name_non_editable" />
+
+        <TextView
+            android:id="@+id/profile_vip_end_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/padding_16"
+            android:layout_marginTop="@dimen/padding_8"
+            android:text="VIP until: 30-12-2020"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_vip_start_date" />
+
+        <TextView
+            android:id="@+id/profile_vip_multiplier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/padding_16"
+            android:layout_marginTop="@dimen/padding_8"
+            android:text="Right now, you gain experience with a 1.33 multiplier!"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_vip_end_date" />
+
+        <Button
+            android:id="@+id/profile_save_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/padding_16"
+            android:background="@drawable/shape_rectangle_green_round_corners"
+            android:onClick="@{_ -> viewModel.onSaveClick()}"
+            android:text="@string/save"
+            android:visibility="@{viewModel.saveButtonActive}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
