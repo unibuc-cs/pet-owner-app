@@ -3,10 +3,7 @@ package ip.team13.petowner.core
 import ip.team13.petowner.data.domain.ActivityData
 import ip.team13.petowner.data.domain.LeaderboardType
 import ip.team13.petowner.data.dto.ActivityEntryModel
-import ip.team13.petowner.data.repository.ActivitiesRepository
-import ip.team13.petowner.data.repository.AuthRepository
-import ip.team13.petowner.data.repository.LeaderboardRepository
-import ip.team13.petowner.data.repository.PetRepository
+import ip.team13.petowner.data.repository.*
 import ip.team13.petowner.ui.activities.ActivitiesViewModel
 import ip.team13.petowner.ui.activities.details.ActivityDetailsViewModel
 import ip.team13.petowner.ui.cost.CostTrackerViewModel
@@ -27,10 +24,11 @@ import org.koin.dsl.module
 
 val appModule = module {
 
+    single { ActivitiesRepository() }
     single { AuthRepository() }
     single { LeaderboardRepository() }
     single { PetRepository() }
-    single { ActivitiesRepository() }
+    single { UserRepository() }
 
     viewModel { (onAddActivity: () -> Unit, notifyDataSetChange: (ArrayList<ActivityData>) -> Unit) ->
         ActivitiesViewModel(
@@ -49,7 +47,7 @@ val appModule = module {
     viewModel { CostDetailsViewModel() }
     viewModel { CostTrackerViewModel() }
     viewModel { GroupViewModel() }
-    viewModel { HomeViewModel() }
+    viewModel { HomeViewModel(get()) }
     viewModel { (leaderboardType: LeaderboardType) ->
         HomeLeaderboardTabViewModel(
             leaderboardType,
@@ -63,5 +61,7 @@ val appModule = module {
     viewModel { PetProfileViewModel() }
     viewModel { RegisterViewModel(get()) }
     viewModel { SplashViewModel() }
-    viewModel { UserProfileViewModel() }
+    viewModel { (isOwnUserProfile: Boolean) ->
+        UserProfileViewModel(isOwnUserProfile, get())
+    }
 }

@@ -2,6 +2,8 @@ package ip.team13.petowner.ui.home
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import ip.team13.petowner.R
@@ -16,6 +18,28 @@ class HomeFragment : BaseFragment<HomeScreenBinding>() {
         get() = R.layout.home_screen
 
     override val viewModel: HomeViewModel by viewModel()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        viewModel.navigateToUserProfile = {
+
+            val args = bundleOf("isOwnUserProfile" to true)
+
+            val extras = FragmentNavigatorExtras(
+                binding.homeProfileHeader.homeProfileImage to "userImage",
+                binding.homeProfileHeader.tvLevel to "userLevel",
+                binding.homeProfileHeader.tvWeeklyExp to "userWeeklyExp"
+            )
+
+            findNavController().navigate(
+                R.id.action_homeFragment_to_userProfileFragment,
+                args,
+                null,
+                extras
+            )
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

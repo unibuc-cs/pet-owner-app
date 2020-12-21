@@ -21,12 +21,13 @@ class MainActivity : FragmentActivity() {
         binding.viewModel = viewModel
 
         val navController = findNavController(R.id.nav_host_fragment).apply {
-            addOnDestinationChangedListener { controller, destination, _ ->
+            addOnDestinationChangedListener { _, destination, _ ->
 
-                when (destination.id) {
-                    R.id.splashFragment, R.id.loginFragment, R.id.registerFragment ->
-                        binding.bottomNav.visibility = View.GONE
-                    else -> binding.bottomNav.visibility = View.VISIBLE
+                binding.bottomNav.visibility = when (destination.id) {
+                    R.id.homeFragment, R.id.activitiesFragment, R.id.groupFragment,
+                        R.id.analyticsFragment -> View.VISIBLE
+
+                    else -> View.GONE
                 }
             }
         }

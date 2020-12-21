@@ -29,11 +29,13 @@
         android:name="ip.team13.petowner.ui.login.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/login_screen">
+
         <action
             android:id="@+id/action_loginFragment_to_homeFragment"
             app:destination="@id/homeFragment"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
+
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment"
@@ -45,11 +47,13 @@
         android:id="@+id/registerFragment"
         android:name="ip.team13.petowner.ui.register.RegisterFragment"
         android:label="RegisterFragment">
+
         <action
             android:id="@+id/action_registerFragment_to_homeFragment"
             app:destination="@id/homeFragment"
             app:popUpTo="@id/registerFragment"
             app:popUpToInclusive="true" />
+
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment"
@@ -66,6 +70,9 @@
         <action
             android:id="@+id/action_homeFragment_to_leaderboardFragment"
             app:destination="@id/leaderboardFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_userProfileFragment"
+            app:destination="@id/userProfileFragment" />
     </fragment>
 
     <fragment
@@ -96,9 +103,19 @@
         android:name="ip.team13.petowner.ui.group.GroupFragment"
         android:label="GroupFragment"
         tools:layout="@layout/group_screen" />
+
     <fragment
         android:id="@+id/analyticsFragment"
         android:name="ip.team13.petowner.ui.cost.CostTrackerFragment"
         android:label="AnalyticsFragment"
         tools:layout="@layout/cost_details_screen" />
+    <fragment
+        android:id="@+id/userProfileFragment"
+        android:name="ip.team13.petowner.ui.user.UserProfileFragment"
+        android:label="UserProfileFragment"
+        tools:layout="@layout/user_profile_screen" >
+        <argument
+            android:name="isOwnUserProfile"
+            app:argType="boolean" />
+    </fragment>
 </navigation>
