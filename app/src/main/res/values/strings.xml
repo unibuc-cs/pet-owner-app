@@ -32,4 +32,7 @@
     <string name="add_activity_repeat">Repeat</string>
     <string name="add_activity_reminder">Reminder</string>
     <string name="add_activity_due_time">Due Time</string>
+
+    <!-- Misc -->
+    <string name="save">save</string>
 </resources>
