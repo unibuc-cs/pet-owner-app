@@ -12,7 +12,6 @@ import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
 import ip.team13.petowner.R
-import java.text.DecimalFormat
 
 
 @BindingAdapter("setupWithData")
@@ -28,22 +27,19 @@ fun setupChartWithData(pieChart: PieChart, values: ArrayList<Float>) {
 
     val pieData = PieData(getPieDataSet(pieChart, values))
     pieData.setDrawValues(true)
-    val largeValueFormatter = object : ValueFormatter() {
-        override fun getFormattedValue(value: Float): String {
-            return getFormatValue(value)
-        }
-    }
 
     pieChart.data = pieData
-    pieData.setValueFormatter(largeValueFormatter)
+    pieData.setValueFormatter(object : ValueFormatter() {
+        override fun getFormattedValue(value: Float) = "$${value.toInt()}"
+    })
     pieData.setValueTextSize(15f)
     pieData.setValueTextColor(Color.BLACK)
     pieData.setDrawValues(values.isNotEmpty())
     pieChart.highlightValue(null)
     pieChart.setDrawEntryLabels(false)
     pieChart.description.isEnabled = false
-    pieChart.legend.isEnabled = true
     pieChart.legend.apply {
+        isEnabled = true
         verticalAlignment = Legend.LegendVerticalAlignment.BOTTOM
         horizontalAlignment = Legend.LegendHorizontalAlignment.LEFT
         orientation = Legend.LegendOrientation.HORIZONTAL
@@ -70,19 +66,19 @@ private fun getPieDataSet(pieChart: PieChart, values: ArrayList<Float>) =
             values.forEachIndexed { index, value ->
                 entries.add(PieEntry(value, "label $index"))
             }
-            val dataSet = PieDataSet(entries, "")
-            dataSet.setDrawIcons(false)
-            dataSet.xValuePosition = PieDataSet.ValuePosition.OUTSIDE_SLICE
-            dataSet.yValuePosition = PieDataSet.ValuePosition.OUTSIDE_SLICE
-            dataSet.isValueLineVariableLength = true
-            dataSet.isUsingSliceColorAsValueLineColor = true
-            dataSet.valueLinePart1Length = 0.8f
-            dataSet.valueLinePart2Length = 0.3f
-            dataSet.selectionShift = 6f
-            dataSet.sliceSpace = 2f
-            dataSet.form = Legend.LegendForm.CIRCLE
-            dataSet.colors = getLotOfColors()
-            dataSet
+            PieDataSet(entries, "").apply {
+                setDrawIcons(false)
+                xValuePosition = PieDataSet.ValuePosition.OUTSIDE_SLICE
+                yValuePosition = PieDataSet.ValuePosition.OUTSIDE_SLICE
+                isValueLineVariableLength = true
+                isUsingSliceColorAsValueLineColor = true
+                valueLinePart1Length = 0.8f
+                valueLinePart2Length = 0.3f
+                selectionShift = 6f
+                sliceSpace = 2f
+                form = Legend.LegendForm.CIRCLE
+                colors = getLotOfColors()
+            }
         }
     }
 
@@ -94,21 +90,4 @@ private fun getLotOfColors(): ArrayList<Int> {
     colors.addAll(ColorTemplate.LIBERTY_COLORS.toList())
     colors.addAll(ColorTemplate.PASTEL_COLORS.toList())
     return colors
-}
-
-
-private fun getFormatValue(value: Float): String {
-    var formattedValue = value
-    val pattern = when {
-        value >= 10000 && value < 1000000 -> {
-            formattedValue = formattedValue.div(1000)
-            "#.##K"
-        }
-        value >= 1000000 -> {
-            formattedValue = formattedValue.div(1000000)
-            "#.##M"
-        }
-        else -> "#,###"
-    }
-    return "$${DecimalFormat(pattern).format(formattedValue)}"
 }
