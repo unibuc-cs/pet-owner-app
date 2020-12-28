@@ -4,6 +4,9 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import ip.team13.petowner.core.helpers.isValidEmail
 import ip.team13.petowner.data.repository.AuthRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class LoginViewModel(private val authRepository: AuthRepository) : ViewModel() {
 
@@ -16,6 +19,8 @@ class LoginViewModel(private val authRepository: AuthRepository) : ViewModel() {
 
         if (!userEmail.isValidEmail()) return
 
-        authRepository.login(userEmail, userPassword)
+        CoroutineScope(Dispatchers.IO).launch {
+            authRepository.login(email = userEmail, password = userPassword)
+        }
     }
 }

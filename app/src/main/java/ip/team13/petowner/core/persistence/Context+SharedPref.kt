@@ -1,7 +1,8 @@
-package ip.team13.petowner.core.helpers
+package ip.team13.petowner.core.persistence
 
 import android.content.Context
 import ip.team13.petowner.R
+import ip.team13.petowner.core.helpers.AppConstants
 
 fun Context.saveFcmToken(token: String) =
     getSharedPreferences(
@@ -13,9 +14,3 @@ fun Context.saveFcmToken(token: String) =
             apply()
         }
     }
-
-fun Context.getFcmToken() =
-    getSharedPreferences(
-        getString(R.string.preference_file_key),
-        Context.MODE_PRIVATE
-    )?.getString(AppConstants.SharedPrefKeys.ARG_FCM_TOKEN, null)
