@@ -1,6 +1,5 @@
 package ip.team13.petowner.core.injection
 
-import ip.team13.petowner.data.domain.ActivityData
 import ip.team13.petowner.data.domain.LeaderboardType
 import ip.team13.petowner.data.dto.ActivityEntry
 import ip.team13.petowner.data.repository.*
@@ -26,7 +25,7 @@ val appModule = module {
 
     single { ActivitiesRepository() }
     single { AuthRepository(get(), get()) }
-    single { LeaderboardRepository() }
+    single { LeaderboardRepository(get()) }
     single { PetRepository() }
     single { UserRepository() }
 
