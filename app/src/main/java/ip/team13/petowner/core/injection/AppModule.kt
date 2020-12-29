@@ -25,7 +25,7 @@ val appModule = module {
 
     single { ActivitiesRepository(get()) }
     single { AuthRepository(get(), get()) }
-    single { LeaderboardRepository() }
+    single { LeaderboardRepository(get()) }
     single { PetRepository(get(), get()) }
     single { UserRepository() }
 
