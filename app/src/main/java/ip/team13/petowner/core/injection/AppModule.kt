@@ -1,8 +1,8 @@
-package ip.team13.petowner.core
+package ip.team13.petowner.core.injection
 
 import ip.team13.petowner.data.domain.ActivityData
 import ip.team13.petowner.data.domain.LeaderboardType
-import ip.team13.petowner.data.dto.ActivityEntryModel
+import ip.team13.petowner.data.dto.ActivityEntry
 import ip.team13.petowner.data.repository.*
 import ip.team13.petowner.ui.activities.ActivitiesViewModel
 import ip.team13.petowner.ui.activities.details.ActivityDetailsViewModel
@@ -30,15 +30,14 @@ val appModule = module {
     single { PetRepository() }
     single { UserRepository() }
 
-    viewModel { (onAddActivity: () -> Unit, notifyDataSetChange: (ArrayList<ActivityData>) -> Unit) ->
+    viewModel { (onAddActivity: () -> Unit) ->
         ActivitiesViewModel(
-            notifyDataSetChange = notifyDataSetChange,
             onAddActivity = onAddActivity,
             petRepository = get(),
             activityRepository = get()
         )
     }
-    viewModel { (onAddActivity: (ActivityEntryModel) -> Unit, onCancel: () -> Unit) ->
+    viewModel { (onAddActivity: (ActivityEntry) -> Unit, onCancel: () -> Unit) ->
         ActivityDetailsViewModel(
             onAddActivity = onAddActivity,
             onCancel = onCancel

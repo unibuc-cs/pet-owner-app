@@ -16,7 +16,9 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import ip.team13.petowner.data.domain.ActivityData
 import ip.team13.petowner.data.domain.LeaderboardEntry
+import ip.team13.petowner.ui.activities.list.ActivityAdapter
 import ip.team13.petowner.ui.home.list.HomeLeaderboardListAdapter
 
 // ********* region View *********
@@ -132,11 +134,20 @@ fun setRecyclerViewAdapter(
     recyclerView.adapter = adapter
 }
 
-@BindingAdapter("leaderboardEntries")
-fun submitItems(recyclerView: RecyclerView, items: List<LeaderboardEntry>) {
-    (recyclerView.adapter as? HomeLeaderboardListAdapter)?.apply {
-        this.items = items
-        this.notifyDataSetChanged()
+@Suppress("UNCHECKED_CAST")
+@BindingAdapter("items")
+fun submitItems(recyclerView: RecyclerView, items: List<Any>) {
+    when (recyclerView.adapter) {
+        is HomeLeaderboardListAdapter ->
+            (items as? List<LeaderboardEntry>)?.let {
+                (recyclerView.adapter as? HomeLeaderboardListAdapter)?.items = it
+            }
+        is ActivityAdapter ->
+            (items as? ArrayList<ActivityData>)?.let {
+                (recyclerView.adapter as? ActivityAdapter)?.data?.clear()
+                (recyclerView.adapter as? ActivityAdapter)?.data?.addAll(it)
+            }
     }
+    recyclerView.adapter?.notifyDataSetChanged()
 }
 // ********* end region RecyclerView *********

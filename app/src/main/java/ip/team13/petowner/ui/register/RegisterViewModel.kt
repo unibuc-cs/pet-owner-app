@@ -1,11 +1,10 @@
 package ip.team13.petowner.ui.register
 
 import androidx.databinding.ObservableField
+import androidx.lifecycle.viewModelScope
 import ip.team13.petowner.core.BaseViewModel
 import ip.team13.petowner.core.helpers.isValidEmail
 import ip.team13.petowner.data.repository.AuthRepository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class RegisterViewModel(
@@ -24,7 +23,7 @@ class RegisterViewModel(
         if (userPassword != userConfirmPassword) return
         if (!userEmail.isValidEmail()) return
 
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch {
             authRepository.register(
                 email = userEmail,
                 password = userPassword,

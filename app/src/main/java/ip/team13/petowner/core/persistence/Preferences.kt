@@ -4,12 +4,6 @@ import android.content.Context
 import android.content.SharedPreferences
 import ip.team13.petowner.R
 import ip.team13.petowner.core.helpers.AppConstants
-import org.koin.android.ext.koin.androidContext
-import org.koin.dsl.module
-
-val prefModule = module {
-    single { Preferences(androidContext()) }
-}
 
 class Preferences(context: Context) {
     private val preferences: SharedPreferences = context.getSharedPreferences(

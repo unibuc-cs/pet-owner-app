@@ -7,7 +7,7 @@ import ip.team13.petowner.R
 import ip.team13.petowner.core.BaseFragment
 import ip.team13.petowner.core.helpers.AppConstants.ARG_OBJECT
 import ip.team13.petowner.core.helpers.AppNotificationManager
-import ip.team13.petowner.data.dto.ActivityEntryModel
+import ip.team13.petowner.data.dto.ActivityEntry
 import ip.team13.petowner.databinding.ActivityDetailsScreenBinding
 import ip.team13.petowner.ui.activities.ActivitiesFragment.Companion.REQUEST_KEY_NEW_ACTIVITY
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -18,7 +18,7 @@ class ActivityDetailsFragment : BaseFragment<ActivityDetailsScreenBinding>() {
     override val layout: Int
         get() = R.layout.activity_details_screen
 
-    private val onAddActivity: ((ActivityEntryModel) -> Unit) = { activity ->
+    private val onAddActivity: ((ActivityEntry) -> Unit) = { activity ->
         sendNotification(activity)
         setFragmentResult(REQUEST_KEY_NEW_ACTIVITY, bundleOf(ARG_OBJECT to activity))
         findNavController().popBackStack()
@@ -33,12 +33,12 @@ class ActivityDetailsFragment : BaseFragment<ActivityDetailsScreenBinding>() {
         parametersOf(onAddActivity, onCancel)
     }
 
-    private fun sendNotification(activityEntryModel: ActivityEntryModel) = context?.apply {
+    private fun sendNotification(activityEntry: ActivityEntry) = context?.apply {
         //TODO add due_time
         AppNotificationManager.buildNotification(
             this,
             "Activity is about to start soon!",
-            activityEntryModel.title ?: "",
+            activityEntry.title ?: "",
             time = System.currentTimeMillis()
         )
     }

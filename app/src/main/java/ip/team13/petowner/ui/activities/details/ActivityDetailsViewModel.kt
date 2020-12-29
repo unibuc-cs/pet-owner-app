@@ -2,13 +2,13 @@ package ip.team13.petowner.ui.activities.details
 
 import androidx.lifecycle.ViewModel
 import ip.team13.petowner.R
-import ip.team13.petowner.data.dto.ActivityEntryModel
+import ip.team13.petowner.data.dto.ActivityEntry
 import ip.team13.petowner.ui.activities.list.ItemActivityDetailViewModel
 import ip.team13.petowner.ui.activities.list.ItemDetailType
 import kotlin.random.Random
 
 class ActivityDetailsViewModel(
-    private val onAddActivity: (ActivityEntryModel) -> Unit,
+    private val onAddActivity: (ActivityEntry) -> Unit,
     private val onCancel: () -> Unit
 ) : ViewModel() {
 
@@ -51,7 +51,7 @@ class ActivityDetailsViewModel(
 
         //TODO call backend API for adding an activity
         onAddActivity.invoke(
-            ActivityEntryModel(
+            ActivityEntry(
                 id = "",
                 title = title.fieldValue.get(),
                 description = description.fieldValue.get(),
