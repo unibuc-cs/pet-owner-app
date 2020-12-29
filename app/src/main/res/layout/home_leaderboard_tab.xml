@@ -19,6 +19,6 @@
         android:overScrollMode="never"
         app:adapter="@{HomeLeaderboardListAdapter.create()}"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:leaderboardEntries="@{viewModel.items}"
+        app:items="@{viewModel.items}"
         tools:listitem="@layout/home_leaderboard_list_item" />
 </layout>

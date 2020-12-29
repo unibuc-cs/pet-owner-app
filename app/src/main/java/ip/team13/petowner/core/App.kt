@@ -4,10 +4,12 @@ import android.app.Application
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 import ip.team13.petowner.core.helpers.logError
-import ip.team13.petowner.core.helpers.saveFcmToken
+import ip.team13.petowner.core.injection.appModule
+import ip.team13.petowner.core.injection.networkModule
+import ip.team13.petowner.core.injection.prefModule
+import ip.team13.petowner.core.persistence.saveFcmToken
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
-import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 
@@ -24,7 +26,7 @@ class App : Application() {
         startKoin {
             androidLogger(Level.ERROR)
             androidContext(this@App)
-            loadKoinModules(appModule)
+            modules(listOf(appModule, networkModule, prefModule))
         }
     }
 

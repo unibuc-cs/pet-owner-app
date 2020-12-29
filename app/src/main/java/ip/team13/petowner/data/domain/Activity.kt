@@ -1,6 +1,6 @@
 package ip.team13.petowner.data.domain
 
-import ip.team13.petowner.data.dto.ActivityEntryModel
+import ip.team13.petowner.data.dto.ActivityEntry
 import ip.team13.petowner.data.dto.PetEntryModel
 
 enum class ActivityDataType {
@@ -30,7 +30,7 @@ class ActivityDate(
 ) : ActivityData(type = ActivityDataType.ACTIVITY_DATE)
 
 data class ActivityItem(
-    val model: ActivityEntryModel
+    val model: ActivityEntry
 ) : ActivityData(
     type = ActivityDataType.ACTIVITY_ITEM
 )

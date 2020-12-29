@@ -2,26 +2,23 @@ package ip.team13.petowner.ui.activities
 
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableField
-import ip.team13.petowner.BR
 import ip.team13.petowner.core.BaseViewModel
 import ip.team13.petowner.data.domain.*
-import ip.team13.petowner.data.dto.ActivityEntryModel
+import ip.team13.petowner.data.dto.ActivityEntry
 import ip.team13.petowner.data.dto.PetEntryModel
 import ip.team13.petowner.data.repository.ActivitiesRepository
 import ip.team13.petowner.data.repository.PetRepository
-import okhttp3.internal.notifyAll
 
 class ActivitiesViewModel(
     private val onAddActivity: () -> Unit,
-    private val notifyDataSetChange: (ArrayList<ActivityData>) -> Unit,
     private val petRepository: PetRepository,
-    private val activityRepository: ActivitiesRepository
+    val activityRepository: ActivitiesRepository
 ) : BaseViewModel() {
 
     val selectedPet = ObservableField<PetEntryModel>()
 
     @get:Bindable
-    private val activities: ArrayList<ActivityEntryModel>
+    private val activities: ArrayList<ActivityEntry>
         get() = activityRepository.getActivities(selectedPet.get()?.id ?: "")
 
     @get: Bindable
@@ -54,9 +51,4 @@ class ActivitiesViewModel(
 
             return items
         }
-
-    fun addActivity(activity: ActivityEntryModel) {
-        activityRepository.addActivity(activity)
-        notifyDataSetChange.invoke(activityData)
-    }
 }

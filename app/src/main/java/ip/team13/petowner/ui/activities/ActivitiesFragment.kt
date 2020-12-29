@@ -8,7 +8,7 @@ import ip.team13.petowner.R
 import ip.team13.petowner.core.BaseFragment
 import ip.team13.petowner.core.helpers.AppConstants.ARG_OBJECT
 import ip.team13.petowner.data.domain.ActivityData
-import ip.team13.petowner.data.dto.ActivityEntryModel
+import ip.team13.petowner.data.dto.ActivityEntry
 import ip.team13.petowner.databinding.ActivitiesScreenBinding
 import ip.team13.petowner.ui.activities.list.ActivityAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -29,22 +29,16 @@ class ActivitiesFragment : BaseFragment<ActivitiesScreenBinding>() {
         findNavController().navigate(R.id.action_activitiesFragment_to_activityDetailsFragment)
     }
 
-    private val notifyDataSetChange: ((ArrayList<ActivityData>) -> Unit) = {
-        adapter?.data?.clear()
-        adapter?.data?.addAll(it)
-        adapter?.notifyDataSetChanged()
-    }
-
     override val viewModel: ActivitiesViewModel by viewModel {
-        parametersOf(onAddActivity, notifyDataSetChange)
+        parametersOf(onAddActivity)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setFragmentResultListener(REQUEST_KEY_NEW_ACTIVITY) { requestKey, bundle ->
-            (bundle.get(ARG_OBJECT) as? ActivityEntryModel)?.let { activity ->
-                viewModel.addActivity(activity)
+            (bundle.get(ARG_OBJECT) as? ActivityEntry)?.let { activity ->
+                viewModel.activityRepository.addActivity(activity)
             }
         }
     }

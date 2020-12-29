@@ -1,31 +1,32 @@
 package ip.team13.petowner.data.repository
 
 import androidx.lifecycle.MutableLiveData
-import ip.team13.petowner.data.dto.ActivityEntryModel
+import ip.team13.petowner.data.dto.ActivityEntry
 
 class ActivitiesRepository {
 
-    private val activities: MutableLiveData<ArrayList<ActivityEntryModel>> = MutableLiveData()
+    private val activities: MutableLiveData<ArrayList<ActivityEntry>> = MutableLiveData()
 
-    fun getActivities(petId: String): ArrayList<ActivityEntryModel> {
+    fun getActivities(petId: String): ArrayList<ActivityEntry> {
 
         if (activities.value.isNullOrEmpty()) {
             activities.value = arrayListOf(
-                ActivityEntryModel.getPlaceholder(),
-                ActivityEntryModel.getPlaceholder(),
-                ActivityEntryModel.getPlaceholder(),
-                ActivityEntryModel.getPlaceholder(),
-                ActivityEntryModel.getPlaceholder(),
-                ActivityEntryModel.getPlaceholder(),
-                ActivityEntryModel.getPlaceholder(),
-                ActivityEntryModel.getPlaceholder(),
-                ActivityEntryModel.getPlaceholder(),
+                ActivityEntry.getPlaceholder(),
+                ActivityEntry.getPlaceholder(),
+                ActivityEntry.getPlaceholder(),
+                ActivityEntry.getPlaceholder(),
+                ActivityEntry.getPlaceholder(),
+                ActivityEntry.getPlaceholder(),
+                ActivityEntry.getPlaceholder(),
+                ActivityEntry.getPlaceholder(),
+                ActivityEntry.getPlaceholder(),
             )
         }
         return activities.value ?: ArrayList()
     }
 
-    fun addActivity(activityEntryModel: ActivityEntryModel) {
-        activities.value?.add(activityEntryModel)
+    fun addActivity(activityEntry: ActivityEntry) {
+        //TODO call backend
+        activities.value?.add(activityEntry)
     }
 }
