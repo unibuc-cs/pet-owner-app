@@ -24,10 +24,10 @@ import org.koin.dsl.module
 
 val appModule = module {
 
-    single { ActivitiesRepository() }
+    single { ActivitiesRepository(get()) }
     single { AuthRepository(get(), get()) }
     single { LeaderboardRepository() }
-    single { PetRepository() }
+    single { PetRepository(get(), get()) }
     single { UserRepository() }
 
     viewModel { (onAddActivity: () -> Unit) ->

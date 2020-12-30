@@ -17,6 +17,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ip.team13.petowner.data.domain.ActivityData
+import ip.team13.petowner.data.domain.ActivityDataType
 import ip.team13.petowner.data.domain.LeaderboardEntry
 import ip.team13.petowner.ui.activities.list.ActivityAdapter
 import ip.team13.petowner.ui.home.list.HomeLeaderboardListAdapter
@@ -141,13 +142,15 @@ fun submitItems(recyclerView: RecyclerView, items: List<Any>) {
         is HomeLeaderboardListAdapter ->
             (items as? List<LeaderboardEntry>)?.let {
                 (recyclerView.adapter as? HomeLeaderboardListAdapter)?.items = it
+                recyclerView.adapter?.notifyDataSetChanged()
             }
         is ActivityAdapter ->
             (items as? ArrayList<ActivityData>)?.let {
                 (recyclerView.adapter as? ActivityAdapter)?.data?.clear()
-                (recyclerView.adapter as? ActivityAdapter)?.data?.addAll(it)
+                (recyclerView.adapter as? ActivityAdapter)?.data?.addAll(items)
+                recyclerView.adapter?.notifyDataSetChanged()
+//                recyclerView.adapter?.notifyItemRangeChanged(3, items.size - 1)
             }
     }
-    recyclerView.adapter?.notifyDataSetChanged()
 }
 // ********* end region RecyclerView *********
