@@ -26,7 +26,7 @@ class LoginFragment : GoogleLoginFragment<LoginScreenBinding>() {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
 
-        binding.btnLogin.setOnClickListener {
+        viewModel.navigateToHome = {
             findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
         }
     }

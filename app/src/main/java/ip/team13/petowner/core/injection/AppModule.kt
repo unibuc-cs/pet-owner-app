@@ -1,6 +1,5 @@
 package ip.team13.petowner.core.injection
 
-import ip.team13.petowner.data.domain.ActivityData
 import ip.team13.petowner.data.domain.LeaderboardType
 import ip.team13.petowner.data.dto.ActivityEntry
 import ip.team13.petowner.data.repository.*
@@ -57,10 +56,10 @@ val appModule = module {
     viewModel { LoginViewModel(get()) }
     viewModel { MainViewModel() }
     viewModel { PetDetailsViewModel() }
-    viewModel { PetProfileViewModel() }
+    viewModel { PetProfileViewModel(get()) }
     viewModel { RegisterViewModel(get()) }
-    viewModel { SplashViewModel() }
+    viewModel { SplashViewModel(get()) }
     viewModel { (isOwnUserProfile: Boolean) ->
-        UserProfileViewModel(isOwnUserProfile, get())
+        UserProfileViewModel(isOwnUserProfile, get(), get())
     }
 }

@@ -22,10 +22,17 @@ class Preferences(context: Context) {
     }
 
     fun getUserId() =
-        preferences.getString(AppConstants.SharedPrefKeys.ARG_USER_ID, null);
+        preferences.getInt(AppConstants.SharedPrefKeys.ARG_USER_ID, -1);
 
     fun saveUserId(userId: Int) = with(preferences.edit()) {
         putInt(AppConstants.SharedPrefKeys.ARG_USER_ID, userId)
         apply()
     }
+
+    fun removeSession() = with(preferences.edit()) {
+        remove(AppConstants.SharedPrefKeys.ARG_BEARER_TOKEN)
+        remove(AppConstants.SharedPrefKeys.ARG_USER_ID)
+        apply()
+    }
+
 }

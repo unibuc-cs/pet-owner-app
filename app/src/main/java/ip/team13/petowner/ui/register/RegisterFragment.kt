@@ -18,12 +18,12 @@ class RegisterFragment : BaseFragment<RegisterScreenBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnRegister.setOnClickListener {
-            findNavController().navigate(R.id.action_registerFragment_to_homeFragment)
-        }
-
         binding.tvAlreadyHaveAccount.setOnClickListener {
             findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+        }
+
+        viewModel.navigateToHome = {
+            findNavController().navigate(R.id.action_registerFragment_to_homeFragment)
         }
     }
 }

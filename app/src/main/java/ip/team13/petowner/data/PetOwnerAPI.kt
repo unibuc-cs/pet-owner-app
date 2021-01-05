@@ -8,9 +8,9 @@ import retrofit2.http.POST
 
 interface PetOwnerAPI {
 
-    @POST("/user/register")
+    @POST("api/user/register")
     suspend fun register(@Body body: RegisterForm): AuthResponseModel
 
-    @POST("/user/login")
+    @POST("api/user/login")
     suspend fun login(@Body body: LoginForm): AuthResponseModel
 }
