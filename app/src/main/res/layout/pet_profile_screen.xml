@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -10,5 +11,215 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/pet_profile_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_16"
+            android:text="@string/pet_profile"
+            android:textSize="@dimen/text_size_20"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/progress_bar_group" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/progress_bar_group"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAppCyanDark_99"
+            android:elevation="@dimen/padding_4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ProgressBar
+                android:id="@+id/happinessProgressBar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="100"
+                android:paddingHorizontal="@dimen/padding_16"
+                android:paddingVertical="@dimen/padding_8"
+                android:progress="50"
+                android:progressDrawable="@drawable/custom_progress"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/happiness_bar_title_tv" />
+
+            <TextView
+                android:id="@+id/happiness_bar_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/padding_16"
+                android:paddingTop="@dimen/padding_8"
+                android:text="@string/happiness"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_13"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/happiness_bar_percentage_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:paddingHorizontal="@dimen/padding_16"
+                android:paddingTop="@dimen/padding_8"
+                android:text="50%"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_11"
+                app:layout_constraintBottom_toBottomOf="@+id/happinessProgressBar"
+                app:layout_constraintEnd_toEndOf="@+id/happinessProgressBar"
+                app:layout_constraintStart_toStartOf="@+id/happinessProgressBar"
+                app:layout_constraintTop_toTopOf="@+id/happinessProgressBar" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/pet_profile_iv"
+            android:layout_width="@dimen/padding_128"
+            android:layout_height="@dimen/padding_128"
+            android:elevation="@dimen/padding_4"
+            app:civ_border_color="@color/colorAppGreen"
+            app:civ_border_width="@dimen/padding_4"
+            app:layout_constraintBottom_toTopOf="@+id/pet_profile_card_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pet_profile_title_tv"
+            app:loadImageUrl="@{viewModel.pet.photo}" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/pet_profile_card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_16"
+            app:cardBackgroundColor="@color/colorAppGreen"
+            app:cardCornerRadius="@dimen/padding_8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pet_profile_iv">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/pet_name_key_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/padding_32"
+                    android:layout_marginTop="@dimen/padding_16"
+                    android:padding="@dimen/padding_16"
+                    android:text="@string/pet_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/pet_name_value_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/padding_32"
+                    android:padding="@dimen/padding_16"
+                    android:text="@{viewModel.pet.petName}"
+                    app:layout_constraintBottom_toBottomOf="@+id/pet_name_key_tv"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/pet_name_key_tv" />
+
+                <TextView
+                    android:id="@+id/pet_age_key_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/padding_16"
+                    android:layout_marginStart="@dimen/padding_32"
+                    android:padding="@dimen/padding_16"
+                    android:text="@string/pet_age"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/pet_name_key_tv" />
+
+                <TextView
+                    android:id="@+id/pet_age_value_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/padding_16"
+                    android:layout_marginEnd="@dimen/padding_32"
+                    android:padding="@dimen/padding_16"
+                    android:text="@{String.valueOf(viewModel.pet.age)}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/pet_name_value_tv" />
+
+                <TextView
+                    android:id="@+id/pet_weight_key_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/padding_16"
+                    android:layout_marginStart="@dimen/padding_32"
+                    android:padding="@dimen/padding_16"
+                    android:text="@string/pet_weight"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/pet_age_key_tv" />
+
+                <TextView
+                    android:id="@+id/pet_weight_value_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/padding_16"
+                    android:layout_marginEnd="@dimen/padding_32"
+                    android:padding="@dimen/padding_16"
+                    android:text="@{String.valueOf(viewModel.pet.weight)}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/pet_age_value_tv" />
+
+                <TextView
+                    android:id="@+id/pet_species_key_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/padding_16"
+                    android:layout_marginStart="@dimen/padding_32"
+                    android:padding="@dimen/padding_16"
+                    android:text="@string/pet_species"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/pet_weight_key_tv" />
+
+                <TextView
+                    android:id="@+id/pet_species_value_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/padding_16"
+                    android:layout_marginEnd="@dimen/padding_32"
+                    android:padding="@dimen/padding_16"
+                    android:text="@{viewModel.pet.species}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/pet_weight_value_tv" />
+
+                <TextView
+                    android:id="@+id/pet_race_key_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/padding_16"
+                    android:layout_marginStart="@dimen/padding_32"
+                    android:padding="@dimen/padding_16"
+                    android:text="@string/pet_race"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/pet_species_key_tv" />
+
+                <TextView
+                    android:id="@+id/pet_race_value_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/padding_16"
+                    android:layout_marginEnd="@dimen/padding_32"
+                    android:layout_marginBottom="@dimen/padding_32"
+                    android:padding="@dimen/padding_16"
+                    android:text="@{viewModel.pet.race}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/pet_species_value_tv" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

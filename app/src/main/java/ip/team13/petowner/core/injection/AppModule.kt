@@ -56,10 +56,10 @@ val appModule = module {
     viewModel { LoginViewModel(get()) }
     viewModel { MainViewModel() }
     viewModel { PetDetailsViewModel() }
-    viewModel { PetProfileViewModel() }
+    viewModel { PetProfileViewModel(get()) }
     viewModel { RegisterViewModel(get()) }
-    viewModel { SplashViewModel() }
+    viewModel { SplashViewModel(get()) }
     viewModel { (isOwnUserProfile: Boolean) ->
-        UserProfileViewModel(isOwnUserProfile, get())
+        UserProfileViewModel(isOwnUserProfile, get(), get())
     }
 }
