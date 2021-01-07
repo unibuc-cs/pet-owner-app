@@ -47,7 +47,7 @@ class ActivitiesFragment : BaseFragment<ActivitiesScreenBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         adapter = ActivityAdapter(
-            data = viewModel.activityData,
+            data = ArrayList<ActivityData>().apply { addAll(viewModel.activityData) },
             selectedPet = viewModel.selectedPet
         )
         binding.adapter = adapter
