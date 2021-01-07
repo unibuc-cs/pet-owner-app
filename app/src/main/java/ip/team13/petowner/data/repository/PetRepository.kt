@@ -10,25 +10,8 @@ class PetRepository(
     private val petOwnerAPI: PetOwnerAPI
 ) {
 
-//    fun getPets(): List<PetEntryModel> = arrayListOf(
-//        PetEntryModel.getPlaceholder(),
-//        PetEntryModel.getPlaceholder(),
-//        PetEntryModel.getPlaceholder(),
-//        PetEntryModel.getPlaceholder(),
-//        PetEntryModel.getPlaceholder(),
-//        PetEntryModel.getPlaceholder(),
-//    )
-
     suspend fun getPets() = try {
-//        petOwnerAPI.getPetsAndActivities(userId = sharedPreferences.getUserId() ?: "")
-        arrayListOf(
-        PetEntryModel.getPlaceholder(),
-        PetEntryModel.getPlaceholder(),
-        PetEntryModel.getPlaceholder(),
-        PetEntryModel.getPlaceholder(),
-        PetEntryModel.getPlaceholder(),
-        PetEntryModel.getPlaceholder(),
-    )
+        petOwnerAPI.getPetsAndActivities(userId = sharedPreferences.getUserId() ?: "")
     } catch (ex: Exception) {
         ex.message?.logError()
         ArrayList()
