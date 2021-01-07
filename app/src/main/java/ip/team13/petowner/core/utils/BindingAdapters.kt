@@ -149,7 +149,6 @@ fun submitItems(recyclerView: RecyclerView, items: List<Any>) {
                 (recyclerView.adapter as? ActivityAdapter)?.data?.clear()
                 (recyclerView.adapter as? ActivityAdapter)?.data?.addAll(items)
                 recyclerView.adapter?.notifyDataSetChanged()
-//                recyclerView.adapter?.notifyItemRangeChanged(3, items.size - 1)
             }
     }
 }
