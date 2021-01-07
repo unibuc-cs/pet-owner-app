@@ -11,6 +11,7 @@ class LoginViewModel(private val authRepository: AuthRepository) : ViewModel() {
 
     val email = ObservableField<String>()
     val password = ObservableField<String>()
+    var navigateToHome: (() -> Unit)? = null
 
     fun login() {
         val userEmail = email.get() ?: return
@@ -19,7 +20,11 @@ class LoginViewModel(private val authRepository: AuthRepository) : ViewModel() {
         if (!userEmail.isValidEmail()) return
 
         viewModelScope.launch {
-            authRepository.login(email = userEmail, password = userPassword)
+            authRepository.login(
+                email = userEmail,
+                password = userPassword,
+                onSuccess = navigateToHome
+            )
         }
     }
 }

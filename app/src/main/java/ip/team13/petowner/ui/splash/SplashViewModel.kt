@@ -1,15 +1,18 @@
 package ip.team13.petowner.ui.splash
 
 import androidx.lifecycle.ViewModel
+import ip.team13.petowner.core.persistence.Preferences
 
-class SplashViewModel : ViewModel() {
+class SplashViewModel(private val preferences: Preferences) : ViewModel() {
 
     lateinit var navigateToLogin: () -> Unit
 
     lateinit var navigateToHome: () -> Unit
 
     fun navigateBasedOnAuth() {
-        // TODO: if user is auth'ed -> navigate to home ; else -> navigate to login
-        navigateToLogin()
+        when (preferences.getUserId() != -1 && !preferences.getBearerToken().isNullOrEmpty()) {
+            true -> navigateToHome.invoke()
+            false -> navigateToLogin.invoke()
+        }
     }
 }

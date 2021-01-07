@@ -5,14 +5,17 @@ import android.text.TextWatcher
 import androidx.databinding.Bindable
 import ip.team13.petowner.BR
 import ip.team13.petowner.core.BaseViewModel
+import ip.team13.petowner.core.persistence.Preferences
 import ip.team13.petowner.data.repository.UserRepository
 
 class UserProfileViewModel(
     val isOwnUserProfile: Boolean,
-    private val repository: UserRepository
+    private val repository: UserRepository,
+    private val preferences: Preferences
 ) : BaseViewModel() {
 
     lateinit var navigateBack: () -> Unit
+    lateinit var navigateToLogin: () -> Unit
 
     val imageUrl: String
         get() = repository.imageUrl
@@ -49,5 +52,10 @@ class UserProfileViewModel(
     fun onSaveClick() {
         repository.name = editableName
         navigateBack()
+    }
+
+    fun logout() {
+        preferences.removeSession()
+        navigateToLogin()
     }
 }

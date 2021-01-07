@@ -8,12 +8,14 @@ import ip.team13.petowner.data.repository.AuthRepository
 import kotlinx.coroutines.launch
 
 class RegisterViewModel(
-    private val authRepository: AuthRepository) : BaseViewModel() {
+    private val authRepository: AuthRepository
+) : BaseViewModel() {
 
     val email = ObservableField<String>()
     val password = ObservableField<String>()
     val confirmPassword = ObservableField<String>()
     val inviteCode = ObservableField<String>()
+    var navigateToHome: (() -> Unit)? = null
 
     fun register() {
         val userEmail = email.get() ?: return
@@ -27,7 +29,8 @@ class RegisterViewModel(
             authRepository.register(
                 email = userEmail,
                 password = userPassword,
-                inviteCode = inviteCode.get() ?: ""
+                inviteCode = inviteCode.get(),
+                onSuccess = navigateToHome
             )
         }
     }

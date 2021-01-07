@@ -30,6 +30,9 @@ class UserProfileFragment : BaseFragment<UserProfileScreenBinding>() {
         viewModel.navigateBack = {
             findNavController().popBackStack()
         }
+        viewModel.navigateToLogin = {
+            findNavController().navigate(R.id.action_userProfileFragment_to_loginFragment)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

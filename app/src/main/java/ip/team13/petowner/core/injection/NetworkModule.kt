@@ -1,5 +1,6 @@
 package ip.team13.petowner.core.injection
 
+import com.squareup.moshi.Moshi
 import ip.team13.petowner.BuildConfig
 import ip.team13.petowner.core.network.AuthInterceptor
 import ip.team13.petowner.data.PetOwnerAPI
@@ -26,9 +27,9 @@ val networkModule = module {
         get(Retrofit::class.java).create(PetOwnerAPI::class.java)
     }
     single {
-        Retrofit.Builder().baseUrl("http://146.59.3.206/api/")
+        Retrofit.Builder().baseUrl("http://146.59.3.206/")
             .client(get())
-            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create(Moshi.Builder().build()))
             .build()
     }
 }

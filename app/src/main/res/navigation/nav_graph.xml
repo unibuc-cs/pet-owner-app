@@ -109,6 +109,13 @@
         android:name="ip.team13.petowner.ui.cost.CostTrackerFragment"
         android:label="AnalyticsFragment"
         tools:layout="@layout/cost_details_screen" />
+
+    <fragment
+        android:id="@+id/petProfileFragment"
+        android:name="ip.team13.petowner.ui.pet.PetProfileFragment"
+        android:label="PetProfileFragment"
+        tools:layout="@layout/pet_profile_screen" />
+
     <fragment
         android:id="@+id/userProfileFragment"
         android:name="ip.team13.petowner.ui.user.UserProfileFragment"
@@ -117,5 +124,8 @@
         <argument
             android:name="isOwnUserProfile"
             app:argType="boolean" />
+        <action
+            android:id="@+id/action_userProfileFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 </navigation>
