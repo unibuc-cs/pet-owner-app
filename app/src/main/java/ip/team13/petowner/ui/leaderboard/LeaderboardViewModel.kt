@@ -25,7 +25,7 @@ class LeaderboardViewModel(
         }
 
     @get:Bindable
-    var items: List<LeaderboardEntry> = ArrayList<LeaderboardEntry>()
+    var items: List<LeaderboardEntry> = ArrayList()
 
     @get:Bindable
     var person1: LeaderboardEntry? = null
