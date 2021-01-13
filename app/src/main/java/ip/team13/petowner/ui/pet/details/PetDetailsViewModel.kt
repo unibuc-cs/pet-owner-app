@@ -43,11 +43,6 @@ class PetDetailsViewModel(
             return false
         }
 
-//        if (groupId.isNullOrEmpty()) {
-//            showAlert?.invoke("An error has occurred!")
-//            return false
-//        }
-
         return true
     }
 

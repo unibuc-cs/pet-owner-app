@@ -2,6 +2,7 @@ package ip.team13.petowner.ui.group
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import ip.team13.petowner.R
 import ip.team13.petowner.core.BaseFragment
@@ -18,6 +19,11 @@ class GroupFragment : BaseFragment<GroupScreenBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        findNavController().navigate(R.id.action_groupFragment_to_petDetailsFragment)
+        binding.textPlaceholder.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_groupFragment_to_petDetailsFragment,
+                bundleOf("groupId" to "")
+            )
+        }
     }
 }

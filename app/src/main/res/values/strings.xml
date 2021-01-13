@@ -48,6 +48,6 @@
     <string name="weight">Weight</string>
     <string name="species">Species</string>
     <string name="race">Race</string>
-    <string name="enter_name_here">Enter name here</string>
-    <string name="kg">kg</string>
+    <string name="kg">(kg)</string>
+    <string name="years">year(s)</string>
 </resources>

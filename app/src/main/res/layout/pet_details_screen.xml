@@ -76,7 +76,7 @@
                         android:layout_marginHorizontal="@dimen/padding_16"
                         android:layout_marginVertical="@dimen/padding_8"
                         android:background="@android:color/transparent"
-                        android:hint="@string/enter_name_here"
+                        android:hint="@string/name"
                         android:padding="@dimen/padding_8"
                         android:text="@={viewModel.name}"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -163,16 +163,41 @@
                         android:id="@+id/et_weight_value"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/padding_16"
                         android:layout_marginVertical="@dimen/padding_8"
+                        android:layout_marginStart="@dimen/padding_16"
+                        android:layout_marginEnd="@dimen/padding_8"
                         android:background="@android:color/transparent"
                         android:hint="@string/weight"
                         android:inputType="number"
                         android:padding="@dimen/padding_8"
                         android:text="@={viewModel.weight}"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/et_age_value"
+                        app:layout_constraintEnd_toStartOf="@id/tv_kg"
                         app:layout_constraintStart_toEndOf="@id/imv_weight"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_kg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/padding_16"
+                        android:padding="@dimen/padding_8"
+                        android:text="@string/kg"
+                        android:textColor="@color/colorSilver"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/gl_mid"
+                        app:layout_constraintStart_toEndOf="@id/et_weight_value"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:id="@+id/gl_mid"
+                        android:layout_width="@dimen/padding_2"
+                        android:layout_height="0dp"
+                        android:layout_marginVertical="@dimen/padding_10"
+                        android:background="@drawable/shape_rect_silver_round"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
@@ -183,11 +208,25 @@
                         android:layout_marginVertical="@dimen/padding_8"
                         android:background="@android:color/transparent"
                         android:hint="@string/age"
+                        android:inputType="number"
                         android:padding="@dimen/padding_8"
                         android:text="@={viewModel.age}"
                         app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/tv_years"
+                        app:layout_constraintStart_toEndOf="@id/gl_mid"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_years"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/padding_16"
+                        android:padding="@dimen/padding_8"
+                        android:text="@string/years"
+                        android:textColor="@color/colorSilver"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/et_weight_value"
+                        app:layout_constraintStart_toEndOf="@id/et_age_value"
                         app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

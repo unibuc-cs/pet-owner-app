@@ -8,7 +8,6 @@ import ip.team13.petowner.R
 import ip.team13.petowner.core.BaseFragment
 import ip.team13.petowner.core.helpers.showAlertDialog
 import ip.team13.petowner.databinding.PetDetailsScreenBinding
-import ip.team13.petowner.ui.user.UserProfileFragmentArgs
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
