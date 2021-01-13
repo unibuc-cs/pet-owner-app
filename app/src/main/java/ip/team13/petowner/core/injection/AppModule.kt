@@ -25,8 +25,8 @@ val appModule = module {
 
     single { ActivitiesRepository(get()) }
     single { AuthRepository(get(), get()) }
-    single { LeaderboardRepository(get()) }
-    single { PetRepository() }
+    single { LeaderboardRepository() }
+    single { PetRepository(get(), get()) }
     single { UserRepository() }
 
     viewModel { (onAddActivity: () -> Unit) ->
