@@ -1,9 +1,12 @@
 package ip.team13.petowner.data.repository
 
 import androidx.lifecycle.MutableLiveData
+import ip.team13.petowner.data.PetOwnerAPI
 import ip.team13.petowner.data.dto.ActivityEntry
 
-class ActivitiesRepository {
+class ActivitiesRepository(
+    private val petOwnerAPI: PetOwnerAPI
+) {
 
     private val activities: MutableLiveData<ArrayList<ActivityEntry>> = MutableLiveData()
 

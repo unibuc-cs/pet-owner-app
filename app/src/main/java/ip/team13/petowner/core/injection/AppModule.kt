@@ -23,7 +23,7 @@ import org.koin.dsl.module
 
 val appModule = module {
 
-    single { ActivitiesRepository() }
+    single { ActivitiesRepository(get()) }
     single { AuthRepository(get(), get()) }
     single { LeaderboardRepository(get()) }
     single { PetRepository() }

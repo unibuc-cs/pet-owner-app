@@ -4,6 +4,7 @@ import ip.team13.petowner.data.dto.*
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface PetOwnerAPI {
 
@@ -15,4 +16,7 @@ interface PetOwnerAPI {
 
     @POST("/user/leaderboards")
     suspend fun getLeaderboards(@Body body: LeaderboardRequestModel): List<LeaderboardEntryModel>
+
+    @GET("/pet/group/{userId}")
+    suspend fun getPetsAndActivities(@Path("userId") userId: String): List<PetEntryModel>
 }
