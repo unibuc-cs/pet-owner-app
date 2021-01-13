@@ -1,6 +1,5 @@
 package ip.team13.petowner.data.dto
 
-import com.squareup.moshi.Json
 import ip.team13.petowner.data.domain.LeaderboardEntry
 
 class LeaderboardEntryModel(
@@ -12,11 +11,4 @@ class LeaderboardEntryModel(
 
 fun LeaderboardEntryModel.toLeaderboardEntry() = LeaderboardEntry(
     name, imageUrl, weeklyExperience
-)
-
-class LeaderboardRequestModel(
-    @Json(name = "size")
-    val size: Int,
-    @Json(name = "isVIP")
-    val isVIP: Boolean
 )
