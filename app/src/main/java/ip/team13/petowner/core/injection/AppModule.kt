@@ -26,7 +26,7 @@ val appModule = module {
     single { ActivitiesRepository() }
     single { AuthRepository(get(), get()) }
     single { LeaderboardRepository() }
-    single { PetRepository() }
+    single { PetRepository(get()) }
     single { UserRepository() }
 
     viewModel { (onAddActivity: () -> Unit) ->
@@ -55,7 +55,9 @@ val appModule = module {
     viewModel { LeaderboardViewModel(get()) }
     viewModel { LoginViewModel(get()) }
     viewModel { MainViewModel() }
-    viewModel { PetDetailsViewModel() }
+    viewModel { (groupId: String) ->
+        PetDetailsViewModel(groupId, get())
+    }
     viewModel { PetProfileViewModel(get()) }
     viewModel { RegisterViewModel(get()) }
     viewModel { SplashViewModel(get()) }
