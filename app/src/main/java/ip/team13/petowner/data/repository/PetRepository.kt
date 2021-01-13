@@ -1,13 +1,14 @@
 package ip.team13.petowner.data.repository
 
 import ip.team13.petowner.core.helpers.logError
+import ip.team13.petowner.core.persistence.Preferences
 import ip.team13.petowner.data.PetOwnerAPI
 import ip.team13.petowner.data.dto.AddPetModel
-import ip.team13.petowner.data.dto.PetEntryModel
 import ip.team13.petowner.data.dto.PetModel
 
 class PetRepository(
-    private val petOwnerAPI: PetOwnerAPI,
+    private val sharedPreferences: Preferences,
+    private val petOwnerAPI: PetOwnerAPI
 ) {
 
     val imageUrl: String
@@ -15,14 +16,12 @@ class PetRepository(
 
     var name: String = "Doggo"
 
-    fun getPets(): List<PetEntryModel> = arrayListOf(
-        PetEntryModel.getPlaceholder(),
-        PetEntryModel.getPlaceholder(),
-        PetEntryModel.getPlaceholder(),
-        PetEntryModel.getPlaceholder(),
-        PetEntryModel.getPlaceholder(),
-        PetEntryModel.getPlaceholder(),
-    )
+    suspend fun getPets() = try {
+        petOwnerAPI.getPetsAndActivities(userId = sharedPreferences.getUserId().toString())
+    } catch (ex: Exception) {
+        ex.message?.logError()
+        ArrayList()
+    }
 
     suspend fun addPet(addPetModel: AddPetModel): PetModel? {
         return try {

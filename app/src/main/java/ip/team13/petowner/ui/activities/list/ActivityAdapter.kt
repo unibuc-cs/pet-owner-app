@@ -4,7 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ObservableField
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ip.team13.petowner.R
 import ip.team13.petowner.data.domain.*
@@ -12,9 +14,9 @@ import ip.team13.petowner.data.dto.PetEntryModel
 import ip.team13.petowner.databinding.*
 
 class ActivityAdapter(
-    val data: ArrayList<ActivityData>,
+    var data: ArrayList<ActivityData>,
     private val selectedPet: ObservableField<PetEntryModel>
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+) : ListAdapter<ActivityData, RecyclerView.ViewHolder>(activityDataDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -148,6 +150,37 @@ class ActivityAdapter(
 
         fun bind(activity: ActivityItem) {
             binding.viewModel = ItemActivityViewModel(activity)
+        }
+    }
+}
+
+val activityDataDiffCallback = object : DiffUtil.ItemCallback<ActivityData>() {
+    override fun areItemsTheSame(oldItem: ActivityData, newItem: ActivityData): Boolean =
+        areItemsEqual(oldItem, newItem)
+
+    override fun areContentsTheSame(oldItem: ActivityData, newItem: ActivityData): Boolean =
+        areItemsEqual(oldItem, newItem, true)
+
+    private fun areItemsEqual(
+        oldItem: ActivityData,
+        newItem: ActivityData,
+        byContent: Boolean = false
+    ): Boolean {
+        if (oldItem::class != newItem::class) return false
+
+        return when (oldItem) {
+            is ActivitySelectPet -> true
+            is ActivityPets -> (newItem as? ActivityPets)?.pets == oldItem.pets
+            is ActivityAdd -> true
+            is ActivityDate -> (newItem as? ActivityDate)?.date == oldItem.date
+            is ActivityItem -> {
+                when (byContent) {
+                    true ->
+                        (newItem as? ActivityItem)?.model == oldItem.model
+                    else ->
+                        (newItem as? ActivityItem)?.model?.id == oldItem.model.id
+                }
+            }
         }
     }
 }
