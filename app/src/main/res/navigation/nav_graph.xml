@@ -96,7 +96,12 @@
         android:id="@+id/activityDetailsFragment"
         android:name="ip.team13.petowner.ui.activities.details.ActivityDetailsFragment"
         android:label="ActivityDetails"
-        tools:layout="@layout/activity_details_screen" />
+        tools:layout="@layout/activity_details_screen">
+        <argument
+            android:name="petId"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </fragment>
 
     <fragment
         android:id="@+id/groupFragment"
@@ -114,13 +119,18 @@
         android:id="@+id/petProfileFragment"
         android:name="ip.team13.petowner.ui.pet.PetProfileFragment"
         android:label="PetProfileFragment"
-        tools:layout="@layout/pet_profile_screen" />
+        tools:layout="@layout/pet_profile_screen">
+        <argument
+            android:name="petId"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </fragment>
 
     <fragment
         android:id="@+id/userProfileFragment"
         android:name="ip.team13.petowner.ui.user.UserProfileFragment"
         android:label="UserProfileFragment"
-        tools:layout="@layout/user_profile_screen" >
+        tools:layout="@layout/user_profile_screen">
         <argument
             android:name="isOwnUserProfile"
             app:argType="boolean" />

@@ -3,6 +3,7 @@ package ip.team13.petowner.data.repository
 import ip.team13.petowner.core.helpers.logError
 import ip.team13.petowner.core.persistence.Preferences
 import ip.team13.petowner.data.PetOwnerAPI
+import ip.team13.petowner.data.dto.PetEntryModel
 
 class PetRepository(
     private val sharedPreferences: Preferences,
@@ -21,4 +22,13 @@ class PetRepository(
 
     var name: String = "Doggo"
 
+
+    suspend fun getPet(petId: Int): PetEntryModel? {
+        try {
+            return petOwnerAPI.getPet(petId)
+        } catch (e: java.lang.Exception) {
+            e.message?.logError()
+        }
+        return null
+    }
 }
