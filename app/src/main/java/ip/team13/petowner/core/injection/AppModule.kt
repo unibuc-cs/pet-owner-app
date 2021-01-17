@@ -28,6 +28,7 @@ val appModule = module {
     single { LeaderboardRepository(get()) }
     single { PetRepository(get(), get()) }
     single { UserRepository() }
+    single { CostTrackerRepository(get()) }
 
     viewModel { (onAddActivity: () -> Unit) ->
         ActivitiesViewModel(
@@ -43,7 +44,7 @@ val appModule = module {
         )
     }
     viewModel { CostDetailsViewModel() }
-    viewModel { CostTrackerViewModel() }
+    viewModel { CostTrackerViewModel(get()) }
     viewModel { GroupViewModel() }
     viewModel { HomeViewModel(get()) }
     viewModel { (leaderboardType: LeaderboardType) ->

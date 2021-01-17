@@ -17,9 +17,10 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ip.team13.petowner.data.domain.ActivityData
-import ip.team13.petowner.data.domain.ActivityDataType
 import ip.team13.petowner.data.domain.LeaderboardEntry
+import ip.team13.petowner.data.dto.CostTrackerModel
 import ip.team13.petowner.ui.activities.list.ActivityAdapter
+import ip.team13.petowner.ui.cost.list.CostTrackerAdapter
 import ip.team13.petowner.ui.home.list.HomeLeaderboardListAdapter
 
 // ********* region View *********
@@ -148,6 +149,12 @@ fun submitItems(recyclerView: RecyclerView, items: List<Any>) {
             (items as? ArrayList<ActivityData>)?.let {
                 (recyclerView.adapter as? ActivityAdapter)?.data?.clear()
                 (recyclerView.adapter as? ActivityAdapter)?.data?.addAll(items)
+                recyclerView.adapter?.notifyDataSetChanged()
+            }
+        is CostTrackerAdapter ->
+            (items as? ArrayList<CostTrackerModel>)?.let {
+                (recyclerView.adapter as? CostTrackerAdapter)?.items?.clear()
+                (recyclerView.adapter as? CostTrackerAdapter)?.items?.addAll(items)
                 recyclerView.adapter?.notifyDataSetChanged()
             }
     }

@@ -42,4 +42,7 @@
     <string name="pet_weight">Weight</string>
     <string name="pet_species">Species</string>
     <string name="pet_race">Race</string>
+
+    <!-- Cost tracker-->
+    <string name="cost_item_amount">%1$.2f RON</string>
 </resources>

@@ -7,6 +7,10 @@
         <variable
             name="viewModel"
             type="ip.team13.petowner.ui.cost.CostTrackerViewModel" />
+
+        <variable
+            name="adapter"
+            type="ip.team13.petowner.ui.cost.list.CostTrackerAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,11 +21,26 @@
             android:id="@+id/pieChart"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginTop="@dimen/padding_16"
             app:layout_constraintDimensionRatio="H, 1.5:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:setupWithData="@{viewModel.values}" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/expenses_rv"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/padding_16"
+            app:adapter="@{adapter}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:items="@{viewModel.items}"
+            app:layout_constraintTop_toBottomOf="@+id/pieChart" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
