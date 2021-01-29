@@ -1,5 +1,6 @@
 package ip.team13.petowner.data
 
+import com.squareup.moshi.Json
 import ip.team13.petowner.data.dto.*
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -15,8 +16,8 @@ interface PetOwnerAPI {
     suspend fun login(@Body body: LoginForm): AuthResponseModel
 
     @POST("api/pet")
-    suspend fun addPet(@Body body: AddPetModel): PetModel
+    suspend fun addPet(@Body body: AddPetRequestModel)
 
     @GET("api/pet/group/{userId}")
-    suspend fun getPetsAndActivities(@Path("userId") userId: String): List<PetEntryModel>
+    suspend fun getGroupPets(@Path("userId") userId: Int): List<PetEntryModel>
 }

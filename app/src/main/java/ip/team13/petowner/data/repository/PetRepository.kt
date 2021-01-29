@@ -4,7 +4,7 @@ import ip.team13.petowner.core.helpers.logError
 import ip.team13.petowner.core.persistence.Preferences
 import ip.team13.petowner.data.PetOwnerAPI
 import ip.team13.petowner.data.dto.AddPetModel
-import ip.team13.petowner.data.dto.PetModel
+import ip.team13.petowner.data.dto.AddPetRequestModel
 
 class PetRepository(
     private val sharedPreferences: Preferences,
@@ -17,18 +17,22 @@ class PetRepository(
     var name: String = "Doggo"
 
     suspend fun getPets() = try {
-        petOwnerAPI.getPetsAndActivities(userId = sharedPreferences.getUserId().toString())
+        petOwnerAPI.getGroupPets(userId = sharedPreferences.getUserId())
     } catch (ex: Exception) {
         ex.message?.logError()
         ArrayList()
     }
 
-    suspend fun addPet(addPetModel: AddPetModel): PetModel? {
-        return try {
-            petOwnerAPI.addPet(addPetModel)
+    suspend fun addPet(addPetModel: AddPetModel) {
+        try {
+            petOwnerAPI.addPet(
+                AddPetRequestModel(
+                    userId = sharedPreferences.getUserId(),
+                    pet = addPetModel.apply { groupId = sharedPreferences.getUserId() }
+                )
+            )
         } catch (e: Exception) {
             e.message?.logError()
-            null
         }
     }
 }
