@@ -6,7 +6,9 @@ import ip.team13.petowner.core.BaseViewModel
 import ip.team13.petowner.data.dto.PetEntryModel
 import ip.team13.petowner.data.dto.PetModel
 import ip.team13.petowner.data.repository.PetRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class PetProfileViewModel(
     private val petRepository: PetRepository,
@@ -20,8 +22,11 @@ class PetProfileViewModel(
     }
 
     private fun getPet() {
-        viewModelScope.launch {
-            pet.set(petRepository.getPet(petId))
+        viewModelScope.launch(Dispatchers.IO) {
+            val petResult = petRepository.getPet(petId)
+            withContext(Dispatchers.Main) {
+                pet.set(petResult)
+            }
         }
     }
 }

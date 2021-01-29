@@ -107,7 +107,11 @@
         android:id="@+id/groupFragment"
         android:name="ip.team13.petowner.ui.group.GroupFragment"
         android:label="GroupFragment"
-        tools:layout="@layout/group_screen" />
+        tools:layout="@layout/group_screen">
+        <action
+            android:id="@+id/action_groupFragment_to_petProfile"
+            app:destination="@+id/petProfileFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/analyticsFragment"
