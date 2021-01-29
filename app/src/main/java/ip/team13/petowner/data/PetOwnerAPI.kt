@@ -14,6 +14,6 @@ interface PetOwnerAPI {
     @POST("api/user/login")
     suspend fun login(@Body body: LoginForm): AuthResponseModel
 
-    @GET("/pet/group/{userId}")
+    @GET("api/pet/group/{userId}")
     suspend fun getPetsAndActivities(@Path("userId") userId: String): List<PetEntryModel>
 }

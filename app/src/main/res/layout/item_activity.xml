@@ -41,10 +41,21 @@
                 android:layout_marginTop="@dimen/padding_16"
                 android:layout_marginEnd="@dimen/padding_16"
                 android:text="@{viewModel.activity.model.title}"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/checkbox_completed"
                 app:layout_constraintStart_toEndOf="@id/v_color_line"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="@string/placeholder_string_text_short" />
+
+            <CheckBox
+                android:id="@+id/checkbox_completed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/colorAppGreen"
+                android:checked="@{viewModel.isCompleted}"
+                android:onClick="@{() -> viewModel.markAsCompleted(checkboxCompleted)}"
+                android:layout_marginTop="@dimen/padding_4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
                 android:id="@+id/tv_date"

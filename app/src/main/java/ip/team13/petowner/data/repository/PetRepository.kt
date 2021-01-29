@@ -3,6 +3,8 @@ package ip.team13.petowner.data.repository
 import ip.team13.petowner.core.helpers.logError
 import ip.team13.petowner.core.persistence.Preferences
 import ip.team13.petowner.data.PetOwnerAPI
+import ip.team13.petowner.data.dto.PetEntryModel
+import ip.team13.petowner.data.dto.PetModel
 
 class PetRepository(
     private val sharedPreferences: Preferences,
@@ -11,6 +13,14 @@ class PetRepository(
 
     suspend fun getPets() = try {
         petOwnerAPI.getPetsAndActivities(userId = sharedPreferences.getUserId().toString())
+//        arrayListOf(
+//            PetEntryModel.getPlaceholder(),
+//            PetEntryModel.getPlaceholder(),
+//            PetEntryModel.getPlaceholder(),
+//            PetEntryModel.getPlaceholder(),
+//            PetEntryModel.getPlaceholder(),
+//            PetEntryModel.getPlaceholder()
+//        )
     } catch (ex: Exception) {
         ex.message?.logError()
         ArrayList()

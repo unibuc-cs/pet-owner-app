@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import ip.team13.petowner.R
 import ip.team13.petowner.core.BaseFragment
 import ip.team13.petowner.core.helpers.AppConstants.ARG_OBJECT
@@ -38,7 +39,7 @@ class ActivitiesFragment : BaseFragment<ActivitiesScreenBinding>() {
 
         setFragmentResultListener(REQUEST_KEY_NEW_ACTIVITY) { requestKey, bundle ->
             (bundle.get(ARG_OBJECT) as? ActivityEntry)?.let { activity ->
-                viewModel.activityRepository.addActivity(activity)
+                viewModel.addActivity(activity)
             }
         }
     }

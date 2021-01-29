@@ -69,4 +69,9 @@ class ActivitiesViewModel(
         activityData = items
         notifyPropertyChanged(BR.activityData)
     }
+
+    fun addActivity(activity: ActivityEntry) {
+        activityRepository.addActivity(activity)
+        activityData.add(ActivityItem(activity))
+    }
 }

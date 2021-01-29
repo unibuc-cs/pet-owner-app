@@ -28,7 +28,7 @@ class ActivitiesRepository(
         return activities.value ?: ArrayList()
     }
 
-    fun addActivity(activityEntry: ActivityEntry) {
+    fun  addActivity(activityEntry: ActivityEntry) {
         //TODO call backend
         activities.value?.add(activityEntry)
     }
