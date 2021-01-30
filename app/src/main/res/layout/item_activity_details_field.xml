@@ -35,13 +35,13 @@
 
             <TextView
                 android:id="@+id/tv_add_activity_field"
+                style="@style/Text.Body"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/padding_8"
                 android:layout_marginEnd="@dimen/padding_8"
                 android:paddingHorizontal="@dimen/padding_8"
                 android:singleLine="true"
-                android:textAppearance="@style/Text.Body"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/iv_add_activity_field"
                 app:layout_constraintTop_toTopOf="parent"

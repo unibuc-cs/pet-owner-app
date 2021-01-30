@@ -27,8 +27,7 @@
 
     <style name="Text.Body">
         <item name="android:textColor">@color/colorTextBody</item>
-        <item name="android:textSize">@dimen/text_size_24</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
     </style>
 
     <style name="Text.Extra">

@@ -11,10 +11,10 @@
         android:layout_height="wrap_content">
 
         <TextView
+            style="@style/Text.Title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/select_pet"
-            android:textAppearance="@style/Text.Title"
             android:padding="@dimen/padding_16"
             android:layout_marginTop="@dimen/padding_16"
             app:layout_constraintStart_toStartOf="parent"
