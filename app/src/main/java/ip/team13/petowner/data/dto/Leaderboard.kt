@@ -17,6 +17,6 @@ fun LeaderboardEntryModel.toLeaderboardEntry() = LeaderboardEntry(
 class LeaderboardRequestModel(
     @Json(name = "size")
     val size: Int,
-    @Json(name = "isVIP")
+    @Json(name = "isvip")
     val isVIP: Boolean
 )
