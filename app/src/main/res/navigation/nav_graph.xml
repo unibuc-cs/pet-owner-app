@@ -108,6 +108,11 @@
         android:name="ip.team13.petowner.ui.group.GroupFragment"
         android:label="GroupFragment"
         tools:layout="@layout/group_screen">
+
+        <action
+            android:id="@+id/action_groupFragment_to_petDetailsFragment"
+            app:destination="@id/petDetailsFragment" />
+
         <action
             android:id="@+id/action_groupFragment_to_petProfile"
             app:destination="@+id/petProfileFragment" />
@@ -128,6 +133,17 @@
             android:name="petId"
             android:defaultValue="-1"
             app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/petDetailsFragment"
+        android:name="ip.team13.petowner.ui.pet.details.PetDetailsFragment"
+        android:label="PetDetailsFragment"
+        tools:layout="@layout/pet_details_screen">
+
+        <argument
+            android:name="groupId"
+            app:argType="string" />
     </fragment>
 
     <fragment
