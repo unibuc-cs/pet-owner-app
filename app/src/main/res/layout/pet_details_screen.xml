@@ -65,7 +65,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/padding_16"
                         android:src="@drawable/ic_group"
-                        android:tint="@color/colorAppCyanDark"
+                        app:tint="@color/colorAppCyanDark"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -102,7 +102,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/padding_16"
                         android:src="@drawable/ic_biotech"
-                        android:tint="@color/colorAppCyanDark"
+                        app:tint="@color/colorAppCyanDark"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -155,7 +155,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/padding_16"
                         android:src="@drawable/ic_health"
-                        android:tint="@color/colorAppCyanDark"
+                        app:tint="@color/colorAppCyanDark"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -166,8 +166,6 @@
                         android:layout_marginVertical="@dimen/padding_8"
                         android:layout_marginStart="@dimen/padding_16"
                         android:layout_marginEnd="@dimen/padding_8"
-                        android:background="@android:color/transparent"
-                        android:hint="@string/weight"
                         android:inputType="number"
                         android:padding="@dimen/padding_8"
                         android:text="@={viewModel.weight}"
@@ -206,8 +204,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/padding_16"
                         android:layout_marginVertical="@dimen/padding_8"
-                        android:background="@android:color/transparent"
-                        android:hint="@string/age"
                         android:inputType="number"
                         android:padding="@dimen/padding_8"
                         android:text="@={viewModel.age}"
