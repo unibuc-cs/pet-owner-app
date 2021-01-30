@@ -16,7 +16,6 @@
 
         <TextView
             android:id="@+id/tv_date"
-            style="@style/TextBody"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:paddingStart="@dimen/padding_16"
@@ -24,6 +23,7 @@
             android:paddingEnd="@dimen/padding_16"
             android:paddingBottom="@dimen/padding_8"
             android:text="@{model.date}"
+            android:textAppearance="@style/Text.Body"
             android:textColor="@color/colorTextExtra"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

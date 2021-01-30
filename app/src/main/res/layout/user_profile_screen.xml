@@ -47,7 +47,7 @@
             android:text="@{viewModel.level}"
             android:transitionName="userLevel"
             app:drawableTintRes="@{@color/colorAppOrangeBright}"
-            app:layout_constraintEnd_toStartOf="@+id/profile_weekly_exp"
+            app:layout_constraintEnd_toStartOf="@+id/profile_tokens"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
@@ -55,22 +55,20 @@
             tools:drawableTint="@color/colorAppOrangeBright" />
 
         <TextView
-            android:id="@+id/profile_weekly_exp"
+            android:id="@+id/profile_tokens"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/padding_8"
             android:layout_marginTop="@dimen/padding_24"
-            android:drawableEnd="@drawable/ic_weekly_exp"
+            android:drawableEnd="@drawable/ic_tokens"
             android:drawablePadding="@dimen/padding_4"
             android:gravity="center"
             android:text="@{viewModel.weeklyExp}"
-            android:transitionName="userWeeklyExp"
-            app:drawableTintRes="@{@android:color/holo_red_light}"
+            android:transitionName="userTokens"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/profile_level"
-            app:layout_constraintTop_toBottomOf="@id/profile_image"
-            tools:drawableTint="@android:color/holo_red_light" />
+            app:layout_constraintTop_toBottomOf="@id/profile_image" />
 
         <TextView
             android:id="@+id/profile_vip_badge"
@@ -88,7 +86,7 @@
             android:visibility="@{viewModel.vip}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profile_weekly_exp" />
+            app:layout_constraintTop_toBottomOf="@id/profile_tokens" />
 
         <!-- Dummy view that gains the focus when EditTexts clear focus -->
         <View
