@@ -5,23 +5,23 @@ import kotlin.math.sign
 import kotlin.random.Random
 
 data class PetEntryModel(
-    @Json(name = "petId")
+    @field:Json(name = "petId")
     val id: String,
-    @Json(name = "petName")
+    @field:Json(name = "petName")
     val name: String?,
-    @Json(name = "age")
+    @field:Json(name = "age")
     val age: Int?,
-    @Json(name = "weigth")
+    @field:Json(name = "weigth")
     val weight: Double?,
-    @Json(name = "species")
+    @field:Json(name = "species")
     val species: String?,
-    @Json(name = "race")
+    @field:Json(name = "race")
     val race: String,
-    @Json(name = "petActivities")
+    @field:Json(name = "petActivities")
     val petActivities: List<ActivityEntry>,
-    @Json(name = "groupId")
+    @field:Json(name = "groupId")
     val groupId: String?,
-    @Json(name = "photo")
+    @field:Json(name = "photo")
     val pictureUrl: String?
 ) {
 

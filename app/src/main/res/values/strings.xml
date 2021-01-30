@@ -45,4 +45,15 @@
 
     <!-- Cost tracker-->
     <string name="cost_item_amount">%1$.2f RON</string>
+
+
+    <!-- Pet profile   -->
+    <string name="name">Name</string>
+    <string name="add">Add</string>
+    <string name="age">Age</string>
+    <string name="weight">Weight</string>
+    <string name="species">Species</string>
+    <string name="race">Race</string>
+    <string name="kg">(kg)</string>
+    <string name="years">year(s)</string>
 </resources>

@@ -24,7 +24,7 @@ import org.koin.dsl.module
 val appModule = module {
 
     single { ActivitiesRepository(get()) }
-    single { AuthRepository(get(), get()) }
+    single { AuthRepository(get()) }
     single { LeaderboardRepository(get()) }
     single { PetRepository(get(), get()) }
     single { UserRepository() }
@@ -37,10 +37,9 @@ val appModule = module {
             activityRepository = get()
         )
     }
-    viewModel { (onAddActivity: (ActivityEntry) -> Unit, onCancel: () -> Unit) ->
+    viewModel { (petId: Int) ->
         ActivityDetailsViewModel(
-            onAddActivity = onAddActivity,
-            onCancel = onCancel
+            petId
         )
     }
     viewModel { CostDetailsViewModel() }
@@ -54,11 +53,18 @@ val appModule = module {
         )
     }
     viewModel { LeaderboardViewModel(get()) }
-    viewModel { LoginViewModel(get()) }
+    viewModel { LoginViewModel(get(), get()) }
     viewModel { MainViewModel() }
-    viewModel { PetDetailsViewModel() }
-    viewModel { PetProfileViewModel(get()) }
-    viewModel { RegisterViewModel(get()) }
+    viewModel { (groupId: String) ->
+        PetDetailsViewModel(groupId, get())
+    }
+    viewModel { (petId: Int) ->
+        PetProfileViewModel(
+            get(),
+            petId
+        )
+    }
+    viewModel { RegisterViewModel(get(),get()) }
     viewModel { SplashViewModel(get()) }
     viewModel { (isOwnUserProfile: Boolean) ->
         UserProfileViewModel(isOwnUserProfile, get(), get())

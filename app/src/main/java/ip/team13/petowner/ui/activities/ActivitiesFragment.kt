@@ -38,7 +38,7 @@ class ActivitiesFragment : BaseFragment<ActivitiesScreenBinding>() {
 
         setFragmentResultListener(REQUEST_KEY_NEW_ACTIVITY) { requestKey, bundle ->
             (bundle.get(ARG_OBJECT) as? ActivityEntry)?.let { activity ->
-                viewModel.activityRepository.addActivity(activity)
+                viewModel.addActivity(activity)
             }
         }
     }

@@ -5,18 +5,22 @@ import java.io.Serializable
 import kotlin.random.Random
 
 data class ActivityEntry(
-    @Json(name = "activityId")
+    @Json(name = "ActivityId")
     val id: String? = null,
-    @Json(name = "title")
+    @Json(name = "Title")
     val title: String? = null,
-    @Json(name = "description")
+    @Json(name = "Description")
     val description: String? = null,
-    @Json(name = "expPoints")
+    @Json(name = "ExpPoints")
     val expPoints: Int? = null,
-    @Json(name = "dueTime")
+    @Json(name = "Data")
     val dueTime: String? = null,
-    @Json(name = "petId")
-    val petId: String? = null
+    @Json(name = "PetId")
+    val petId: Int,
+    @Json(name = "Recurring")
+    val recurring: Boolean,
+    @Json(name = "RecurringInterval")
+    val recurringInterval: Int
 ) : Serializable {
     companion object {
         fun getPlaceholder(): ActivityEntry {
@@ -26,7 +30,10 @@ data class ActivityEntry(
                 title = "Title $random",
                 description = "Lorem ipsum dolor sit amet $random",
                 expPoints = random * 3,
-                dueTime = dueTimes.random()
+                dueTime = dueTimes.random(),
+                petId = 1,
+                recurring = true,
+                recurringInterval = 1
             )
         }
     }

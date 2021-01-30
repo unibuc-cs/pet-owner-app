@@ -5,6 +5,7 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.common.SignInButton
 import ip.team13.petowner.R
+import ip.team13.petowner.core.helpers.showAlertDialog
 import ip.team13.petowner.databinding.LoginScreenBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -29,10 +30,20 @@ class LoginFragment : GoogleLoginFragment<LoginScreenBinding>() {
         viewModel.navigateToHome = {
             findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
         }
+
+        viewModel.showAlert = { message ->
+            context?.showAlertDialog(
+                title = "",
+                message = message,
+                positiveButtonText = "Ok"
+            )
+        }
     }
 
     override fun loginWithGoogleAccount(googleId: String, email: String, username: String) {
-        // TODO add login with our server
-        findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+        viewModel.doGoogleAuth(
+            email = email,
+            password = username,
+        )
     }
 }
