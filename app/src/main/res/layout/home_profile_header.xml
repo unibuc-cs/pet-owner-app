@@ -44,73 +44,76 @@
                 app:loadImageUrl="@{viewModel.profileImageUrl}" />
 
             <TextView
-                android:id="@+id/tv_level_name"
-                style="@style/TextBody"
+                android:id="@+id/tv_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/padding_16"
-                android:padding="@dimen/padding_4"
-                android:text="Lv. Rookie"
-                app:layout_constraintEnd_toStartOf="@id/tv_level_points"
-                app:layout_constraintStart_toStartOf="@id/tv_level"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tv_level_points"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padding_16"
+                android:ellipsize="none"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/padding_8"
+                android:singleLine="true"
+                android:text="@{viewModel.name}"
+                android:textAppearance="@style/Text.Name"
+                android:transitionName="userName"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/tv_level_name"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toEndOf="@id/home_profile_image"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Hello, Joe Rodriguez" />
 
             <TextView
                 android:id="@+id/tv_level"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableEnd="@drawable/ic_experience"
                 android:drawablePadding="@dimen/padding_4"
-                android:gravity="center"
+                android:ellipsize="none"
                 android:padding="@dimen/padding_8"
+                android:singleLine="true"
                 android:text="@{viewModel.profileLevel}"
+                android:textAppearance="@style/Text.Header"
                 android:transitionName="userLevel"
-                app:drawableTintRes="@{@color/colorAppOrangeBright}"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/tv_weekly_exp"
+                app:layout_constraintEnd_toStartOf="@id/tv_tokens"
+                app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toEndOf="@id/home_profile_image"
-                app:layout_constraintTop_toBottomOf="@id/tv_level_name"
-                tools:drawableTint="@color/colorAppOrangeBright" />
+                app:layout_constraintTop_toBottomOf="@id/tv_name"
+                tools:text="Lvl 12" />
 
             <TextView
-                android:id="@+id/tv_weekly_exp"
+                android:id="@+id/tv_tokens"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableEnd="@drawable/ic_weekly_exp"
+                android:drawableStart="@drawable/ic_tokens"
                 android:drawablePadding="@dimen/padding_4"
-                android:gravity="center"
-                android:text="@{viewModel.profileWeeklyExp}"
-                android:transitionName="userWeeklyExp"
-                app:drawableTintRes="@{@android:color/holo_red_light}"
+                android:ellipsize="none"
+                android:padding="@dimen/padding_8"
+                android:singleLine="true"
+                android:text="@{viewModel.tokens}"
+                android:textAppearance="@style/Text.Header"
+                android:transitionName="userTokens"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/tv_vip_time"
                 app:layout_constraintStart_toEndOf="@id/tv_level"
-                app:layout_constraintTop_toBottomOf="@id/tv_level_name"
-                tools:drawableTint="@android:color/holo_red_light" />
+                app:layout_constraintTop_toBottomOf="@id/tv_name"
+                tools:text="2317" />
 
             <TextView
                 android:id="@+id/tv_vip_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableEnd="@drawable/ic_timer"
+                android:drawableStart="@drawable/ic_timer"
                 android:drawablePadding="@dimen/padding_4"
-                android:gravity="center"
-                android:text="17h"
+                android:ellipsize="none"
+                android:padding="@dimen/padding_8"
+                android:singleLine="true"
+                android:text="@{viewModel.vipTimeLeft}"
+                android:textAppearance="@style/Text.Header"
                 app:drawableTintRes="@{@color/colorShadeGrey}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/tv_weekly_exp"
-                app:layout_constraintTop_toBottomOf="@id/tv_level_name"
-                tools:drawableTint="@color/colorShadeGrey" />
+                app:layout_constraintStart_toEndOf="@id/tv_tokens"
+                app:layout_constraintTop_toBottomOf="@id/tv_name"
+                tools:drawableTint="@color/colorShadeGrey"
+                tools:text="17h" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
