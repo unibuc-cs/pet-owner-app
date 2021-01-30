@@ -89,7 +89,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pet_profile_title_tv"
-            app:loadImageUrl="@{viewModel.pet.photo}" />
+            app:loadImageUrl="@{viewModel.pet.pictureUrl}" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/pet_profile_card_view"
@@ -124,7 +124,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/padding_32"
                     android:padding="@dimen/padding_16"
-                    android:text="@{viewModel.pet.petName}"
+                    android:text="@{viewModel.pet.name}"
                     app:layout_constraintBottom_toBottomOf="@+id/pet_name_key_tv"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/pet_name_key_tv" />

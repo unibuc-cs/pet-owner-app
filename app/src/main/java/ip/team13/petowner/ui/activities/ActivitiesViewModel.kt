@@ -26,7 +26,6 @@ class ActivitiesViewModel(
         }
     }
 
-
     @Bindable
     private var activities: List<ActivityEntry> = ArrayList()
 
@@ -37,6 +36,10 @@ class ActivitiesViewModel(
     var activityData: ArrayList<ActivityData> = ArrayList()
 
     init {
+        fetchData()
+    }
+
+    private fun fetchData() {
         viewModelScope.launch {
             with(petRepository.getPets()) {
                 pets = this
@@ -68,5 +71,12 @@ class ActivitiesViewModel(
 
         activityData = items
         notifyPropertyChanged(BR.activityData)
+    }
+
+    fun addActivity(activityEntry: ActivityEntry) {
+        viewModelScope.launch {
+            activityRepository.addActivity(activityEntry)
+            fetchData()
+        }
     }
 }

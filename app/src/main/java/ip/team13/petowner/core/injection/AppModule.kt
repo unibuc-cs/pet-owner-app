@@ -36,10 +36,9 @@ val appModule = module {
             activityRepository = get()
         )
     }
-    viewModel { (onAddActivity: (ActivityEntry) -> Unit, onCancel: () -> Unit) ->
+    viewModel { (petId: Int) ->
         ActivityDetailsViewModel(
-            onAddActivity = onAddActivity,
-            onCancel = onCancel
+            petId
         )
     }
     viewModel { CostDetailsViewModel() }
@@ -58,8 +57,13 @@ val appModule = module {
     viewModel { (groupId: String) ->
         PetDetailsViewModel(groupId, get())
     }
-    viewModel { PetProfileViewModel(get()) }
-    viewModel { RegisterViewModel(get(), get()) }
+    viewModel { (petId: Int) ->
+        PetProfileViewModel(
+            get(),
+            petId
+        )
+    }
+    viewModel { RegisterViewModel(get(),get()) }
     viewModel { SplashViewModel(get()) }
     viewModel { (isOwnUserProfile: Boolean) ->
         UserProfileViewModel(isOwnUserProfile, get(), get())

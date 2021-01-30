@@ -5,6 +5,7 @@ import ip.team13.petowner.core.persistence.Preferences
 import ip.team13.petowner.data.PetOwnerAPI
 import ip.team13.petowner.data.dto.AddPetModel
 import ip.team13.petowner.data.dto.AddPetRequestModel
+import ip.team13.petowner.data.dto.PetEntryModel
 
 class PetRepository(
     private val sharedPreferences: Preferences,
@@ -30,4 +31,13 @@ class PetRepository(
                 pet = addPetModel.apply { groupId = sharedPreferences.getUserId() }
             )
         )
+
+    suspend fun getPet(petId: Int): PetEntryModel? {
+        try {
+            return petOwnerAPI.getPet(petId)
+        } catch (e: java.lang.Exception) {
+            e.message?.logError()
+        }
+        return null
+    }
 }
