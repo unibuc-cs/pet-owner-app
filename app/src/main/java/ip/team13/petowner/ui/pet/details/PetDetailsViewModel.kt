@@ -8,6 +8,7 @@ import ip.team13.petowner.data.repository.PetRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.lang.Exception
 
 class PetDetailsViewModel(
     private val groupId: String,
@@ -67,17 +68,17 @@ class PetDetailsViewModel(
                 photo = photos.random()
             )
             viewModelScope.launch(Dispatchers.IO) {
-                petRepository.addPet(addPetModel)
-//                    .let {
-//                    withContext(Dispatchers.Main){
-//                        showAlert?.invoke("Pet added successfully!")
-//                    }
-//                } ?: run {
-//                    withContext(Dispatchers.Main){
-//                        showAlert?.invoke("An error has occurred!")
-//                    }
-//                }
-//                navigateBack?.invoke()
+                try {
+                    petRepository.addPet(addPetModel)
+                    withContext(Dispatchers.Main){
+                        showAlert?.invoke("Pet added successfully!")
+                    }
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main){
+                        showAlert?.invoke("An error has occurred!")
+                    }
+
+                }
             }
         }
     }

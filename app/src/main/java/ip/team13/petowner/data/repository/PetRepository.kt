@@ -23,16 +23,11 @@ class PetRepository(
         ArrayList()
     }
 
-    suspend fun addPet(addPetModel: AddPetModel) {
-        try {
-            petOwnerAPI.addPet(
-                AddPetRequestModel(
-                    userId = sharedPreferences.getUserId(),
-                    pet = addPetModel.apply { groupId = sharedPreferences.getUserId() }
-                )
+    suspend fun addPet(addPetModel: AddPetModel) =
+        petOwnerAPI.addPet(
+            AddPetRequestModel(
+                userId = sharedPreferences.getUserId(),
+                pet = addPetModel.apply { groupId = sharedPreferences.getUserId() }
             )
-        } catch (e: Exception) {
-            e.message?.logError()
-        }
-    }
+        )
 }

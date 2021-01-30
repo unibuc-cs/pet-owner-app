@@ -44,7 +44,7 @@ abstract class GoogleLoginFragment<B : ViewDataBinding> : BaseFragment<B>() {
     override fun onStart() {
         super.onStart()
 
-        checkAlreadySignedIn()
+//        checkAlreadySignedIn()
     }
 
     protected fun signInWithGoogleAccount() {

@@ -30,7 +30,8 @@ class PetDetailsFragment : BaseFragment<PetDetailsScreenBinding>() {
             context?.showAlertDialog(
                 title = "",
                 message = message,
-                positiveButtonText = "Ok"
+                positiveButtonText = "Ok",
+                onPositiveAction = { findNavController().popBackStack() }
             )
         }
     }
