@@ -1,5 +1,6 @@
 package ip.team13.petowner.core.injection
 
+import ip.team13.petowner.core.helpers.StringResources
 import ip.team13.petowner.data.domain.LeaderboardType
 import ip.team13.petowner.data.dto.ActivityEntry
 import ip.team13.petowner.data.repository.*
@@ -18,6 +19,7 @@ import ip.team13.petowner.ui.pet.details.PetDetailsViewModel
 import ip.team13.petowner.ui.register.RegisterViewModel
 import ip.team13.petowner.ui.splash.SplashViewModel
 import ip.team13.petowner.ui.user.UserProfileViewModel
+import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -44,7 +46,7 @@ val appModule = module {
     viewModel { CostDetailsViewModel() }
     viewModel { CostTrackerViewModel() }
     viewModel { GroupViewModel() }
-    viewModel { HomeViewModel(get()) }
+    viewModel { HomeViewModel(get(), get()) }
     viewModel { (leaderboardType: LeaderboardType) ->
         HomeLeaderboardTabViewModel(
             leaderboardType,
@@ -66,4 +68,6 @@ val appModule = module {
     viewModel { (isOwnUserProfile: Boolean) ->
         UserProfileViewModel(isOwnUserProfile, get(), get())
     }
+
+    single { StringResources(androidContext()) }
 }

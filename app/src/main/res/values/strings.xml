@@ -25,6 +25,7 @@
     <string name="cancel">Cancel</string>
     <string name="add_a_new_activity">Add a new activity</string>
     <string name="login">Login</string>
+    <string name="hello">Hello,&#160;</string>
 
     <!-- Add activity screen   -->
     <string name="add_activity_title">Title</string>
