@@ -20,4 +20,10 @@ interface PetOwnerAPI {
 
     @GET("api/pet/group/{userId}")
     suspend fun getGroupPets(@Path("userId") userId: Int): List<PetEntryModel>
+
+    @GET("/pet/group/{userId}")
+    suspend fun getPetsAndActivities(@Path("userId") userId: String): List<PetEntryModel>
+
+    @POST("/user/leaderboards")
+    suspend fun getLeaderboards(@Body body: LeaderboardRequestModel): List<LeaderboardEntryModel>
 }
