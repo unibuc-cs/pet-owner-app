@@ -3,7 +3,6 @@ package ip.team13.petowner.ui.activities.list
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.view.View
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
@@ -18,6 +17,13 @@ enum class ItemDetailType {
     DUE_TIME,
     REPEAT,
     REMINDER
+}
+
+enum class RepeatType(val title: String, val value: Int) {
+    NEVER("Never", 0),
+    DAILY("Daily", 1),
+    WEEKLY("Weekly", 7),
+    MONTHLY("Monthly", 30);
 }
 
 class ItemActivityDetailViewModel(
@@ -39,7 +45,12 @@ class ItemActivityDetailViewModel(
         ItemDetailType.REPEAT -> {
             onShowRepeatDialog(
                 view.context,
-                arrayOf("Daily", "Weekly", "Monthly"),
+                arrayOf(
+                    RepeatType.NEVER.title,
+                    RepeatType.DAILY.title,
+                    RepeatType.WEEKLY.title,
+                    RepeatType.MONTHLY.title
+                ),
                 "Select repeat time"
             )
         }
@@ -64,7 +75,12 @@ class ItemActivityDetailViewModel(
             calendar.set(Calendar.MONTH, monthOfYear)
             calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
 
-            fieldValue.set(SimpleDateFormat("dd MMM yyyy", Locale.US).format(calendar.time))
+            fieldValue.set(
+                SimpleDateFormat(
+                    "yyyy-MM-dd'T'HH:mm:ss'Z'",
+                    Locale.US
+                ).format(calendar.time)
+            )
         }
 
     private fun onShowCalendar(context: Context) {

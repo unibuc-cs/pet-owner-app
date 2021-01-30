@@ -11,6 +11,7 @@ import ip.team13.petowner.data.dto.ActivityEntry
 import ip.team13.petowner.data.dto.PetEntryModel
 import ip.team13.petowner.data.repository.ActivitiesRepository
 import ip.team13.petowner.data.repository.PetRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class ActivitiesViewModel(
@@ -26,7 +27,6 @@ class ActivitiesViewModel(
         }
     }
 
-
     @Bindable
     private var activities: List<ActivityEntry> = ArrayList()
 
@@ -37,7 +37,11 @@ class ActivitiesViewModel(
     var activityData: ArrayList<ActivityData> = ArrayList()
 
     init {
-        viewModelScope.launch {
+        fetchData()
+    }
+
+    private fun fetchData() {
+        viewModelScope.launch(Dispatchers.IO) {
             with(petRepository.getPets()) {
                 pets = this
                 selectedPet.set(this.firstOrNull())
@@ -70,8 +74,10 @@ class ActivitiesViewModel(
         notifyPropertyChanged(BR.activityData)
     }
 
-    fun addActivity(activity: ActivityEntry) {
-        activityRepository.addActivity(activity)
-        activityData.add(ActivityItem(activity))
+    fun addActivity(activityEntry: ActivityEntry) {
+        viewModelScope.launch(Dispatchers.IO) {
+            activityRepository.addActivity(activityEntry)
+            fetchData()
+        }
     }
 }

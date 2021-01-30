@@ -5,12 +5,13 @@ import ip.team13.petowner.R
 import ip.team13.petowner.data.dto.ActivityEntry
 import ip.team13.petowner.ui.activities.list.ItemActivityDetailViewModel
 import ip.team13.petowner.ui.activities.list.ItemDetailType
+import ip.team13.petowner.ui.activities.list.RepeatType
 import kotlin.random.Random
 
-class ActivityDetailsViewModel(
-    private val onAddActivity: (ActivityEntry) -> Unit,
-    private val onCancel: () -> Unit
-) : ViewModel() {
+class ActivityDetailsViewModel(private val petId: Int) : ViewModel() {
+
+    var onAddActivity: ((ActivityEntry) -> Unit)? = null
+    var onCancel: (() -> Unit)? = null
 
     val title = ItemActivityDetailViewModel(
         backgroundColor = R.color.colorAppCyanDark_99,
@@ -49,21 +50,28 @@ class ActivityDetailsViewModel(
 
     fun onConfirm() {
 
-        //TODO call backend API for adding an activity
-        onAddActivity.invoke(
+        onAddActivity?.invoke(
             ActivityEntry(
-                id = "",
                 title = title.fieldValue.get(),
                 description = description.fieldValue.get(),
                 dueTime = dueTime.fieldValue.get(),
-                expPoints = Random.nextInt() % 100,
-                petId = ""
+                petId = petId,
+                recurring = repeat.fieldValue.get().equals(RepeatType.NEVER.title),
+                recurringInterval = getRecurringInterval(repeat.fieldValue.get())
             )
         )
     }
 
-    fun onCancel() {
-        onCancel.invoke()
+    private fun getRecurringInterval(value: String?) = when (value) {
+
+        RepeatType.NEVER.title -> -1
+        RepeatType.DAILY.title -> 1
+        RepeatType.WEEKLY.title -> 7
+        RepeatType.MONTHLY.title -> 30
+        else -> -1
     }
 
+    fun onCancel() {
+        onCancel?.invoke()
+    }
 }

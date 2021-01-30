@@ -1,8 +1,11 @@
 package ip.team13.petowner.ui.activities.details
 
+import android.os.Bundle
+import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import ip.team13.petowner.R
 import ip.team13.petowner.core.BaseFragment
 import ip.team13.petowner.core.helpers.AppConstants.ARG_OBJECT
@@ -35,7 +38,18 @@ class ActivityDetailsFragment : BaseFragment<ActivityDetailsScreenBinding>() {
     }
 
     override val viewModel: ActivityDetailsViewModel by viewModel {
-        parametersOf(onAddActivity, onCancel)
+        parametersOf(args.petId)
+    }
+
+    private val args: ActivityDetailsFragmentArgs by navArgs()
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel.onAddActivity = onAddActivity
+        viewModel.onCancel = {
+            onCancel.invoke()
+        }
     }
 
     private fun sendNotification(activityEntry: ActivityEntry) = context?.apply {
