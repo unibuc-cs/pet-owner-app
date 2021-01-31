@@ -32,6 +32,8 @@
     <!-- User Profile screen -->
     <string name="name_hint">Your name</string>
     <string name="buy_vip">Buy VIP for 349 tokens</string>
+    <string name="vip_duration">VIP duration</string>
+    <string name="multiplier">Your experience is multiplied by</string>
 
     <!-- Add activity screen   -->
     <string name="add_activity_title">Title</string>
