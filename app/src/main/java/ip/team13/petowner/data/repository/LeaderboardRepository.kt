@@ -16,7 +16,7 @@ class LeaderboardRepository(
             petOwnerAPI.getLeaderboards(
                 body = LeaderboardRequestModel(
                     size = size,
-                    isVIP = when (type) {
+                    isvip = when (type) {
                         LeaderboardType.VIP -> true
                         else -> false
                     }

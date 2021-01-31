@@ -35,7 +35,7 @@
 
             <TextView
                 android:id="@+id/tv_add_activity_field"
-                style="@style/TextBody"
+                style="@style/Text.Body"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/padding_8"
