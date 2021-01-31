@@ -24,13 +24,15 @@ class ActivityDetailsFragment : BaseFragment<ActivityDetailsScreenBinding>() {
 
     private val onAddActivity: ((ActivityEntry) -> Unit) = { activity ->
         sendNotification(activity)
-        context?.showCustomAlert(
-            message = "Activity has been added!",
-            onPositiveAction = {
-                setFragmentResult(REQUEST_KEY_NEW_ACTIVITY, bundleOf(ARG_OBJECT to activity))
-                findNavController().popBackStack()
-            }
-        )
+        setFragmentResult(REQUEST_KEY_NEW_ACTIVITY, bundleOf(ARG_OBJECT to activity))
+        findNavController().popBackStack()
+//        context?.showCustomAlert(
+//            message = "Activity has been added!",
+//            onPositiveAction = {
+//                setFragmentResult(REQUEST_KEY_NEW_ACTIVITY, bundleOf(ARG_OBJECT to activity))
+//                findNavController().popBackStack()
+//            }
+//        )
     }
 
     private val onCancel = {

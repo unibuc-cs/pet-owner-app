@@ -9,6 +9,10 @@
             type="ip.team13.petowner.ui.activities.list.ActivityAdapter" />
 
         <variable
+            name="petsAdapter"
+            type="ip.team13.petowner.ui.activities.list.ActivityAdapter" />
+
+        <variable
             name="viewModel"
             type="ip.team13.petowner.ui.activities.ActivitiesViewModel" />
     </data>
@@ -20,6 +24,17 @@
         android:background="@color/colorWhiteSmoke">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_pets"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:adapter="@{petsAdapter}"
+            app:items="@{viewModel.petsActivityData}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_activities"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -29,7 +44,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/rv_pets"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.ItemTouchHelper
 import ip.team13.petowner.R
 import ip.team13.petowner.core.BaseFragment
 import ip.team13.petowner.core.helpers.AppConstants.ARG_OBJECT
+import ip.team13.petowner.core.helpers.showAlertDialog
 import ip.team13.petowner.data.domain.ActivityData
 import ip.team13.petowner.data.dto.ActivityEntry
 import ip.team13.petowner.databinding.ActivitiesScreenBinding
@@ -52,5 +52,15 @@ class ActivitiesFragment : BaseFragment<ActivitiesScreenBinding>() {
             selectedPet = viewModel.selectedPet
         )
         binding.adapter = adapter
+        binding.petsAdapter =
+            ActivityAdapter(data = ArrayList(), selectedPet = viewModel.selectedPet)
+
+        viewModel.showAlert = { message ->
+            context?.showAlertDialog(
+                title = "",
+                message = message,
+                positiveButtonText = "Ok"
+            )
+        }
     }
 }

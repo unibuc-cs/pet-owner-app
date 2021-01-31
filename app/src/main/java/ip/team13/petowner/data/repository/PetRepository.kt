@@ -40,7 +40,7 @@ class PetRepository(
         return null
     }
 
-    suspend fun getPetActivities(petId: Int): ArrayList<ActivityEntry> {
+    suspend fun getPetActivities(petId: Int): List<ActivityEntry> {
         return try {
             petOwnerAPI.getPetsActivities(petId)
         } catch (e: Exception) {
