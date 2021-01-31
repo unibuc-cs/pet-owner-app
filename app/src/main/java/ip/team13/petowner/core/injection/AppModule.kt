@@ -29,7 +29,7 @@ val appModule = module {
     single { AuthRepository(get(), get()) }
     single { LeaderboardRepository(get()) }
     single { PetRepository(get(), get()) }
-    single { UserRepository() }
+    single { UserRepository(get(), get()) }
 
     viewModel { (onAddActivity: () -> Unit) ->
         ActivitiesViewModel(
