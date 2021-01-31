@@ -20,9 +20,9 @@ data class UserWrapperModel(
 
 data class VipModel(
     @field:Json(name = "startDate")
-    val startDate: LocalDateTime,
+    val startDate: String,
     @field:Json(name = "endDate")
-    val endDate: LocalDateTime,
+    val endDate: String,
     @field:Json(name = "expMultiplier")
     val expMultiplier: Double,
     @field:Json(name = "user")
@@ -48,6 +48,16 @@ data class NamePhotoUrlModel(
     val photoUrl: String?
 )
 
+data class BuyVipModel(
+    @field:Json(name = "id")
+    val id: Int
+)
+
+data class TokensModel(
+    @field:Json(name = "tokens")
+    val tokens: Int
+)
+
 fun UserWrapperModel.toUserProfile() =
     UserProfile(
         name = name,
@@ -56,8 +66,8 @@ fun UserWrapperModel.toUserProfile() =
         tokens = tokens,
         vipInfo = vip?.let { vipModel ->
             VipInfo(
-                vipStartDate = vipModel.startDate,
-                vipEndDate = vipModel.endDate,
+                vipStartDate = LocalDateTime.parse(vipModel.startDate.substringBeforeLast('.')),
+                vipEndDate = LocalDateTime.parse(vipModel.endDate.substringBeforeLast('.')),
                 expMultiplier = vipModel.expMultiplier
             )
         }

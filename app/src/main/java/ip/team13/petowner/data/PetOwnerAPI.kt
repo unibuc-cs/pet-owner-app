@@ -22,6 +22,12 @@ interface PetOwnerAPI {
         @Body body: NamePhotoUrlModel
     ): Boolean
 
+    @POST("api/vip")
+    suspend fun createVip(@Body userId: BuyVipModel): VipModel
+
+    @PATCH("api/gamification/{userId}/tokens")
+    suspend fun updateTokens(@Path("userId") userId: String, @Body body: TokensModel): Boolean
+
     // ******* Leaderboards *******
     @POST("api/user/leaderboards")
     suspend fun getLeaderboards(@Body body: LeaderboardRequestModel): List<LeaderboardEntryModel>

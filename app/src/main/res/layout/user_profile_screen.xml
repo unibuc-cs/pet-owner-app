@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="ip.team13.petowner.R" />
+
         <variable
             name="viewModel"
             type="ip.team13.petowner.ui.user.UserProfileViewModel" />
@@ -33,42 +35,58 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:loadImageUrl="@{viewModel.imageUrl}" />
+            app:loadImageUrl="@{viewModel.photoUrl}"
+            app:placeholder="@{R.drawable.ic_user_placeholder}" />
 
         <TextView
             android:id="@+id/profile_level"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/padding_24"
-            android:layout_marginEnd="@dimen/padding_8"
-            android:drawableEnd="@drawable/ic_experience"
-            android:drawablePadding="@dimen/padding_4"
             android:gravity="center"
             android:text="@{viewModel.level}"
+            android:textAppearance="@style/Text.Header"
             android:transitionName="userLevel"
-            app:drawableTintRes="@{@color/colorAppOrangeBright}"
             app:layout_constraintEnd_toStartOf="@+id/profile_tokens"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profile_image"
-            tools:drawableTint="@color/colorAppOrangeBright" />
+            app:layout_constraintTop_toBottomOf="@id/profile_image" />
 
         <TextView
             android:id="@+id/profile_tokens"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/padding_8"
-            android:layout_marginTop="@dimen/padding_24"
-            android:drawableEnd="@drawable/ic_tokens"
+            android:drawableStart="@drawable/ic_tokens"
             android:drawablePadding="@dimen/padding_4"
             android:gravity="center"
-            android:text="@{viewModel.weeklyExp}"
+            android:text="@{viewModel.tokens}"
+            android:textAppearance="@style/Text.Header"
             android:transitionName="userTokens"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintBottom_toBottomOf="@id/profile_level"
+            app:layout_constraintEnd_toStartOf="@+id/tv_vip_time"
             app:layout_constraintStart_toEndOf="@+id/profile_level"
-            app:layout_constraintTop_toBottomOf="@id/profile_image" />
+            app:layout_constraintTop_toTopOf="@id/profile_level"
+            tools:layout_editor_absoluteY="206dp" />
+
+        <TextView
+            android:id="@+id/tv_vip_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_timer"
+            android:drawablePadding="@dimen/padding_4"
+            android:ellipsize="none"
+            android:singleLine="true"
+            android:text="@{viewModel.vipTimeLeft}"
+            android:textAppearance="@style/Text.Header"
+            android:transitionName="userTime"
+            android:visibility="@{viewModel.vip}"
+            app:drawableTintRes="@{@color/colorShadeGrey}"
+            app:layout_constraintBottom_toBottomOf="@id/profile_level"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/profile_tokens"
+            app:layout_constraintTop_toTopOf="@id/profile_level"
+            tools:drawableTint="@color/colorShadeGrey"
+            tools:layout_editor_absoluteY="206dp"
+            tools:text="17h" />
 
         <TextView
             android:id="@+id/profile_vip_badge"
@@ -107,8 +125,10 @@
             android:drawableEnd="@drawable/ic_edit"
             android:drawablePadding="@dimen/padding_4"
             android:gravity="center_horizontal|top"
+            android:hint="@string/name_hint"
             android:imeOptions="actionDone"
             android:maxWidth="@dimen/padding_256"
+            android:minWidth="@dimen/padding_10"
             android:singleLine="true"
             android:text="@={viewModel.editableName}"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
@@ -134,44 +154,71 @@
             app:layout_constraintTop_toBottomOf="@id/profile_level"
             app:visibleOrNot="@{!viewModel.ownUserProfile}" />
 
-        <TextView
-            android:id="@+id/profile_vip_start_date"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/padding_16"
-            android:layout_marginTop="@dimen/padding_128"
-            android:text="VIP since: 02-11-2020"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:layout_marginHorizontal="@dimen/padding_8"
+            android:background="@drawable/shape_rect_round"
+            android:elevation="@dimen/padding_8"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_12"
+            android:visibility="@{viewModel.vip}"
+            app:layout_constraintBottom_toTopOf="@id/profile_save_button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profile_name_non_editable" />
+            app:layout_constraintTop_toBottomOf="@id/profile_name">
 
-        <TextView
-            android:id="@+id/profile_vip_end_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/padding_16"
-            android:layout_marginTop="@dimen/padding_8"
-            android:text="VIP until: 30-12-2020"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profile_vip_start_date" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/padding_8"
+                android:drawableStart="@drawable/ic_calendar"
+                android:drawablePadding="@dimen/padding_4"
+                android:singleLine="true"
+                android:text="@string/vip_duration"
+                android:textAppearance="@style/Text.Body" />
 
-        <TextView
-            android:id="@+id/profile_vip_multiplier"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/padding_24"
+                android:singleLine="true"
+                android:text="@{viewModel.vipDurationText}"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/padding_8"
+                android:drawableStart="@drawable/ic_multiplier"
+                android:drawablePadding="@dimen/padding_4"
+                android:singleLine="true"
+                android:text="@string/multiplier"
+                android:textAppearance="@style/Text.Body" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/padding_8"
+                android:singleLine="true"
+                android:text="@{viewModel.expMultiplier}"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/profile_buy_vip_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/padding_16"
-            android:layout_marginTop="@dimen/padding_8"
-            android:text="Right now, you gain experience with a 1.33 multiplier!"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:background="@drawable/shape_rectangle_cyan_dark_round_corners"
+            android:onClick="@{_ -> viewModel.onBuyVipClick()}"
+            android:paddingHorizontal="@dimen/padding_16"
+            android:text="@string/buy_vip"
+            android:textColor="@color/colorAppYellowBright"
+            android:visibility="@{!viewModel.vip}"
+            app:layout_constraintBottom_toTopOf="@id/profile_save_button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profile_vip_end_date" />
+            app:layout_constraintTop_toBottomOf="@id/profile_name" />
 
         <Button
             android:id="@+id/profile_save_button"

@@ -66,7 +66,7 @@ val appModule = module {
     viewModel { RegisterViewModel(get()) }
     viewModel { SplashViewModel(get()) }
     viewModel { (isOwnUserProfile: Boolean) ->
-        UserProfileViewModel(isOwnUserProfile, get(), get())
+        UserProfileViewModel(isOwnUserProfile, get(), get(), get())
     }
 
     single { StringResources(androidContext()) }
