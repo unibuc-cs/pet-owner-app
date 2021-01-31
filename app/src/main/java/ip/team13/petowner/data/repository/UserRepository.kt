@@ -49,6 +49,6 @@ class UserRepository(
 
     suspend fun updateTokens(tokens: Int) {
         if (api.updateTokens(preferences.getUserId().toString(), TokensModel(tokens)))
-            mutableUser.value = mutableUser.value.copy(tokens = tokens)
+            mutableUser.value = mutableUser.value.copy(tokens = mutableUser.value.tokens - tokens)
     }
 }

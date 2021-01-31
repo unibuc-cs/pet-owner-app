@@ -109,7 +109,7 @@ class UserProfileViewModel(
         viewModelScope.launch {
             if (user.tokens >= VIP_PRICE) {
                 repository.createVip()
-                repository.updateTokens(user.tokens - VIP_PRICE)
+                repository.updateTokens(-VIP_PRICE)
             }
         }
     }
