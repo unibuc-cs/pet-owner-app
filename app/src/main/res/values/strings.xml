@@ -20,7 +20,7 @@
     <!--  Home screen  -->
     <string name="leaderboard_weekly_title">Weekly Leaderboard</string>
     <string name="leaderboard_vip">VIP</string>
-    <string name="leaderboard_free">Free</string>
+    <string name="leaderboard_basic">Basic</string>
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
     <string name="add_a_new_activity">Add a new activity</string>
@@ -31,6 +31,7 @@
 
     <!-- User Profile screen -->
     <string name="name_hint">Your name</string>
+    <string name="buy_vip">Buy VIP for 349 tokens</string>
 
     <!-- Add activity screen   -->
     <string name="add_activity_title">Title</string>

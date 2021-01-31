@@ -26,7 +26,7 @@ class LeaderboardFragment : BaseFragment<LeaderboardScreenBinding>() {
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 val tabType = when (tab?.text) {
-                    getString(R.string.leaderboard_free) -> LeaderboardType.FREE
+                    getString(R.string.leaderboard_basic) -> LeaderboardType.BASIC
                     getString(R.string.leaderboard_vip) -> LeaderboardType.VIP
                     else -> null
                 }

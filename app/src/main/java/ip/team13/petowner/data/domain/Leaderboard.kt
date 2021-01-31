@@ -8,5 +8,5 @@ data class LeaderboardEntry(
 
 enum class LeaderboardType {
     VIP,
-    FREE
+    BASIC
 }
