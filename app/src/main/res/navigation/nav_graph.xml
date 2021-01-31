@@ -72,7 +72,8 @@
             app:destination="@id/leaderboardFragment" />
         <action
             android:id="@+id/action_homeFragment_to_userProfileFragment"
-            app:destination="@id/userProfileFragment" />
+            app:destination="@id/userProfileFragment"
+            app:popUpTo="@id/homeFragment" />
     </fragment>
 
     <fragment

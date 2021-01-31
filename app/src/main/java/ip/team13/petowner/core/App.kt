@@ -3,6 +3,7 @@ package ip.team13.petowner.core
 import android.app.Application
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
+import com.jakewharton.threetenabp.AndroidThreeTen
 import ip.team13.petowner.core.helpers.logError
 import ip.team13.petowner.core.injection.appModule
 import ip.team13.petowner.core.injection.networkModule
@@ -17,6 +18,8 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
+        AndroidThreeTen.init(this)
 
         initKoin()
         initFirebaseMessaging()

@@ -7,7 +7,7 @@ import ip.team13.petowner.R
 import ip.team13.petowner.data.domain.LeaderboardType
 
 private const val TAB_VIP_POSITION = 0
-private const val TAB_FREE_POSITION = 1
+private const val TAB_BASIC_POSITION = 1
 private const val TABS_COUNT = 2
 
 class HomeLeaderboardAdapter(fragment: Fragment) :
@@ -20,7 +20,7 @@ class HomeLeaderboardAdapter(fragment: Fragment) :
 
     override fun createFragment(position: Int): Fragment = when (position) {
         TAB_VIP_POSITION -> HomeLeaderboardTabFragment(LeaderboardType.VIP)
-        TAB_FREE_POSITION -> HomeLeaderboardTabFragment(LeaderboardType.FREE)
+        TAB_BASIC_POSITION -> HomeLeaderboardTabFragment(LeaderboardType.BASIC)
         else -> throw IllegalStateException("Unexpected leaderboard tab item position: $position")
     }
 
@@ -28,7 +28,7 @@ class HomeLeaderboardAdapter(fragment: Fragment) :
         @StringRes
         fun getTabTitle(position: Int): Int = when (position) {
             TAB_VIP_POSITION -> R.string.leaderboard_vip
-            TAB_FREE_POSITION -> R.string.leaderboard_free
+            TAB_BASIC_POSITION -> R.string.leaderboard_basic
             else -> throw IllegalStateException("Unexpected leaderboard tab position: $position")
         }
     }

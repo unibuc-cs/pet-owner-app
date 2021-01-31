@@ -28,8 +28,10 @@ class HomeFragment : BaseFragment<HomeScreenBinding>() {
 
             val extras = FragmentNavigatorExtras(
                 binding.homeProfileHeader.homeProfileImage to "userImage",
+                binding.homeProfileHeader.tvName to "userName",
                 binding.homeProfileHeader.tvLevel to "userLevel",
-                binding.homeProfileHeader.tvWeeklyExp to "userWeeklyExp"
+                binding.homeProfileHeader.tvTokens to "userTokens",
+                binding.homeProfileHeader.tvVipTime to "userTime"
             )
 
             findNavController().navigate(

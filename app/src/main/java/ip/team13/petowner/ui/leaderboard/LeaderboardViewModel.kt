@@ -5,7 +5,6 @@ import ip.team13.petowner.core.BaseViewModel
 import ip.team13.petowner.data.domain.LeaderboardEntry
 import ip.team13.petowner.data.domain.LeaderboardType
 import ip.team13.petowner.data.repository.LeaderboardRepository
-import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 
@@ -18,7 +17,7 @@ class LeaderboardViewModel(
     }
 
     @get:Bindable
-    var leaderboardType: LeaderboardType = LeaderboardType.FREE
+    var leaderboardType: LeaderboardType = LeaderboardType.BASIC
         set(value) {
             field = value
             refreshData()
