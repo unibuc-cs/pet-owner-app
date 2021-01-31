@@ -11,9 +11,7 @@ class AuthRepository(
     private val preferences: Preferences
 ) {
 
-    suspend fun register(
-        email: String, password: String, inviteCode: String? = null, onSuccess: (() -> Unit)? = null
-    ) {
+    suspend fun register(email: String, password: String, inviteCode: String? = null): Boolean {
 
         try {
             val response = petOwnerAPI.register(
@@ -21,17 +19,20 @@ class AuthRepository(
             )
             response.userToken?.let { preferences.saveBearerToken(it) }
             response.userId?.let { preferences.saveUserId(it) }
+            response.errorCode?.let { return false }
 
             if (!response.userToken.isNullOrEmpty() && response.userId != null) {
-                onSuccess?.invoke()
+                return true
             }
 
         } catch (e: Exception) {
             e.message?.logError()
         }
+
+        return false
     }
 
-    suspend fun login(email: String, password: String, onSuccess: (() -> Unit)? = null) {
+    suspend fun login(email: String, password: String): Boolean {
         try {
             val response = petOwnerAPI.login(
                 LoginForm(email, password, preferences.getFCMToken() ?: "")
@@ -40,11 +41,12 @@ class AuthRepository(
             response.userId?.let { preferences.saveUserId(it) }
 
             if (!response.userToken.isNullOrEmpty() && response.userId != null) {
-                onSuccess?.invoke()
+                return true
             }
         } catch (e: Exception) {
             e.message?.logError()
         }
-    }
 
+        return false
+    }
 }

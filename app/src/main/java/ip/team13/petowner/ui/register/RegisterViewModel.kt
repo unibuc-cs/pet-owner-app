@@ -29,8 +29,7 @@ class RegisterViewModel(
             authRepository.register(
                 email = userEmail,
                 password = userPassword,
-                inviteCode = inviteCode.get(),
-                onSuccess = navigateToHome
+                inviteCode = inviteCode.get()
             )
         }
     }

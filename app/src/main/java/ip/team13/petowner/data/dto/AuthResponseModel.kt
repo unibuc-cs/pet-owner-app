@@ -6,5 +6,8 @@ data class AuthResponseModel(
     @field:Json(name = "userid")
     val userId: Int?,
     @field:Json(name = "usertoken")
-    val userToken: String?
+    val userToken: String?,
+
+    @field:Json(name = "errorcode")
+    val errorCode: Int?
 )

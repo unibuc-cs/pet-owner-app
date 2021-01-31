@@ -32,7 +32,6 @@ class LoginFragment : GoogleLoginFragment<LoginScreenBinding>() {
     }
 
     override fun loginWithGoogleAccount(googleId: String, email: String, username: String) {
-        // TODO add login with our server
-        findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+        viewModel.loginWithGoogle(googleId, email, username)
     }
 }

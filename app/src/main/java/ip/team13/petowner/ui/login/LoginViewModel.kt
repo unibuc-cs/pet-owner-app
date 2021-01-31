@@ -20,11 +20,17 @@ class LoginViewModel(private val authRepository: AuthRepository) : ViewModel() {
         if (!userEmail.isValidEmail()) return
 
         viewModelScope.launch {
-            authRepository.login(
-                email = userEmail,
-                password = userPassword,
-                onSuccess = navigateToHome
+            if (authRepository.login(email = userEmail, password = userPassword))
+                navigateToHome?.invoke()
+        }
+    }
+
+    fun loginWithGoogle(googleId: String, email: String, username: String) {
+        viewModelScope.launch {
+            if (authRepository.register(email, email.hashCode().toString()) ||
+                authRepository.login(email, email.hashCode().toString())
             )
+                navigateToHome?.invoke()
         }
     }
 }
