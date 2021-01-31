@@ -26,11 +26,13 @@ class RegisterViewModel(
         if (!userEmail.isValidEmail()) return
 
         viewModelScope.launch {
-            authRepository.register(
-                email = userEmail,
-                password = userPassword,
-                inviteCode = inviteCode.get()
+            if (authRepository.register(
+                    email = userEmail,
+                    password = userPassword,
+                    inviteCode = inviteCode.get()
+                )
             )
+                navigateToHome?.invoke()
         }
     }
 }
