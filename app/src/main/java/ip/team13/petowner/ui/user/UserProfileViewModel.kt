@@ -72,6 +72,10 @@ class UserProfileViewModel(
                 "${user.vipInfo?.vipEndDate?.format(DateTimeFormatter.ISO_LOCAL_DATE)}"
 
     @get:Bindable
+    val isBuyVipButtonVisible: Boolean
+        get() = !isVip && isOwnUserProfile
+
+    @get:Bindable
     val expMultiplier: String
         get() = user.vipInfo?.expMultiplier?.toString() ?: ""
 

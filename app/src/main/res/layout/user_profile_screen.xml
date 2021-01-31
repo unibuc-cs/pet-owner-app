@@ -214,7 +214,7 @@
             android:paddingHorizontal="@dimen/padding_16"
             android:text="@string/buy_vip"
             android:textColor="@color/colorAppYellowBright"
-            android:visibility="@{!viewModel.vip}"
+            android:visibility="@{viewModel.buyVipButtonVisible}"
             app:layout_constraintBottom_toTopOf="@id/profile_save_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
