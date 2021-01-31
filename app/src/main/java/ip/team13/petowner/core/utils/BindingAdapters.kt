@@ -16,8 +16,8 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import ip.team13.petowner.data.domain.ActivityData
-import ip.team13.petowner.data.domain.ActivityDataType
 import ip.team13.petowner.data.domain.LeaderboardEntry
 import ip.team13.petowner.ui.activities.list.ActivityAdapter
 import ip.team13.petowner.ui.home.list.HomeLeaderboardListAdapter
@@ -100,7 +100,20 @@ fun loadImageUrl(imageView: ImageView, imageUrl: String?) {
             .into(imageView)
     }
 }
-// ********* end region RecyclerView *********
+
+@BindingAdapter(value = ["loadImageUrl", "placeholder"])
+fun loadImageUrlWithPlaceholder(
+    imageView: ImageView,
+    imageUrl: String?,
+    @DrawableRes placeholder: Int
+) {
+    val requestOptions = RequestOptions().placeholder(placeholder)
+
+    Glide.with(imageView.context)
+        .applyDefaultRequestOptions(requestOptions)
+        .load(imageUrl)
+        .into(imageView)
+}
 
 @BindingAdapter("drawableRes")
 fun setImageDrawable(imageView: ImageView, @DrawableRes drawableRes: Int) {
