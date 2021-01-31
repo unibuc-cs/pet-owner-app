@@ -1,12 +1,15 @@
 package ip.team13.petowner.ui.leaderboard
 
 import androidx.databinding.Bindable
+import androidx.lifecycle.viewModelScope
+import ip.team13.petowner.BR
 import ip.team13.petowner.core.BaseViewModel
 import ip.team13.petowner.data.domain.LeaderboardEntry
 import ip.team13.petowner.data.domain.LeaderboardType
 import ip.team13.petowner.data.repository.LeaderboardRepository
-import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class LeaderboardViewModel(
     private val leaderboardRepository: LeaderboardRepository
@@ -36,13 +39,16 @@ class LeaderboardViewModel(
     var person3: LeaderboardEntry? = null
 
     private fun refreshData() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             leaderboardRepository.getTop(size = 20, type = leaderboardType).let { leaderboard ->
-                person1 = leaderboard.getOrNull(0)
-                person2 = leaderboard.getOrNull(1)
-                person3 = leaderboard.getOrNull(2)
-                if (leaderboard.size >= 3){
-                    items = leaderboard.subList(3, leaderboard.size)
+                withContext(Dispatchers.Main) {
+                    person1 = leaderboard.getOrNull(0)
+                    person2 = leaderboard.getOrNull(1)
+                    person3 = leaderboard.getOrNull(2)
+                    if (leaderboard.size >= 3) {
+                        items = leaderboard.subList(3, leaderboard.size)
+                        notifyPropertyChanged(BR.items)
+                    }
                 }
             }
         }

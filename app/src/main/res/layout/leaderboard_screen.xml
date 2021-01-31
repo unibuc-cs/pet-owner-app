@@ -70,6 +70,18 @@
             app:layout_constraintVertical_bias="0.4"
             app:layout_constraintWidth_percent="0.20" />
 
+        <ImageView
+            android:id="@+id/imv_second_trophy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:src="@drawable/ic_trophy_silver"
+            app:layout_constraintBottom_toBottomOf="@id/civ_second"
+            app:layout_constraintEnd_toEndOf="@id/civ_second"
+            app:layout_constraintStart_toEndOf="@id/civ_second"
+            app:layout_constraintTop_toBottomOf="@id/civ_second" />
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/civ_first"
             android:layout_width="0dp"
@@ -85,6 +97,18 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.3"
             app:layout_constraintWidth_percent="0.20" />
+
+        <ImageView
+            android:id="@+id/imv_first_trophy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:src="@drawable/ic_trophy_gold"
+            app:layout_constraintBottom_toBottomOf="@id/civ_first"
+            app:layout_constraintEnd_toEndOf="@id/civ_first"
+            app:layout_constraintStart_toEndOf="@id/civ_first"
+            app:layout_constraintTop_toBottomOf="@id/civ_first" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/civ_third"
@@ -103,20 +127,34 @@
             app:layout_constraintVertical_bias="0.5"
             app:layout_constraintWidth_percent="0.20" />
 
+
+        <ImageView
+            android:id="@+id/imv_third_trophy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:src="@drawable/ic_trophy_bronze"
+            app:layout_constraintBottom_toBottomOf="@id/civ_third"
+            app:layout_constraintEnd_toEndOf="@id/civ_third"
+            app:layout_constraintStart_toEndOf="@id/civ_third"
+            app:layout_constraintTop_toBottomOf="@id/civ_third" />
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_leaderboard"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/shape_rectangle_white_round_corners_top"
             app:adapter="@{HomeLeaderboardListAdapter.create()}"
+            app:items="@{viewModel.items}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent="0.60"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1"
-            app:items="@{viewModel.items}" />
+            app:layout_constraintVertical_bias="1" />
 
     </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>

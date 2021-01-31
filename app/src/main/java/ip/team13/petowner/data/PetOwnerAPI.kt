@@ -42,7 +42,6 @@ interface PetOwnerAPI {
     @GET("api/activity/{petId}/activities")
     suspend fun getPetsActivities(@Path("petId") petId: Int): List<ActivityEntry>
 
-
     @GET("api/pet/{id}")
     suspend fun getPet(@Path("id") petId: Int): PetEntryModel
 
