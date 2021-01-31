@@ -30,7 +30,8 @@ class HomeFragment : BaseFragment<HomeScreenBinding>() {
                 binding.homeProfileHeader.homeProfileImage to "userImage",
                 binding.homeProfileHeader.tvName to "userName",
                 binding.homeProfileHeader.tvLevel to "userLevel",
-                binding.homeProfileHeader.tvTokens to "userTokens"
+                binding.homeProfileHeader.tvTokens to "userTokens",
+                binding.homeProfileHeader.tvVipTime to "userTime"
             )
 
             findNavController().navigate(
