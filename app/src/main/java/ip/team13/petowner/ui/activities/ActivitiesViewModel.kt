@@ -27,8 +27,6 @@ class ActivitiesViewModel(
 
     val selectedPet = ObservableField<PetEntryModel>().apply {
         addOnPropertyChanged { newSelectedPet ->
-//            activities = newSelectedPet.get()?.petActivities ?: ArrayList()
-//            refreshActivityData()
             getPetActivities()
         }
     }
@@ -56,34 +54,11 @@ class ActivitiesViewModel(
                 selectedPet.set(this.firstOrNull())
                 petsActivityData.add(ActivityPets(pets))
                 notifyPropertyChanged(BR.petsActivityData)
-//                activities = ArrayList<ActivityEntry>().apply {
-//                    addAll(selectedPet.get()?.petActivities ?: ArrayList())
-//                }
             }
         }
     }
 
     private fun refreshActivityData() {
-//        val items = ArrayList<ActivityData>()
-//        if (pets.isEmpty()) return
-//
-//        items.addAll(
-//            arrayListOf(
-//                ActivitySelectPet(),
-//                ActivityPets(pets),
-//                ActivityAdd(onAddActivity)
-//            )
-//        )
-//        activities.groupBy { it.dueTime }.forEach { entry ->
-//            entry.key?.let { dueTime ->
-//                items.add(ActivityDate(dueTime))
-//                items.addAll(entry.value.map { ActivityItem(it) })
-//            }
-//        }
-//
-//        activityData = items
-//        notifyPropertyChanged(BR.activityData)
-
         val items = ArrayList<ActivityData>()
         if (pets.isEmpty()) return
 
@@ -98,14 +73,6 @@ class ActivitiesViewModel(
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val activityResponse = activityRepository.addActivity(activityEntry)
-
-//                activityRepository.addPetActivity(
-//                    PetActivityRequestModel.fromActivity(
-//                        petId = selectedPet.get()?.id ?: return@launch,
-//                        activityId = activityResponse.activityId,
-//                        activity = activityEntry
-//                    )
-//                )
 
                 activityRepository.attachActivity(
                     AttachActivityRequestModel(
