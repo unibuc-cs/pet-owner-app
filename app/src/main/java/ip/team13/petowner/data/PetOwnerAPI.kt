@@ -1,6 +1,5 @@
 package ip.team13.petowner.data
 
-import com.squareup.moshi.Json
 import ip.team13.petowner.data.dto.*
 import retrofit2.http.*
 
@@ -36,8 +35,11 @@ interface PetOwnerAPI {
 
     // Cost Item
     @POST("api/item/{userId}")
-    suspend fun addItem(@Path("userId") userId: Int, @Body body: CostItemModel)
+    suspend fun addItem(@Path("userId") userId: Int, @Body body: CostTrackerModel)
 
     @DELETE("api/item/{itemId}")
     suspend fun deleteItem(itemId: Int)
+
+    @POST("/api/item/all/{groupid}")
+    suspend fun getItems(@Path("groupid") groupId: Int, @Body period: CostItemPeriod): List<CostTrackerRecylerViewModel>
 }

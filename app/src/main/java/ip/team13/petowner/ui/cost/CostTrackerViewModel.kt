@@ -1,11 +1,16 @@
 package ip.team13.petowner.ui.cost
 
 import androidx.databinding.Bindable
+import androidx.lifecycle.viewModelScope
+import ip.team13.petowner.BR
 import ip.team13.petowner.core.BaseViewModel
-import ip.team13.petowner.data.repository.CostTrackerRepository
-import androidx.lifecycle.ViewModel
-import ip.team13.petowner.data.dto.CostItemModel
 import ip.team13.petowner.data.dto.CostTrackerCategory
+import ip.team13.petowner.data.dto.CostTrackerModel
+import ip.team13.petowner.data.dto.CostTrackerRecylerViewModel
+import ip.team13.petowner.data.repository.CostTrackerRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlin.random.Random
 
 class ChartItem(
@@ -20,26 +25,36 @@ class ChartItem(
     }
 }
 
-class CostTrackerViewModel(private val costTrackerRepository: CostTrackerRepository) : BaseViewModel() {
-    val values = arrayListOf(11F, 42F, 35F, 4F, 0F, 14F)
-
-    @get:Bindable
-    val items = costTrackerRepository.getExpenses()
-
-class CostTrackerViewModel : ViewModel() {
+class CostTrackerViewModel(private val costTrackerRepository: CostTrackerRepository) :
+    BaseViewModel() {
     val values = arrayListOf(
-        CostItemModel.getPlaceholder(),
-        CostItemModel.getPlaceholder(),
-        CostItemModel.getPlaceholder(),
-        CostItemModel.getPlaceholder(),
-        CostItemModel.getPlaceholder(),
-        CostItemModel.getPlaceholder(),
-        CostItemModel.getPlaceholder(),
-        CostItemModel.getPlaceholder(),
-    ).groupBy(CostItemModel::category).map { entry ->
+        CostTrackerModel.getPlaceholder(),
+        CostTrackerModel.getPlaceholder(),
+        CostTrackerModel.getPlaceholder(),
+        CostTrackerModel.getPlaceholder(),
+        CostTrackerModel.getPlaceholder(),
+        CostTrackerModel.getPlaceholder(),
+        CostTrackerModel.getPlaceholder(),
+        CostTrackerModel.getPlaceholder(),
+    ).groupBy(CostTrackerModel::category).map { entry ->
         ChartItem(
             value = entry.value.sumBy { it.cost.toInt() }.toFloat(),
             category = entry.key
         )
     }
+
+    @get:Bindable
+    var items = listOf<CostTrackerRecylerViewModel>()
+
+    fun getItems() {
+
+        viewModelScope.launch(Dispatchers.IO) {
+            val result = costTrackerRepository.getExpenses()
+            withContext(Dispatchers.Main) {
+                items = result
+                notifyPropertyChanged(BR.items)
+            }
+        }
+    }
 }
+

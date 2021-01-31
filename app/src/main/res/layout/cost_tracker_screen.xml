@@ -15,7 +15,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorWhiteSmoke">
 
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/pieChart"
@@ -28,18 +29,30 @@
             app:layout_constraintTop_toTopOf="parent"
             app:setupWithData="@{viewModel.values}" />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_expense_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/padding_16"
+            android:src="@drawable/ic_add"
+            app:layout_constraintBottom_toBottomOf="@+id/pieChart"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/expenses_rv"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/padding_16"
             app:adapter="@{adapter}"
+            app:items="@{viewModel.items}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:items="@{viewModel.items}"
-            app:layout_constraintTop_toBottomOf="@+id/pieChart" />
+            app:layout_constraintTop_toBottomOf="@+id/pieChart"
+            app:layout_constraintVertical_bias="0.0" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

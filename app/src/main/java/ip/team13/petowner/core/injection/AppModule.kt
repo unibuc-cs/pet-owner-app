@@ -27,7 +27,7 @@ val appModule = module {
     single { LeaderboardRepository(get()) }
     single { PetRepository(get(), get()) }
     single { UserRepository() }
-    single { CostTrackerRepository(get()) }
+    single { CostTrackerRepository(get(), get()) }
 
     viewModel { (onAddActivity: () -> Unit) ->
         ActivitiesViewModel(
@@ -58,7 +58,7 @@ val appModule = module {
     viewModel { (petId: Int) ->
         PetProfileViewModel(get(), petId)
     }
-    viewModel { RegisterViewModel(get(),get()) }
+    viewModel { RegisterViewModel(get(), get()) }
     viewModel { SplashViewModel(get()) }
     viewModel { (isOwnUserProfile: Boolean) ->
         UserProfileViewModel(isOwnUserProfile, get(), get())

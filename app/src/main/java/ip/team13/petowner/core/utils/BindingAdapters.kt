@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ip.team13.petowner.data.domain.ActivityData
 import ip.team13.petowner.data.domain.LeaderboardEntry
-import ip.team13.petowner.data.dto.CostTrackerModel
+import ip.team13.petowner.data.dto.CostTrackerRecylerViewModel
 import ip.team13.petowner.ui.activities.list.ActivityAdapter
 import ip.team13.petowner.ui.cost.list.CostTrackerAdapter
 import ip.team13.petowner.ui.home.list.HomeLeaderboardListAdapter
@@ -38,6 +38,14 @@ fun loadTextResource(textView: TextView, textResource: Int) {
 @BindingAdapter("loadBackgroundColorResource")
 fun loadBackgroundColorResource(view: View, colorResource: Int) {
     view.setBackgroundColor(ContextCompat.getColor(view.context, colorResource))
+}
+
+@BindingAdapter("imageTint")
+fun loadImageTint(imageView: ImageView, colorResource: Int) {
+    imageView.setColorFilter(
+        ContextCompat.getColor(imageView.context, colorResource),
+        PorterDuff.Mode.MULTIPLY
+    )
 }
 
 @BindingAdapter("android:visibility")
@@ -152,7 +160,7 @@ fun submitItems(recyclerView: RecyclerView, items: List<Any>) {
                 recyclerView.adapter?.notifyDataSetChanged()
             }
         is CostTrackerAdapter ->
-            (items as? ArrayList<CostTrackerModel>)?.let {
+            (items as? ArrayList<CostTrackerRecylerViewModel>)?.let {
                 (recyclerView.adapter as? CostTrackerAdapter)?.items?.clear()
                 (recyclerView.adapter as? CostTrackerAdapter)?.items?.addAll(items)
                 recyclerView.adapter?.notifyDataSetChanged()

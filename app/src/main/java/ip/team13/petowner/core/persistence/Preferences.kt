@@ -35,4 +35,12 @@ class Preferences(context: Context) {
         apply()
     }
 
+    fun saveGroupId(groupId: Int) = with(preferences.edit()) {
+        putInt(AppConstants.SharedPrefKeys.ARG_GROUP_ID, groupId)
+        apply()
+    }
+
+    fun getGroupId() =
+        preferences.getInt(AppConstants.SharedPrefKeys.ARG_GROUP_ID, -1)
+
 }

@@ -43,11 +43,15 @@ class LoginViewModel(
                 response.userId?.let { preferences.saveUserId(it) }
 
                 if (!response.userToken.isNullOrEmpty() && response.userId != null) {
-                    onSuccess?.invoke()
+                    withContext(Dispatchers.Main) {
+                        onSuccess?.invoke()
+                    }
                 }
             } catch (e: Exception) {
                 e.message?.logError()
-                showAlert?.invoke("An error has occurred. Please try again later.")
+                withContext(Dispatchers.Main) {
+                    showAlert?.invoke("An error has occurred. Please try again later.")
+                }
             }
         }
 
@@ -105,7 +109,9 @@ class LoginViewModel(
 
         } catch (e: Exception) {
             e.message?.logError()
-            showAlert?.invoke("An error has occurred. Please try again later.")
+            withContext(Dispatchers.Main) {
+                showAlert?.invoke("An error has occurred. Please try again later.")
+            }
         }
     }
 }

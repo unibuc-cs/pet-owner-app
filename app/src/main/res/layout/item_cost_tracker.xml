@@ -18,7 +18,6 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="@dimen/padding_16"
-            app:cardBackgroundColor="@color/colorSilver_80"
             app:cardCornerRadius="@dimen/padding_8"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="w, 1:1"
@@ -31,7 +30,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="@dimen/padding_8"
-                android:src="@drawable/ic_logout" />
+                android:src="@{viewModel.getPhotoByCategory(context)}"
+                app:imageTint="@{viewModel.getColorByCategory()}" />
 
         </androidx.cardview.widget.CardView>
 
@@ -42,7 +42,7 @@
             android:layout_marginHorizontal="@dimen/padding_8"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="Haine si mancare d-aia bunaerfasfdasfasfasasfasfasfassafasfasfasfasfas"
+            android:text="@{viewModel.costTrackerModel.name}"
             android:textSize="@dimen/text_size_18"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/expense_category"
@@ -54,7 +54,7 @@
             android:id="@+id/expense_price"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{@string/cost_item_amount(viewModel.costTrackerModel.amount)}"
+            android:text="@{@string/cost_item_amount(viewModel.costTrackerModel.cost)}"
             android:textSize="@dimen/text_size_18"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -69,7 +69,7 @@
             android:layout_marginHorizontal="@dimen/padding_8"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="Categorie"
+            android:text="@{viewModel.costTrackerModel.category}"
             app:layout_constraintBottom_toBottomOf="@id/expense_card_view"
             app:layout_constraintStart_toEndOf="@+id/expense_card_view"
             app:layout_constraintTop_toBottomOf="@+id/expense_name" />
