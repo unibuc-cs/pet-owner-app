@@ -14,23 +14,18 @@
         android:layout_height="match_parent"
         android:background="@color/colorWhiteSmoke">
 
-        <androidx.cardview.widget.CardView
+        <ImageView
             android:id="@+id/cv_profile_picture"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:src="@drawable/ic_pet_care"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="H, 16:9"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.1"
-            app:layout_constraintWidth_percent="0.80">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_user_placeholder" />
-        </androidx.cardview.widget.CardView>
+            app:layout_constraintWidth_percent="0.80" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
@@ -38,6 +33,8 @@
             android:layout_marginHorizontal="@dimen/padding_16"
             android:layout_marginTop="@dimen/padding_64"
             android:background="@color/white"
+            app:cardCornerRadius="@dimen/padding_16"
+            app:cardElevation="@dimen/padding_16"
             app:layout_constraintBottom_toTopOf="@id/btn_add"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -57,30 +54,26 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <ImageView
-                        android:id="@+id/imv_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/padding_16"
-                        android:src="@drawable/ic_group"
-                        app:tint="@color/colorAppCyanDark"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <EditText
-                        android:id="@+id/et_name_value"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/et_cost"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/padding_16"
-                        android:layout_marginVertical="@dimen/padding_8"
-                        android:background="@android:color/transparent"
+                        android:layout_margin="@dimen/padding_16"
                         android:hint="@string/name"
-                        android:padding="@dimen/padding_8"
-                        android:text="@={viewModel.name}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/imv_name"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:startIconDrawable="@drawable/ic_group"
+                        app:startIconTint="@color/colorAppCyanDark">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@={viewModel.name}" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -88,51 +81,52 @@
                     android:id="@+id/cly_race_species"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/padding_1"
                     android:background="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/cly_name">
 
-                    <ImageView
-                        android:id="@+id/imv_race"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/padding_16"
-                        android:src="@drawable/ic_biotech"
-                        app:tint="@color/colorAppCyanDark"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <EditText
-                        android:id="@+id/et_race_value"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/et_race"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/padding_16"
-                        android:layout_marginVertical="@dimen/padding_8"
-                        android:background="@android:color/transparent"
+                        android:layout_marginBottom="@dimen/padding_16"
                         android:hint="@string/race"
-                        android:padding="@dimen/padding_8"
-                        android:text="@={viewModel.race}"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/et_species_value"
-                        app:layout_constraintStart_toEndOf="@id/imv_race"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintEnd_toStartOf="@id/et_species"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:startIconDrawable="@drawable/ic_biotech"
+                        app:startIconTint="@color/colorAppCyanDark">
 
-                    <EditText
-                        android:id="@+id/et_species_value"
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@={viewModel.race}" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/et_species"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/padding_16"
-                        android:layout_marginVertical="@dimen/padding_8"
-                        android:background="@android:color/transparent"
+                        android:layout_marginBottom="@dimen/padding_16"
                         android:hint="@string/species"
-                        android:padding="@dimen/padding_8"
-                        android:text="@={viewModel.species}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/et_race_value"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintStart_toEndOf="@id/et_race"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:startIconDrawable="@drawable/ic_race"
+                        app:startIconTint="@color/colorAppCyanDark">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@={viewModel.species}" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -143,85 +137,54 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_1"
                     android:background="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/cly_race_species">
 
-                    <ImageView
-                        android:id="@+id/imv_weight"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/padding_16"
-                        android:src="@drawable/ic_health"
-                        app:tint="@color/colorAppCyanDark"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <EditText
-                        android:id="@+id/et_weight_value"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="@dimen/padding_8"
-                        android:layout_marginStart="@dimen/padding_16"
-                        android:layout_marginEnd="@dimen/padding_8"
-                        android:inputType="number"
-                        android:padding="@dimen/padding_8"
-                        android:text="@={viewModel.weight}"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/tv_kg"
-                        app:layout_constraintStart_toEndOf="@id/imv_weight"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/tv_kg"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/padding_16"
-                        android:padding="@dimen/padding_8"
-                        android:text="@string/kg"
-                        android:textColor="@color/colorSilver"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/gl_mid"
-                        app:layout_constraintStart_toEndOf="@id/et_weight_value"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <View
-                        android:id="@+id/gl_mid"
-                        android:layout_width="@dimen/padding_2"
-                        android:layout_height="0dp"
-                        android:layout_marginVertical="@dimen/padding_10"
-                        android:background="@drawable/shape_rect_silver_round"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <EditText
-                        android:id="@+id/et_age_value"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/et_weight"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/padding_16"
-                        android:layout_marginVertical="@dimen/padding_8"
-                        android:inputType="number"
-                        android:padding="@dimen/padding_8"
-                        android:text="@={viewModel.age}"
+                        android:layout_marginBottom="@dimen/padding_16"
+                        android:hint="@string/weight"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/tv_years"
-                        app:layout_constraintStart_toEndOf="@id/gl_mid"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintEnd_toStartOf="@id/et_age"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:startIconDrawable="@drawable/ic_health"
+                        app:startIconTint="@color/colorAppCyanDark">
 
-                    <TextView
-                        android:id="@+id/tv_years"
-                        android:layout_width="wrap_content"
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:text="@={viewModel.species}" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/et_age"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/padding_16"
-                        android:padding="@dimen/padding_8"
-                        android:text="@string/years"
-                        android:textColor="@color/colorSilver"
+                        android:layout_marginHorizontal="@dimen/padding_16"
+                        android:layout_marginBottom="@dimen/padding_16"
+                        android:hint="@string/age"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/et_age_value"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintStart_toEndOf="@id/et_weight"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:startIconDrawable="@drawable/ic_health"
+                        app:startIconTint="@color/colorAppCyanDark">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:text="@={viewModel.age}" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -233,6 +196,7 @@
             android:id="@+id/btn_add"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/padding_16"
             android:layout_marginBottom="@dimen/padding_8"
             android:background="@drawable/shape_rectangle_cyan_dark_round_corners"
             android:onClick="@{() -> viewModel.onAdd()}"
@@ -241,13 +205,13 @@
             android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@id/btn_cancel"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintWidth_percent="0.8" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/btn_cancel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/padding_16"
             android:layout_marginBottom="@dimen/padding_32"
             android:background="@drawable/shape_rectangle_orange_round_corners"
             android:onClick="@{() -> viewModel.onCancel()}"
@@ -256,8 +220,7 @@
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintWidth_percent="0.8" />
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
