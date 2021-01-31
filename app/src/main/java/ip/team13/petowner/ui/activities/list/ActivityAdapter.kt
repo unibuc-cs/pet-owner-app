@@ -150,6 +150,12 @@ class ActivityAdapter(
 
         fun bind(activity: ActivityItem) {
             binding.viewModel = ItemActivityViewModel(activity)
+
+//            binding.checkboxCompleted.setOnCheckedChangeListener { compoundButton, isChecked ->
+//                if(isChecked) {
+//                    activity.updateTokensAndExp.invoke()
+//                }
+//            }
         }
     }
 }
@@ -178,7 +184,7 @@ val activityDataDiffCallback = object : DiffUtil.ItemCallback<ActivityData>() {
                     true ->
                         (newItem as? ActivityItem)?.model == oldItem.model
                     else ->
-                        (newItem as? ActivityItem)?.model?.id == oldItem.model.id
+                        (newItem as? ActivityItem)?.model?.activityId == oldItem.model.activityId
                 }
             }
         }

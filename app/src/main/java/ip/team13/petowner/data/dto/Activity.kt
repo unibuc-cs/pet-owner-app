@@ -5,15 +5,15 @@ import java.io.Serializable
 import kotlin.random.Random
 
 data class ActivityEntry(
-    @Json(name = "ActivityId")
-    val id: String? = null,
+    @field:Json(name = "activityId")
+    val activityId: Int? = null,
     @Json(name = "Title")
     val title: String? = null,
     @Json(name = "Description")
     val description: String? = null,
     @Json(name = "ExpPoints")
     val expPoints: Int? = null,
-    @Json(name = "data")
+    @field:Json(name = "data")
     val dueTime: String? = null,
     @Json(name = "PetId")
     val petId: Int,

@@ -56,6 +56,7 @@ class ActivityDetailsViewModel(private val petId: Int) : ViewModel() {
                 description = description.fieldValue.get(),
                 dueTime = dueTime.fieldValue.get(),
                 petId = petId,
+                expPoints = getExpPoints(repeat.fieldValue.get()),
                 recurring = repeat.fieldValue.get().equals(RepeatType.NEVER.title),
                 recurringInterval = getRecurringInterval(repeat.fieldValue.get())
             )
@@ -63,12 +64,19 @@ class ActivityDetailsViewModel(private val petId: Int) : ViewModel() {
     }
 
     private fun getRecurringInterval(value: String?) = when (value) {
-
-        RepeatType.NEVER.title -> -1
+        RepeatType.NEVER.title -> 0
         RepeatType.DAILY.title -> 1
         RepeatType.WEEKLY.title -> 7
         RepeatType.MONTHLY.title -> 30
         else -> -1
+    }
+
+    private fun getExpPoints(value: String?) = when (value) {
+        RepeatType.NEVER.title -> RepeatType.NEVER.expPoints
+        RepeatType.DAILY.title -> RepeatType.DAILY.expPoints
+        RepeatType.WEEKLY.title -> RepeatType.WEEKLY.expPoints
+        RepeatType.MONTHLY.title -> RepeatType.MONTHLY.expPoints
+        else -> 0
     }
 
     fun onCancel() {

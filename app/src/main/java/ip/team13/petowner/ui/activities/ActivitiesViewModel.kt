@@ -13,6 +13,8 @@ import ip.team13.petowner.data.dto.AttachActivityRequestModel
 import ip.team13.petowner.data.dto.PetEntryModel
 import ip.team13.petowner.data.repository.ActivitiesRepository
 import ip.team13.petowner.data.repository.PetRepository
+import ip.team13.petowner.data.repository.UserRepository
+import ip.team13.petowner.ui.activities.list.RepeatType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -20,6 +22,7 @@ import kotlinx.coroutines.withContext
 class ActivitiesViewModel(
     private val onAddActivity: () -> Unit,
     private val petRepository: PetRepository,
+    private val userRepository: UserRepository,
     val activityRepository: ActivitiesRepository
 ) : BaseViewModel() {
 
@@ -63,7 +66,12 @@ class ActivitiesViewModel(
         if (pets.isEmpty()) return
 
         items.add(ActivityAdd(onAddActivity))
-        items.addAll(activities.map { ActivityItem(it) })
+        items.addAll(activities.map {
+            ActivityItem(
+                model = it,
+                updateTokensAndExp = { updateTokensAndExp(it) }
+            )
+        })
 
         activityData = items
         notifyPropertyChanged(BR.activityData)
@@ -103,4 +111,29 @@ class ActivitiesViewModel(
             }
         }
     }
+
+    private fun getTokensByRecurring(recurringInterval: Int) = when (recurringInterval) {
+        RepeatType.NEVER.value -> RepeatType.NEVER.tokens
+        RepeatType.DAILY.value -> RepeatType.DAILY.tokens
+        RepeatType.WEEKLY.value -> RepeatType.WEEKLY.tokens
+        RepeatType.MONTHLY.value -> RepeatType.MONTHLY.tokens
+        else -> 0
+    }
+
+    private fun updateTokensAndExp(activity: ActivityEntry) =
+        viewModelScope.launch(Dispatchers.IO) {
+            userRepository.updateTokens(getTokensByRecurring(activity.recurringInterval))
+            userRepository.updateWeeklyExp(activity.expPoints ?: return@launch)
+            activityRepository.deleteActivity(activity.activityId ?: return@launch)
+
+            withContext(Dispatchers.Main) {
+                showAlert?.invoke(
+                    "Activity completed. You have earned ${activity.expPoints} experience and ${
+                        getTokensByRecurring(activity.recurringInterval)
+                    } tokens"
+                )
+            }
+
+            getPetActivities()
+        }
 }

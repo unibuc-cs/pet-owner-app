@@ -28,6 +28,11 @@ interface PetOwnerAPI {
     @PATCH("api/gamification/{userId}/tokens")
     suspend fun updateTokens(@Path("userId") userId: String, @Body body: TokensModel): Boolean
 
+    @PATCH("api/gamification/{userId}/weeklyexp")
+    suspend fun updateWeeklyExp(
+        @Path("userId") userId: Int,
+        @Body body: UpdateWeeklyExpRequestModel
+    )
     // ******* Leaderboards *******
     @POST("api/user/leaderboards")
     suspend fun getLeaderboards(@Body body: LeaderboardRequestModel): List<LeaderboardEntryModel>
@@ -54,6 +59,9 @@ interface PetOwnerAPI {
 
     @POST("api/activity/attach")
     suspend fun attachActivity(@Body body: AttachActivityRequestModel)
+
+    @DELETE("api/activity/activity/{activityId}")
+    suspend fun deleteActivity(@Path("activityId") activityId: Int)
 
     // Cost Item
     @POST("api/item/{userId}")

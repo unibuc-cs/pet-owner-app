@@ -12,8 +12,11 @@ class ItemActivityViewModel(
 
     fun markAsCompleted(view: View) {
         view.context.showCustomAlert(
-            message = "Do you want to mark this activity as completed?",
-            onPositiveAction = { isCompleted.set(true) },
+            message = "Mark as completed?",
+            onPositiveAction = {
+                isCompleted.set(true)
+                activity.updateTokensAndExp.invoke()
+            },
             negativeButtonText = "Cancel",
             onNegativeAction = { }
         )
