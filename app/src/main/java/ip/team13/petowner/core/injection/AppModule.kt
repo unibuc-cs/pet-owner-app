@@ -1,7 +1,6 @@
 package ip.team13.petowner.core.injection
 
 import ip.team13.petowner.data.domain.LeaderboardType
-import ip.team13.petowner.data.dto.ActivityEntry
 import ip.team13.petowner.data.repository.*
 import ip.team13.petowner.ui.activities.ActivitiesViewModel
 import ip.team13.petowner.ui.activities.details.ActivityDetailsViewModel
@@ -38,12 +37,10 @@ val appModule = module {
         )
     }
     viewModel { (petId: Int) ->
-        ActivityDetailsViewModel(
-            petId
-        )
+        ActivityDetailsViewModel(petId)
     }
-    viewModel { CostDetailsViewModel() }
     viewModel { CostTrackerViewModel(get()) }
+    viewModel { CostDetailsViewModel(get()) }
     viewModel { GroupViewModel() }
     viewModel { HomeViewModel(get()) }
     viewModel { (leaderboardType: LeaderboardType) ->
@@ -59,10 +56,7 @@ val appModule = module {
         PetDetailsViewModel(groupId, get())
     }
     viewModel { (petId: Int) ->
-        PetProfileViewModel(
-            get(),
-            petId
-        )
+        PetProfileViewModel(get(), petId)
     }
     viewModel { RegisterViewModel(get(),get()) }
     viewModel { SplashViewModel(get()) }

@@ -1,25 +1,14 @@
 package ip.team13.petowner.data.repository
 
+import ip.team13.petowner.core.persistence.Preferences
 import ip.team13.petowner.data.PetOwnerAPI
-import ip.team13.petowner.data.dto.CostTrackerModel
+import ip.team13.petowner.data.dto.CostItemModel
 
-class CostTrackerRepository(private val petOwnerAPI: PetOwnerAPI) {
+class CostTrackerRepository(
+    private val api: PetOwnerAPI,
+    private val preferences: Preferences
+) {
 
-    fun getExpenses(): List<CostTrackerModel> {
-        return arrayListOf(
-            CostTrackerModel("Wiskas", "Food", 55.46),
-            CostTrackerModel("Wiskas", "Food", 55.46),
-            CostTrackerModel("Wiskas", "Food", 55.46),
-            CostTrackerModel("Wiskas", "Food", 55.46),
-            CostTrackerModel("Wiskas", "Food", 55.46),
-            CostTrackerModel("Wiskas", "Food", 55.46),
-            CostTrackerModel("Wiskas", "Food", 55.46),
-            CostTrackerModel("Wiskas", "Food", 55.46),
-            CostTrackerModel("Wiskas", "Food", 55.46),
-            CostTrackerModel("Wiskas", "Food", 55.46),
-            CostTrackerModel("Wiskas", "Food", 55.46),
-            CostTrackerModel("Wiskas", "Food", 55.46),
-            CostTrackerModel("Wiskas", "Food", 55.46),
-        )
-    }
+    suspend fun addCostItem(costItem: CostItemModel) =
+        api.addItem(preferences.getUserId(), costItem)
 }
