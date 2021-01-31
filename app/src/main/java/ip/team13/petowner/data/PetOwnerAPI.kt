@@ -17,7 +17,10 @@ interface PetOwnerAPI {
     suspend fun getUser(@Path("userId") userId: String): UserWrapperModel
 
     @PATCH("api/user/{userId}")
-    suspend fun updateNameAndOrPhotoUrl(@Body body: NamePhotoUrlModel): Boolean
+    suspend fun updateNameAndOrPhotoUrl(
+        @Path("userId") userId: String,
+        @Body body: NamePhotoUrlModel
+    ): Boolean
 
     // ******* Leaderboards *******
     @POST("api/user/leaderboards")

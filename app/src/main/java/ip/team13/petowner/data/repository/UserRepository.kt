@@ -25,6 +25,9 @@ class UserRepository(
     }
 
     suspend fun updateNameAndOrPhotoUrl(name: String? = null, photoUrl: String? = null) {
-        api.updateNameAndOrPhotoUrl(NamePhotoUrlModel(name, photoUrl))
+        api.updateNameAndOrPhotoUrl(
+            preferences.getUserId().toString(),
+            NamePhotoUrlModel(name, photoUrl)
+        )
     }
 }
