@@ -27,6 +27,10 @@
     <string name="login">Login</string>
     <string name="hello">Hello,&#160;</string>
     <string name="level">Lvl&#160;</string>
+    <string name="empty_name">Your profile</string>
+
+    <!-- User Profile screen -->
+    <string name="name_hint">Your name</string>
 
     <!-- Add activity screen   -->
     <string name="add_activity_title">Title</string>
