@@ -1,5 +1,6 @@
 package ip.team13.petowner.core.utils
 
+import android.content.Context
 import android.graphics.Color
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
@@ -10,31 +11,33 @@ import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.ValueFormatter
-import com.github.mikephil.charting.utils.ColorTemplate
 import ip.team13.petowner.R
+import ip.team13.petowner.ui.cost.ChartItem
 
 
 @BindingAdapter("setupWithData")
-fun setupChartWithData(pieChart: PieChart, values: ArrayList<Float>) {
+fun setupChartWithData(pieChart: PieChart, items: List<ChartItem>) {
     pieChart.apply {
         setExtraOffsets(15F, 10F, 15F, 10F)
         animateY(1500, Easing.EaseInOutQuad)
         dragDecelerationFrictionCoef = 0.95f
         elevation = 12f
         description.isEnabled = false
-        isDrawHoleEnabled = false
+        isDrawHoleEnabled = true
+        holeRadius = 40F
+        centerText = "Total \n ${items.sumBy { it.value.toInt() }} RON"
     }
 
-    val pieData = PieData(getPieDataSet(pieChart, values))
+    val pieData = PieData(getPieDataSet(pieChart, items))
     pieData.setDrawValues(true)
 
     pieChart.data = pieData
     pieData.setValueFormatter(object : ValueFormatter() {
-        override fun getFormattedValue(value: Float) = "$${value.toInt()}"
+        override fun getFormattedValue(value: Float) = "${value.toInt()} RON"
     })
     pieData.setValueTextSize(15f)
     pieData.setValueTextColor(Color.BLACK)
-    pieData.setDrawValues(values.isNotEmpty())
+    pieData.setDrawValues(items.isNotEmpty())
     pieChart.highlightValue(null)
     pieChart.setDrawEntryLabels(false)
     pieChart.description.isEnabled = false
@@ -52,8 +55,8 @@ fun setupChartWithData(pieChart: PieChart, values: ArrayList<Float>) {
     pieChart.invalidate()
 }
 
-private fun getPieDataSet(pieChart: PieChart, values: ArrayList<Float>) =
-    when (values.isEmpty()) {
+private fun getPieDataSet(pieChart: PieChart, items: List<ChartItem>) =
+    when (items.isEmpty()) {
         true -> {
             val dataSet = PieDataSet(arrayListOf(PieEntry(1F, "")), "")
             pieChart.context?.let {
@@ -63,8 +66,8 @@ private fun getPieDataSet(pieChart: PieChart, values: ArrayList<Float>) =
         }
         false -> {
             val entries = ArrayList<PieEntry>()
-            values.forEachIndexed { index, value ->
-                entries.add(PieEntry(value, "label $index"))
+            items.forEachIndexed { index, item ->
+                entries.add(PieEntry(item.value, item.category))
             }
             PieDataSet(entries, "").apply {
                 setDrawIcons(false)
@@ -77,17 +80,15 @@ private fun getPieDataSet(pieChart: PieChart, values: ArrayList<Float>) =
                 selectionShift = 6f
                 sliceSpace = 2f
                 form = Legend.LegendForm.CIRCLE
-                colors = getLotOfColors()
+                colors = getLotOfColors(pieChart.context)
             }
         }
     }
 
-private fun getLotOfColors(): ArrayList<Int> {
+private fun getLotOfColors(context: Context): ArrayList<Int> {
     val colors: ArrayList<Int> = ArrayList()
-    colors.addAll(ColorTemplate.VORDIPLOM_COLORS.toList())
-    colors.addAll(ColorTemplate.JOYFUL_COLORS.toList())
-    colors.addAll(ColorTemplate.COLORFUL_COLORS.toList())
-    colors.addAll(ColorTemplate.LIBERTY_COLORS.toList())
-    colors.addAll(ColorTemplate.PASTEL_COLORS.toList())
+    colors.add(ContextCompat.getColor(context, R.color.colorAppOrangeBright))
+    colors.add(ContextCompat.getColor(context, R.color.colorAppGreen))
+    colors.add(ContextCompat.getColor(context, R.color.colorAppYellowBright))
     return colors
 }

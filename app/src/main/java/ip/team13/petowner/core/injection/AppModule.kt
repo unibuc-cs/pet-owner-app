@@ -2,7 +2,6 @@ package ip.team13.petowner.core.injection
 
 import ip.team13.petowner.core.helpers.StringResources
 import ip.team13.petowner.data.domain.LeaderboardType
-import ip.team13.petowner.data.dto.ActivityEntry
 import ip.team13.petowner.data.repository.*
 import ip.team13.petowner.ui.activities.ActivitiesViewModel
 import ip.team13.petowner.ui.activities.details.ActivityDetailsViewModel
@@ -30,6 +29,7 @@ val appModule = module {
     single { LeaderboardRepository(get()) }
     single { PetRepository(get(), get()) }
     single { UserRepository(get(), get()) }
+    single { CostTrackerRepository(get(), get()) }
 
     viewModel { (onAddActivity: () -> Unit) ->
         ActivitiesViewModel(
@@ -39,11 +39,9 @@ val appModule = module {
         )
     }
     viewModel { (petId: Int) ->
-        ActivityDetailsViewModel(
-            petId
-        )
+        ActivityDetailsViewModel(petId)
     }
-    viewModel { CostDetailsViewModel() }
+    viewModel { CostDetailsViewModel(get()) }
     viewModel { CostTrackerViewModel() }
     viewModel { GroupViewModel() }
     viewModel { HomeViewModel(get(), get()) }
@@ -54,16 +52,15 @@ val appModule = module {
         )
     }
     viewModel { LeaderboardViewModel(get()) }
-    viewModel { LoginViewModel(get()) }
+    viewModel { LoginViewModel(get(), get()) }
     viewModel { MainViewModel() }
-    viewModel { PetDetailsViewModel() }
-    viewModel { (petId: Int) ->
-        PetProfileViewModel(
-            get(),
-            petId
-        )
+    viewModel { (groupId: String) ->
+        PetDetailsViewModel(groupId, get())
     }
-    viewModel { RegisterViewModel(get()) }
+    viewModel { (petId: Int) ->
+        PetProfileViewModel(get(), petId)
+    }
+    viewModel { RegisterViewModel(get(),get()) }
     viewModel { SplashViewModel(get()) }
     viewModel { (isOwnUserProfile: Boolean) ->
         UserProfileViewModel(isOwnUserProfile, get(), get(), get())

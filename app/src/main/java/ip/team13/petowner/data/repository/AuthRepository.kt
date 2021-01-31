@@ -1,52 +1,15 @@
 package ip.team13.petowner.data.repository
 
-import ip.team13.petowner.core.helpers.logError
-import ip.team13.petowner.core.persistence.Preferences
 import ip.team13.petowner.data.PetOwnerAPI
 import ip.team13.petowner.data.dto.LoginForm
 import ip.team13.petowner.data.dto.RegisterForm
 
 class AuthRepository(
-    private val petOwnerAPI: PetOwnerAPI,
-    private val preferences: Preferences
+    private val petOwnerAPI: PetOwnerAPI
 ) {
 
-    suspend fun register(email: String, password: String, inviteCode: String? = null): Boolean {
+    suspend fun register(registerForm: RegisterForm) = petOwnerAPI.register(registerForm)
 
-        try {
-            val response = petOwnerAPI.register(
-                RegisterForm(email, password, preferences.getFCMToken() ?: "", inviteCode)
-            )
-            response.userToken?.let { preferences.saveBearerToken(it) }
-            response.userId?.let { preferences.saveUserId(it) }
-            response.errorCode?.let { return false }
+    suspend fun login(loginForm: LoginForm) = petOwnerAPI.login(loginForm)
 
-            if (!response.userToken.isNullOrEmpty() && response.userId != null) {
-                return true
-            }
-
-        } catch (e: Exception) {
-            e.message?.logError()
-        }
-
-        return false
-    }
-
-    suspend fun login(email: String, password: String): Boolean {
-        try {
-            val response = petOwnerAPI.login(
-                LoginForm(email, password, preferences.getFCMToken() ?: "")
-            )
-            response.userToken?.let { preferences.saveBearerToken(it) }
-            response.userId?.let { preferences.saveUserId(it) }
-
-            if (!response.userToken.isNullOrEmpty() && response.userId != null) {
-                return true
-            }
-        } catch (e: Exception) {
-            e.message?.logError()
-        }
-
-        return false
-    }
 }

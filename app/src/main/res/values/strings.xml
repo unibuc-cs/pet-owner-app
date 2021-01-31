@@ -51,4 +51,14 @@
     <string name="pet_weight">Weight</string>
     <string name="pet_species">Species</string>
     <string name="pet_race">Race</string>
+    <string name="name">Name</string>
+    <string name="add">Add</string>
+    <string name="age">Age (years)</string>
+    <string name="weight">Weight (kg)</string>
+    <string name="species">Species</string>
+    <string name="race">Race</string>
+    <string name="kg">(kg)</string>
+    <string name="years">year(s)</string>
+    <string name="category">Category</string>
+    <string name="price">Price</string>
 </resources>

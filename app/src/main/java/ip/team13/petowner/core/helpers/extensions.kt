@@ -1,5 +1,6 @@
 package ip.team13.petowner.core.helpers
 
+import android.app.AlertDialog
 import android.content.Context
 import android.view.KeyEvent
 import android.view.View
@@ -38,4 +39,33 @@ fun LocalDateTime.vipTimeLeft(): String {
         now.until(this, ChronoUnit.SECONDS) > 0 -> "${now.until(this, ChronoUnit.SECONDS)} s"
         else -> throw IllegalStateException("Bad VIP time left")
     }
+}
+
+fun Context.showAlertDialog(
+    title: String,
+    message: String,
+    positiveButtonText: String?,
+    negativeButtonText: String? = null,
+    onPositiveAction: (() -> Unit)? = null,
+    onNegativeAction: (() -> Unit)? = null
+) {
+    val alertDialogBuilder = AlertDialog.Builder(this)
+        .setTitle(title)
+        .setMessage(message)
+        .setCancelable(false)
+
+    positiveButtonText?.let {
+        alertDialogBuilder.setPositiveButton(it) { dialog, id ->
+            onPositiveAction?.invoke()
+            dialog.cancel()
+        }
+    }
+    negativeButtonText?.let {
+        alertDialogBuilder.setNegativeButton(it) { dialog, id ->
+            onNegativeAction?.invoke()
+            dialog.cancel()
+        }
+    }
+
+    alertDialogBuilder.create().show()
 }
