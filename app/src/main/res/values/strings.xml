@@ -20,11 +20,20 @@
     <!--  Home screen  -->
     <string name="leaderboard_weekly_title">Weekly Leaderboard</string>
     <string name="leaderboard_vip">VIP</string>
-    <string name="leaderboard_free">Free</string>
+    <string name="leaderboard_basic">Basic</string>
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
     <string name="add_a_new_activity">Add a new activity</string>
     <string name="login">Login</string>
+    <string name="hello">Hello,&#160;</string>
+    <string name="level">Lvl&#160;</string>
+    <string name="empty_name">Your profile</string>
+
+    <!-- User Profile screen -->
+    <string name="name_hint">Your name</string>
+    <string name="buy_vip">Buy VIP for 349 tokens</string>
+    <string name="vip_duration">VIP duration</string>
+    <string name="multiplier">Your experience is multiplied by</string>
 
     <!-- Add activity screen   -->
     <string name="add_activity_title">Title</string>
@@ -44,10 +53,12 @@
     <string name="pet_race">Race</string>
     <string name="name">Name</string>
     <string name="add">Add</string>
-    <string name="age">Age</string>
-    <string name="weight">Weight</string>
+    <string name="age">Age (years)</string>
+    <string name="weight">Weight (kg)</string>
     <string name="species">Species</string>
     <string name="race">Race</string>
     <string name="kg">(kg)</string>
     <string name="years">year(s)</string>
+    <string name="category">Category</string>
+    <string name="price">Price</string>
 </resources>

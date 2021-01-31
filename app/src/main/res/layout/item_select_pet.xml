@@ -11,7 +11,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            style="@style/TextTitle"
+            style="@style/Text.Title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/select_pet"

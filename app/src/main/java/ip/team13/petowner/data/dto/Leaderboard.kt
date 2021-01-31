@@ -18,5 +18,5 @@ class LeaderboardRequestModel(
     @Json(name = "size")
     val size: Int,
     @Json(name = "isvip")
-    val isVIP: Boolean
+    val isvip: Boolean
 )

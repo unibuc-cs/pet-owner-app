@@ -17,19 +17,30 @@
 
     <style name="AppTheme" parent="Theme.PetOwner" />
 
-    <style name="TextTitle" parent="AppTheme">
+    <style name="Text" parent="TextAppearance.AppCompat" />
+
+    <style name="Text.Title">
         <item name="android:textColor">@color/colorTextTitle</item>
         <item name="android:textSize">@dimen/text_size_18</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="TextBody" parent="AppTheme">
+    <style name="Text.Body">
         <item name="android:textColor">@color/colorTextBody</item>
         <item name="android:textSize">@dimen/text_size_16</item>
     </style>
 
-    <style name="TextExtra" parent="AppTheme">
+    <style name="Text.Extra">
         <item name="android:textColor">@color/colorTextExtra</item>
+    </style>
+
+    <style name="Text.Header">
+        <item name="android:fontFamily">@font/architects_daughter</item>
+        <item name="android:textSize">@dimen/text_size_18</item>
+    </style>
+
+    <style name="Text.Name">
+        <item name="android:textSize">@dimen/text_size_24</item>
     </style>
 
 </resources>

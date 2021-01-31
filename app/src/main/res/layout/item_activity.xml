@@ -34,7 +34,7 @@
 
             <TextView
                 android:id="@+id/tv_title"
-                style="@style/TextTitle"
+                style="@style/Text.Title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/padding_16"
@@ -59,7 +59,7 @@
 
             <TextView
                 android:id="@+id/tv_date"
-                style="@style/TextExtra"
+                style="@style/Text.Extra"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/padding_16"
@@ -74,7 +74,7 @@
 
             <TextView
                 android:id="@+id/tv_exp_points"
-                style="@style/TextExtra"
+                style="@style/Text.Extra"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/padding_16"
@@ -87,7 +87,7 @@
 
             <TextView
                 android:id="@+id/tv_description"
-                style="@style/TextBody"
+                style="@style/Text.Body"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/padding_16"

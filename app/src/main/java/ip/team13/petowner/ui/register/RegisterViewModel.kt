@@ -43,7 +43,7 @@ class RegisterViewModel(
                         email = email,
                         password = password,
                         tokenFCM = preferences.getFCMToken() ?: "",
-                        inviteCode = inviteCode.get() ?: ""
+                        inviteCode = inviteCode.get()
                     )
                 )
                 response.userToken?.let { preferences.saveBearerToken(it) }

@@ -72,7 +72,8 @@
             app:destination="@id/leaderboardFragment" />
         <action
             android:id="@+id/action_homeFragment_to_userProfileFragment"
-            app:destination="@id/userProfileFragment" />
+            app:destination="@id/userProfileFragment"
+            app:popUpTo="@id/homeFragment" />
     </fragment>
 
     <fragment
@@ -122,6 +123,16 @@
         android:id="@+id/analyticsFragment"
         android:name="ip.team13.petowner.ui.cost.CostTrackerFragment"
         android:label="AnalyticsFragment"
+        tools:layout="@layout/cost_tracker_screen">
+        <action
+            android:id="@+id/action_costTracker_to_costDetails"
+            app:destination="@id/costDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/costDetailsFragment"
+        android:name="ip.team13.petowner.ui.cost.details.CostDetailsFragment"
+        android:label="CostDetailsFragment"
         tools:layout="@layout/cost_details_screen" />
 
     <fragment

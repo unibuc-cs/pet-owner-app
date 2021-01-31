@@ -5,126 +5,108 @@
 
     <data>
 
+        <import type="ip.team13.petowner.R" />
+
         <variable
             name="viewModel"
             type="ip.team13.petowner.ui.home.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/home_profile_header"
-        android:layout_width="match_parent"
+        android:id="@+id/cl_profile"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/colorSilver_80">
+        android:background="@drawable/shape_rect_round_bottom"
+        android:clickable="true"
+        android:elevation="@dimen/padding_10"
+        android:focusable="true"
+        android:foreground="?android:selectableItemBackground"
+        android:onClick="@{_ -> viewModel.onProfileHeaderClick()}">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_profile"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/shape_rect_round_bottom"
-            android:clickable="true"
-            android:elevation="@dimen/padding_10"
-            android:focusable="true"
-            android:foreground="?android:selectableItemBackground"
-            android:onClick="@{_ -> viewModel.onProfileHeaderClick()}"
-            app:layout_constraintEnd_toEndOf="parent"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/home_profile_image"
+            android:layout_width="@dimen/padding_64"
+            android:layout_height="@dimen/padding_64"
+            android:layout_marginStart="@dimen/padding_24"
+            android:layout_marginTop="@dimen/padding_8"
+            android:layout_marginBottom="@dimen/padding_8"
+            android:transitionName="userImage"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/home_profile_image"
-                android:layout_width="@dimen/padding_64"
-                android:layout_height="@dimen/padding_64"
-                android:layout_marginStart="@dimen/padding_24"
-                android:layout_marginTop="@dimen/padding_8"
-                android:layout_marginBottom="@dimen/padding_8"
-                android:transitionName="userImage"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:loadImageUrl="@{viewModel.profileImageUrl}" />
-
-            <TextView
-                android:id="@+id/tv_level_name"
-                style="@style/TextBody"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padding_16"
-                android:padding="@dimen/padding_4"
-                android:text="Lv. Rookie"
-                app:layout_constraintEnd_toStartOf="@id/tv_level_points"
-                app:layout_constraintStart_toStartOf="@id/tv_level"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tv_level_points"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padding_16"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/tv_level_name"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tv_level"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableEnd="@drawable/ic_experience"
-                android:drawablePadding="@dimen/padding_4"
-                android:gravity="center"
-                android:padding="@dimen/padding_8"
-                android:text="@{viewModel.profileLevel}"
-                android:transitionName="userLevel"
-                app:drawableTintRes="@{@color/colorAppOrangeBright}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/tv_weekly_exp"
-                app:layout_constraintStart_toEndOf="@id/home_profile_image"
-                app:layout_constraintTop_toBottomOf="@id/tv_level_name"
-                tools:drawableTint="@color/colorAppOrangeBright" />
-
-            <TextView
-                android:id="@+id/tv_weekly_exp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableEnd="@drawable/ic_weekly_exp"
-                android:drawablePadding="@dimen/padding_4"
-                android:gravity="center"
-                android:text="@{viewModel.profileWeeklyExp}"
-                android:transitionName="userWeeklyExp"
-                app:drawableTintRes="@{@android:color/holo_red_light}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/tv_vip_time"
-                app:layout_constraintStart_toEndOf="@id/tv_level"
-                app:layout_constraintTop_toBottomOf="@id/tv_level_name"
-                tools:drawableTint="@android:color/holo_red_light" />
-
-            <TextView
-                android:id="@+id/tv_vip_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableEnd="@drawable/ic_timer"
-                android:drawablePadding="@dimen/padding_4"
-                android:gravity="center"
-                android:text="17h"
-                app:drawableTintRes="@{@color/colorShadeGrey}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/tv_weekly_exp"
-                app:layout_constraintTop_toBottomOf="@id/tv_level_name"
-                tools:drawableTint="@color/colorShadeGrey" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toTopOf="parent"
+            app:loadImageUrl="@{viewModel.profileImageUrl}"
+            app:placeholder="@{R.drawable.ic_user_placeholder}" />
 
         <TextView
-            android:id="@+id/home_profile_text"
+            android:id="@+id/tv_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_16"
             android:gravity="center"
-            android:padding="@dimen/padding_4"
-            android:text="10 VIP days left"
-            android:textSize="@dimen/text_size_18"
-            android:textStyle="bold"
+            android:maxLines="1"
+            android:paddingHorizontal="@dimen/padding_8"
+            android:text="@{viewModel.name}"
+            android:textAppearance="@style/Text.Name"
+            android:transitionName="userName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cl_profile" />
+            app:layout_constraintStart_toEndOf="@id/home_profile_image"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Hello, Joe Rodriguez" />
 
+        <TextView
+            android:id="@+id/tv_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="none"
+            android:padding="@dimen/padding_8"
+            android:singleLine="true"
+            android:text="@{viewModel.level}"
+            android:textAppearance="@style/Text.Header"
+            android:transitionName="userLevel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_tokens"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toEndOf="@id/home_profile_image"
+            app:layout_constraintTop_toBottomOf="@id/tv_name"
+            tools:text="Lvl 12" />
+
+        <TextView
+            android:id="@+id/tv_tokens"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_tokens"
+            android:drawablePadding="@dimen/padding_4"
+            android:ellipsize="none"
+            android:padding="@dimen/padding_8"
+            android:singleLine="true"
+            android:text="@{viewModel.tokens}"
+            android:textAppearance="@style/Text.Header"
+            android:transitionName="userTokens"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_vip_time"
+            app:layout_constraintStart_toEndOf="@id/tv_level"
+            app:layout_constraintTop_toBottomOf="@id/tv_name"
+            tools:text="2317" />
+
+        <TextView
+            android:id="@+id/tv_vip_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_timer"
+            android:drawablePadding="@dimen/padding_4"
+            android:ellipsize="none"
+            android:padding="@dimen/padding_8"
+            android:singleLine="true"
+            android:text="@{viewModel.vipTimeLeft}"
+            android:textAppearance="@style/Text.Header"
+            android:transitionName="userTime"
+            android:visibility="@{viewModel.vip}"
+            app:drawableTintRes="@{@color/colorShadeGrey}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_tokens"
+            app:layout_constraintTop_toBottomOf="@id/tv_name"
+            tools:drawableTint="@color/colorShadeGrey"
+            tools:text="17h" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
