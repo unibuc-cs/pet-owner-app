@@ -30,7 +30,8 @@ class ActivityDate(
 ) : ActivityData(type = ActivityDataType.ACTIVITY_DATE)
 
 data class ActivityItem(
-    val model: ActivityEntry
+    val model: ActivityEntry,
+    val updateTokensAndExp: () -> Unit
 ) : ActivityData(
     type = ActivityDataType.ACTIVITY_ITEM
 )

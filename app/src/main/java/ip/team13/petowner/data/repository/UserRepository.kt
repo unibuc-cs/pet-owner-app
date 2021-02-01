@@ -4,10 +4,7 @@ import ip.team13.petowner.core.persistence.Preferences
 import ip.team13.petowner.data.PetOwnerAPI
 import ip.team13.petowner.data.domain.UserProfile
 import ip.team13.petowner.data.domain.VipInfo
-import ip.team13.petowner.data.dto.BuyVipModel
-import ip.team13.petowner.data.dto.NamePhotoUrlModel
-import ip.team13.petowner.data.dto.TokensModel
-import ip.team13.petowner.data.dto.toUserProfile
+import ip.team13.petowner.data.dto.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import org.threeten.bp.LocalDateTime
@@ -51,4 +48,10 @@ class UserRepository(
         if (api.updateTokens(preferences.getUserId().toString(), TokensModel(tokens)))
             mutableUser.value = mutableUser.value.copy(tokens = mutableUser.value.tokens - tokens)
     }
+
+    suspend fun updateWeeklyExp(exp: Int) =
+        api.updateWeeklyExp(
+            userId = preferences.getUserId(),
+            body = UpdateWeeklyExpRequestModel(exp)
+        )
 }

@@ -5,15 +5,15 @@ import java.io.Serializable
 import kotlin.random.Random
 
 data class ActivityEntry(
-    @Json(name = "ActivityId")
-    val id: String? = null,
+    @field:Json(name = "activityId")
+    val activityId: Int? = null,
     @Json(name = "Title")
     val title: String? = null,
     @Json(name = "Description")
     val description: String? = null,
     @Json(name = "ExpPoints")
     val expPoints: Int? = null,
-    @Json(name = "Data")
+    @field:Json(name = "data")
     val dueTime: String? = null,
     @Json(name = "PetId")
     val petId: Int,
@@ -38,3 +38,47 @@ data class ActivityEntry(
         }
     }
 }
+
+data class PetActivityRequestModel(
+    @field:Json(name = "petid")
+    val petId: Int? = null,
+    @field:Json(name = "activityid")
+    val activityId: Int? = null,
+    @field:Json(name = "data")
+    val date: String? = null,
+    @field:Json(name = "recurring")
+    val recurring: Boolean? = null,
+    @field:Json(name = "recurringinterval")
+    val recurringInterval: Int? = null,
+    @field:Json(name = "description")
+    val description: String? = null,
+    @field:Json(name = "exppoints")
+    val expPoints: Int? = null,
+    @field:Json(name = "title")
+    val title: String? = null
+) {
+    companion object {
+        fun fromActivity(petId: Int, activity: ActivityEntry) =
+            PetActivityRequestModel(
+                petId = petId,
+                date = activity.dueTime,
+                title = activity.title,
+                description = activity.description,
+                recurring = activity.recurring,
+                recurringInterval = activity.recurringInterval,
+                expPoints = activity.expPoints
+            )
+    }
+}
+
+data class AttachActivityRequestModel(
+    @field:Json(name = "PetId")
+    val petId: Int? = null,
+    @field:Json(name = "ActivityId")
+    val activityId: Int? = null,
+)
+
+data class AddActivityResponseModel(
+    @field:Json(name = "activityid")
+    val activityId: Int
+)

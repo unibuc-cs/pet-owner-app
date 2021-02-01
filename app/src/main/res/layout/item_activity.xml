@@ -41,10 +41,33 @@
                 android:layout_marginTop="@dimen/padding_16"
                 android:layout_marginEnd="@dimen/padding_16"
                 android:text="@{viewModel.activity.model.title}"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/checkbox_completed"
                 app:layout_constraintStart_toEndOf="@id/v_color_line"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="@string/placeholder_string_text_short" />
+
+            <CheckBox
+                android:id="@+id/checkbox_completed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_4"
+                android:layout_marginEnd="@dimen/padding_8"
+                android:buttonTint="@color/colorAppGreen"
+                android:clickable="false"
+                android:focusable="false"
+                android:checked="@={viewModel.isCompleted}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:onClick="@{() -> viewModel.markAsCompleted(checkboxCompleted)}"
+                app:layout_constraintStart_toStartOf="@id/checkbox_completed"
+                app:layout_constraintTop_toTopOf="@id/checkbox_completed"
+                app:layout_constraintBottom_toBottomOf="@id/checkbox_completed"
+                app:layout_constraintEnd_toEndOf="@id/checkbox_completed"
+                />
 
             <TextView
                 android:id="@+id/tv_date"
@@ -54,7 +77,7 @@
                 android:layout_marginStart="@dimen/padding_16"
                 android:layout_marginTop="@dimen/padding_8"
                 android:layout_marginEnd="@dimen/padding_16"
-                android:text="@{viewModel.activity.model.dueTime}"
+                android:text="@{viewModel.formattedDate}"
                 app:layout_constraintBottom_toTopOf="@id/tv_description"
                 app:layout_constraintEnd_toStartOf="@id/tv_exp_points"
                 app:layout_constraintStart_toEndOf="@id/v_color_line"
@@ -67,7 +90,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/padding_16"
-                android:text="@{viewModel.activity.model.expPoints.toString()}"
+                android:text='@{viewModel.activity.model.expPoints.toString() + " EXP"}'
                 app:layout_constraintBottom_toBottomOf="@id/tv_date"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tv_date"
@@ -79,16 +102,15 @@
                 style="@style/Text.Body"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/padding_16"
-                android:layout_marginTop="@dimen/padding_8"
                 android:layout_marginEnd="@dimen/padding_16"
+                android:layout_marginTop="@dimen/padding_8"
                 android:layout_marginBottom="@dimen/padding_16"
                 android:ellipsize="end"
                 android:maxLines="3"
                 android:text="@{viewModel.activity.model.description}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tv_date"
                 app:layout_constraintTop_toBottomOf="@id/tv_date"
                 tools:text="@string/placeholder_string_text_long" />
 

@@ -27,7 +27,7 @@ class HomeLeaderboardListAdapter(
 
     override fun onBindViewHolder(holder: HomeLeaderboardListItemViewHolder, position: Int) {
         items.getOrNull(position)?.let {
-            holder.bind(it, position)
+            holder.bind(it)
         }
     }
 
@@ -42,10 +42,10 @@ class HomeLeaderboardListAdapter(
 class HomeLeaderboardListItemViewHolder(private val binding: HomeLeaderboardListItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: LeaderboardEntry, position: Int) {
+    fun bind(item: LeaderboardEntry) {
         binding.viewModel = HomeLeaderboardListItemViewModel(
             item,
-            when (position) {
+            when (item.position) {
                 0 -> R.drawable.ic_trophy_gold
                 1 -> R.drawable.ic_trophy_silver
                 2 -> R.drawable.ic_trophy_bronze
@@ -61,10 +61,10 @@ class HomeLeaderboardListItemViewModel(
 ) {
 
     val imageUrl: String
-        get() = leaderboardEntry.imageUrl
+        get() = leaderboardEntry.imageUrl ?: ""
 
     val name: String
-        get() = leaderboardEntry.name
+        get() = leaderboardEntry.name ?: ""
 
     val weeklyExp: String
         get() = leaderboardEntry.weeklyExperience.toString()

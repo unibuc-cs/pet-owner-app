@@ -21,7 +21,9 @@ class LeaderboardRepository(
                         else -> false
                     }
                 )
-            ).map { it.toLeaderboardEntry() }
+            ).mapIndexed { index, leaderboardEntryModel ->
+                leaderboardEntryModel.toLeaderboardEntry(index)
+            }
         } catch (ex: Exception) {
             ex.message?.logError()
             ArrayList()

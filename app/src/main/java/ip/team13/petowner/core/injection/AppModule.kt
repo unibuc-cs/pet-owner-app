@@ -35,7 +35,8 @@ val appModule = module {
         ActivitiesViewModel(
             onAddActivity = onAddActivity,
             petRepository = get(),
-            activityRepository = get()
+            activityRepository = get(),
+            userRepository = get()
         )
     }
     viewModel { (petId: Int) ->

@@ -14,6 +14,21 @@
                 android:alpha="0.3"
                 app:framePosition="95"
                 app:motionTarget="@id/background" />
+
+            <KeyAttribute
+                android:alpha="0.3"
+                app:framePosition="95"
+                app:motionTarget="@id/imv_first_trophy"/>
+
+            <KeyAttribute
+                android:alpha="0.3"
+                app:framePosition="95"
+                app:motionTarget="@id/imv_second_trophy"/>
+
+            <KeyAttribute
+                android:alpha="0.3"
+                app:framePosition="95"
+                app:motionTarget="@id/imv_third_trophy"/>
         </KeyFrameSet>
 
     </Transition>
@@ -33,6 +48,19 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1"
             app:layout_constraintWidth_percent="0.20" />
+
+        <Constraint
+            android:id="@+id/imv_first_trophy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:src="@drawable/ic_trophy_gold"
+            android:alpha="0"
+            app:layout_constraintBottom_toBottomOf="@id/civ_first"
+            app:layout_constraintEnd_toEndOf="@id/civ_first"
+            app:layout_constraintStart_toEndOf="@id/civ_first"
+            app:layout_constraintTop_toBottomOf="@id/civ_first" />
 
         <Constraint
             android:id="@id/civ_second"
@@ -108,8 +136,21 @@
             app:layout_constraintHeight_percent="0.20"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.38"
+            app:layout_constraintVertical_bias="0.35"
             app:layout_constraintWidth_percent="0.20" />
+
+        <Constraint
+            android:id="@+id/imv_first_trophy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:src="@drawable/ic_trophy_gold"
+            android:alpha="1"
+            app:layout_constraintBottom_toBottomOf="@id/civ_first"
+            app:layout_constraintEnd_toEndOf="@id/civ_first"
+            app:layout_constraintStart_toEndOf="@id/civ_first"
+            app:layout_constraintTop_toBottomOf="@id/civ_first" />
 
         <Constraint
             android:id="@id/civ_second"
@@ -123,7 +164,7 @@
             app:layout_constraintHorizontal_bias="0.58"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.48"
+            app:layout_constraintVertical_bias="0.45"
             app:layout_constraintWidth_percent="0.20" />
 
         <Constraint
@@ -138,7 +179,7 @@
             app:layout_constraintHorizontal_bias="0.40"
             app:layout_constraintStart_toEndOf="@id/civ_first"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.58"
+            app:layout_constraintVertical_bias="0.55"
             app:layout_constraintWidth_percent="0.20" />
 
         <Constraint

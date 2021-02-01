@@ -28,6 +28,11 @@ interface PetOwnerAPI {
     @PATCH("api/gamification/{userId}/tokens")
     suspend fun updateTokens(@Path("userId") userId: String, @Body body: TokensModel): Boolean
 
+    @PATCH("api/gamification/{userId}/weeklyexp")
+    suspend fun updateWeeklyExp(
+        @Path("userId") userId: Int,
+        @Body body: UpdateWeeklyExpRequestModel
+    )
     // ******* Leaderboards *******
     @POST("api/user/leaderboards")
     suspend fun getLeaderboards(@Body body: LeaderboardRequestModel): List<LeaderboardEntryModel>
@@ -39,15 +44,24 @@ interface PetOwnerAPI {
     @GET("api/pet/group/{userId}")
     suspend fun getGroupPets(@Path("userId") userId: Int): List<PetEntryModel>
 
+    @GET("api/activity/{petId}/activities")
+    suspend fun getPetsActivities(@Path("petId") petId: Int): List<ActivityEntry>
+
     @GET("api/pet/{id}")
     suspend fun getPet(@Path("id") petId: Int): PetEntryModel
 
     // Activities
-    @GET("/pet/group/{userId}")
-    suspend fun getPetsAndActivities(@Path("userId") userId: String): List<PetEntryModel>
-
     @POST("api/activity/petactivity")
-    suspend fun addActivity(@Body body: ActivityEntry)
+    suspend fun addPetActivity(@Body body: PetActivityRequestModel)
+
+    @POST("api/activity/activity")
+    suspend fun addActivity(@Body body: ActivityEntry): AddActivityResponseModel
+
+    @POST("api/activity/attach")
+    suspend fun attachActivity(@Body body: AttachActivityRequestModel)
+
+    @DELETE("api/activity/activity/{activityId}")
+    suspend fun deleteActivity(@Path("activityId") activityId: Int)
 
     // Cost Item
     @POST("api/item/{userId}")
