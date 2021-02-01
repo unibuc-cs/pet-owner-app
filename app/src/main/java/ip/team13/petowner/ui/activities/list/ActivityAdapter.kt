@@ -150,12 +150,6 @@ class ActivityAdapter(
 
         fun bind(activity: ActivityItem) {
             binding.viewModel = ItemActivityViewModel(activity)
-
-//            binding.checkboxCompleted.setOnCheckedChangeListener { compoundButton, isChecked ->
-//                if(isChecked) {
-//                    activity.updateTokensAndExp.invoke()
-//                }
-//            }
         }
     }
 }
