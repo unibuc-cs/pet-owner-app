@@ -9,7 +9,7 @@ enum class CostTrackerCategory(val title: String) {
     FUN("Fun");
 }
 
-data class CostItemModel(
+data class CostTrackerModel(
     @field:Json(name = "Category")
     val category: String,
     @field:Json(name = "ItemName")
@@ -18,10 +18,21 @@ data class CostItemModel(
     val cost: Double
 ) {
     companion object {
-        fun getPlaceholder() = CostItemModel(
+        fun getPlaceholder() = CostTrackerModel(
             category = CostTrackerCategory.values().map { it.title }.random().toString(),
             name = "Item ${Random.nextInt()}",
             cost = Random.nextDouble() * 100
         )
     }
 }
+
+data class CostItemPeriod(val start: String, val end: String)
+
+data class CostTrackerRecylerViewModel(
+    @field:Json(name = "category")
+    val category: String,
+    @field:Json(name = "itemName")
+    val name: String,
+    @field:Json(name = "money")
+    val cost: Double
+)

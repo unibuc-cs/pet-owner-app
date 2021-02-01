@@ -51,8 +51,11 @@ interface PetOwnerAPI {
 
     // Cost Item
     @POST("api/item/{userId}")
-    suspend fun addItem(@Path("userId") userId: Int, @Body body: CostItemModel)
+    suspend fun addItem(@Path("userId") userId: Int, @Body body: CostTrackerModel)
 
     @DELETE("api/item/{itemId}")
     suspend fun deleteItem(itemId: Int)
+
+    @POST("/api/item/all/{groupid}")
+    suspend fun getItems(@Path("groupid") groupId: Int, @Body period: CostItemPeriod): List<CostTrackerRecylerViewModel>
 }

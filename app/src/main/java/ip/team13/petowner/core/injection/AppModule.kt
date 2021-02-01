@@ -41,8 +41,8 @@ val appModule = module {
     viewModel { (petId: Int) ->
         ActivityDetailsViewModel(petId)
     }
+    viewModel { CostTrackerViewModel(get()) }
     viewModel { CostDetailsViewModel(get()) }
-    viewModel { CostTrackerViewModel() }
     viewModel { GroupViewModel() }
     viewModel { HomeViewModel(get(), get()) }
     viewModel { (leaderboardType: LeaderboardType) ->
@@ -60,7 +60,7 @@ val appModule = module {
     viewModel { (petId: Int) ->
         PetProfileViewModel(get(), petId)
     }
-    viewModel { RegisterViewModel(get(),get()) }
+    viewModel { RegisterViewModel(get(), get()) }
     viewModel { SplashViewModel(get()) }
     viewModel { (isOwnUserProfile: Boolean) ->
         UserProfileViewModel(isOwnUserProfile, get(), get(), get())

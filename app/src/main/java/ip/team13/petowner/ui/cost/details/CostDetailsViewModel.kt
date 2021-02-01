@@ -7,8 +7,8 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import ip.team13.petowner.core.helpers.logError
-import ip.team13.petowner.data.dto.CostItemModel
 import ip.team13.petowner.data.dto.CostTrackerCategory
+import ip.team13.petowner.data.dto.CostTrackerModel
 import ip.team13.petowner.data.repository.CostTrackerRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -58,7 +58,7 @@ class CostDetailsViewModel(
         }
 
         doAddCostItem(
-            CostItemModel(
+            CostTrackerModel(
                 name = costName ?: return,
                 category = costCategory ?: return,
                 cost = costValue?.toDouble() ?: return
@@ -66,9 +66,9 @@ class CostDetailsViewModel(
         )
     }
 
-    private fun doAddCostItem(costItem: CostItemModel) = viewModelScope.launch(Dispatchers.IO) {
+    private fun doAddCostItem(costTracker: CostTrackerModel) = viewModelScope.launch(Dispatchers.IO) {
         try {
-            repository.addCostItem(costItem)
+            repository.addCostItem(costTracker)
             withContext(Dispatchers.Main) {
                 showAlert?.invoke("Item added successfully.")
                 navigateBack?.invoke()

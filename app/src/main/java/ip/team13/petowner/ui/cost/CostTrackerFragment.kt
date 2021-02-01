@@ -6,6 +6,7 @@ import androidx.navigation.fragment.findNavController
 import ip.team13.petowner.R
 import ip.team13.petowner.core.BaseFragment
 import ip.team13.petowner.databinding.CostTrackerScreenBinding
+import ip.team13.petowner.ui.cost.list.CostTrackerAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CostTrackerFragment : BaseFragment<CostTrackerScreenBinding>() {
@@ -15,11 +16,21 @@ class CostTrackerFragment : BaseFragment<CostTrackerScreenBinding>() {
 
     override val viewModel: CostTrackerViewModel by viewModel()
 
+    private lateinit var adapter: CostTrackerAdapter
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.getItems()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.tvAddItem.setOnClickListener {
-            findNavController().navigate(R.id.action_costTracker_to_costDetails)
+        adapter = CostTrackerAdapter(arrayListOf())
+        binding.adapter = adapter
+
+        binding.addExpenseFab.setOnClickListener {
+            findNavController().navigate(R.id.costDetailsFragment)
         }
     }
 }
