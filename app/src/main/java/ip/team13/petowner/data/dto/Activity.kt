@@ -40,33 +40,33 @@ data class ActivityEntry(
 }
 
 data class PetActivityRequestModel(
-    @field:Json(name = "PetId")
+    @field:Json(name = "petid")
     val petId: Int? = null,
-    @field:Json(name = "ActivityId")
+    @field:Json(name = "activityid")
     val activityId: Int? = null,
-    @field:Json(name = "Data")
+    @field:Json(name = "data")
     val date: String? = null,
-    @field:Json(name = "Recurring")
+    @field:Json(name = "recurring")
     val recurring: Boolean? = null,
-    @field:Json(name = "RecurringInterval")
+    @field:Json(name = "recurringinterval")
     val recurringInterval: Int? = null,
-    @field:Json(name = "Description")
+    @field:Json(name = "description")
     val description: String? = null,
-    @field:Json(name = "ExpPoints")
+    @field:Json(name = "exppoints")
     val expPoints: Int? = null,
-    @field:Json(name = "Title")
+    @field:Json(name = "title")
     val title: String? = null
 ) {
     companion object {
-        fun fromActivity(petId: Int, activityId: Int, activity: ActivityEntry) =
+        fun fromActivity(petId: Int, activity: ActivityEntry) =
             PetActivityRequestModel(
                 petId = petId,
-                activityId = activityId,
                 date = activity.dueTime,
                 title = activity.title,
                 description = activity.description,
                 recurring = activity.recurring,
                 recurringInterval = activity.recurringInterval,
+                expPoints = activity.expPoints
             )
     }
 }

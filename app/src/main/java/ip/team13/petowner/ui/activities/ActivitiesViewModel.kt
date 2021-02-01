@@ -10,6 +10,7 @@ import ip.team13.petowner.core.helpers.logError
 import ip.team13.petowner.data.domain.*
 import ip.team13.petowner.data.dto.ActivityEntry
 import ip.team13.petowner.data.dto.AttachActivityRequestModel
+import ip.team13.petowner.data.dto.PetActivityRequestModel
 import ip.team13.petowner.data.dto.PetEntryModel
 import ip.team13.petowner.data.repository.ActivitiesRepository
 import ip.team13.petowner.data.repository.PetRepository
@@ -80,14 +81,11 @@ class ActivitiesViewModel(
     fun addActivity(activityEntry: ActivityEntry) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val activityResponse = activityRepository.addActivity(activityEntry)
 
-                activityRepository.attachActivity(
-                    AttachActivityRequestModel(
-                        petId = selectedPet.get()?.id ?: return@launch,
-                        activityId = activityResponse.activityId
-                    )
-                )
+                activityRepository.addPetActivity(PetActivityRequestModel.fromActivity(
+                    petId = selectedPet.get()?.id ?: return@launch,
+                    activity = activityEntry
+                ))
 
                 withContext(Dispatchers.Main) {
                     showAlert?.invoke("Activity added with success!")
