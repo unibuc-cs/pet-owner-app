@@ -3,19 +3,22 @@ package ip.team13.petowner.data.repository
 import ip.team13.petowner.core.helpers.logError
 import ip.team13.petowner.core.persistence.Preferences
 import ip.team13.petowner.data.PetOwnerAPI
-import ip.team13.petowner.data.dto.AddPetModel
-import ip.team13.petowner.data.dto.AddPetRequestModel
-import ip.team13.petowner.data.dto.PetEntryModel
+import ip.team13.petowner.data.domain.PetDetails
+import ip.team13.petowner.data.dto.*
 
 class PetRepository(
     private val sharedPreferences: Preferences,
     private val petOwnerAPI: PetOwnerAPI
 ) {
 
-    val imageUrl: String
-        get() = "https://picsum.photos/200/200"
-
-    var name: String = "Doggo"
+    suspend fun getPet(petId: Int): PetDetails? {
+        try {
+            return petOwnerAPI.getPet(petId).toPetDetails()
+        } catch (e: java.lang.Exception) {
+            e.message?.logError()
+        }
+        return null
+    }
 
     suspend fun getPets() = try {
         petOwnerAPI.getGroupPets(userId = sharedPreferences.getUserId())
@@ -32,12 +35,7 @@ class PetRepository(
             )
         )
 
-    suspend fun getPet(petId: Int): PetEntryModel? {
-        try {
-            return petOwnerAPI.getPet(petId)
-        } catch (e: java.lang.Exception) {
-            e.message?.logError()
-        }
-        return null
+    suspend fun updatePet(petId: Int, pet: PetUpdateModel) {
+        petOwnerAPI.updatePet(petId, pet)
     }
 }

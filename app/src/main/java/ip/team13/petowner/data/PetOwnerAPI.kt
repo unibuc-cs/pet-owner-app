@@ -33,14 +33,17 @@ interface PetOwnerAPI {
     suspend fun getLeaderboards(@Body body: LeaderboardRequestModel): List<LeaderboardEntryModel>
 
     // ******* Pet *******
-    @POST("api/pet")
-    suspend fun addPet(@Body body: AddPetRequestModel)
-
     @GET("api/pet/group/{userId}")
     suspend fun getGroupPets(@Path("userId") userId: Int): List<PetEntryModel>
 
     @GET("api/pet/{id}")
     suspend fun getPet(@Path("id") petId: Int): PetEntryModel
+
+    @POST("api/pet")
+    suspend fun addPet(@Body body: AddPetRequestModel)
+
+    @PATCH("api/pet/{petId}")
+    suspend fun updatePet(@Path("petId") petId: Int, @Body body: PetUpdateModel)
 
     // ******* Activities *******
     @GET("/pet/group/{userId}")
