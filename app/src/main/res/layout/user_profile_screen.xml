@@ -14,7 +14,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorWhiteSmoke">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -23,6 +24,7 @@
             android:layout_marginEnd="@dimen/padding_16"
             android:onClick="@{() -> viewModel.logout()}"
             android:src="@drawable/ic_logout"
+            android:visibility="@{viewModel.ownUserProfile}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

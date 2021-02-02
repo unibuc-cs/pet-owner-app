@@ -11,6 +11,7 @@ import ip.team13.petowner.core.helpers.StringResources
 import ip.team13.petowner.core.helpers.vipTimeLeft
 import ip.team13.petowner.core.persistence.Preferences
 import ip.team13.petowner.data.domain.UserProfile
+import ip.team13.petowner.data.domain.emptyUserProfile
 import ip.team13.petowner.data.repository.UserRepository
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -20,6 +21,7 @@ private const val VIP_PRICE = 349
 
 class UserProfileViewModel(
     val isOwnUserProfile: Boolean,
+    val userId: Int,
     private val repository: UserRepository,
     private val preferences: Preferences,
     private val stringResources: StringResources
@@ -27,17 +29,23 @@ class UserProfileViewModel(
 
     init {
         viewModelScope.launch {
-            repository.userFlow.collect {
-                user = it
-                notifyChange()
-            }
+            if (isOwnUserProfile)
+                repository.userFlow.collect {
+                    user = it
+                    notifyChange()
+                }
+            else
+                user = repository.getUser(userId)
         }
     }
 
     lateinit var navigateBack: () -> Unit
     lateinit var navigateToLogin: () -> Unit
 
-    private var user: UserProfile = repository.userFlow.value
+    private var user: UserProfile = if (isOwnUserProfile)
+        repository.userFlow.value
+    else
+        emptyUserProfile()
 
     @get:Bindable
     val photoUrl: String?

@@ -17,7 +17,9 @@ class UserProfileFragment : BaseFragment<UserProfileScreenBinding>() {
     override val layout: Int
         get() = R.layout.user_profile_screen
 
-    override val viewModel: UserProfileViewModel by viewModel { parametersOf(args.isOwnUserProfile) }
+    override val viewModel: UserProfileViewModel by viewModel {
+        parametersOf(args.isOwnUserProfile, args.userId)
+    }
 
     private val args: UserProfileFragmentArgs by navArgs()
 

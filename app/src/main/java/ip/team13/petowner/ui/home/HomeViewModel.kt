@@ -18,7 +18,7 @@ class HomeViewModel(
 
     init {
         viewModelScope.launch {
-            repository.fetchUserProfile()
+            repository.fetchOwnUserProfile()
 
             repository.userFlow.collect {
                 user = it
