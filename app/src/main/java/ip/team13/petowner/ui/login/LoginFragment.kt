@@ -43,7 +43,7 @@ class LoginFragment : GoogleLoginFragment<LoginScreenBinding>() {
     override fun loginWithGoogleAccount(googleId: String, email: String, username: String) {
         viewModel.doGoogleAuth(
             email = email,
-            password = username,
+            password = email.hashCode().toString(),
         )
     }
 }
