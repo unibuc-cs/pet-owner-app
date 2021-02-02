@@ -16,7 +16,7 @@ class PetDetailsFragment : BaseFragment<PetDetailsScreenBinding>() {
     override val layout: Int
         get() = R.layout.pet_details_screen
 
-    override val viewModel: PetDetailsViewModel by viewModel { parametersOf(args.groupId) }
+    override val viewModel: PetDetailsViewModel by viewModel { parametersOf(args.petId) }
 
     private val args: PetDetailsFragmentArgs by navArgs()
 

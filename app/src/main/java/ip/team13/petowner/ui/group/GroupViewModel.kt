@@ -29,17 +29,15 @@ class GroupViewModel(
         }
     }
 
-    lateinit var navigateToAddPet: (groupId: Int) -> Unit
+    lateinit var navigateToAddPet: () -> Unit
 
     lateinit var shareInviteCode: (inviteCode: String) -> Unit
 
     lateinit var navigateToPetProfile: (petId: Int) -> Unit
 
-    lateinit var navigateToUserProfile: (userId: Int) -> Unit
+    lateinit var navigateToPetDetails: (petId: Int) -> Unit
 
-    @get:Bindable
-    private val groupId: Int
-        get() = groupRepository.group.value.groupId
+    lateinit var navigateToUserProfile: (userId: Int) -> Unit
 
     @get:Bindable
     private val inviteCode: String
@@ -51,7 +49,8 @@ class GroupViewModel(
             GroupPetItemViewModel(
                 pet = pet,
                 petHappinessScore = 75,
-                onClickCallback = this::onPetProfileClick
+                onClickCallback = this::onPetProfileClick,
+                onEditClickCallback = this::onPetEditClick
             )
         }
 
@@ -69,11 +68,15 @@ class GroupViewModel(
     }
 
     fun onAddPetClick() {
-        navigateToAddPet(groupId)
+        navigateToAddPet()
     }
 
     private fun onPetProfileClick(petId: Int) {
         navigateToPetProfile(petId)
+    }
+
+    private fun onPetEditClick(petId: Int) {
+        navigateToPetDetails(petId)
     }
 
     private fun onUserProfileClick(userId: Int) {

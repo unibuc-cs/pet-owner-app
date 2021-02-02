@@ -158,8 +158,9 @@
         tools:layout="@layout/pet_details_screen">
 
         <argument
-            android:name="groupId"
-            app:argType="string" />
+            android:name="petId"
+            android:defaultValue="-1"
+            app:argType="integer" />
     </fragment>
 
     <fragment

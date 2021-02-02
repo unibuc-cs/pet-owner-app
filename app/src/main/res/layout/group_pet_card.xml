@@ -32,6 +32,17 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:loadImageUrl="@{viewModel.photoUrl}" />
 
+            <ImageView
+                android:id="@+id/group_pet_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:foreground="@drawable/ripple_round"
+                android:onClick="@{_ -> viewModel.onEditClick()}"
+                android:padding="@dimen/padding_8"
+                android:src="@drawable/ic_edit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/group_pet_name"
                 android:layout_width="match_parent"

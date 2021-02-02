@@ -8,7 +8,8 @@ interface GroupItemViewModel
 class GroupPetItemViewModel(
     private val pet: GroupPet,
     val petHappinessScore: Int,
-    private val onClickCallback: (petId: Int) -> Unit
+    private val onClickCallback: (petId: Int) -> Unit,
+    private val onEditClickCallback: (petId: Int) -> Unit
 ) : GroupItemViewModel {
 
     val name: String?
@@ -19,6 +20,10 @@ class GroupPetItemViewModel(
 
     fun onClick() {
         onClickCallback(pet.petId)
+    }
+
+    fun onEditClick() {
+        onEditClickCallback(pet.petId)
     }
 }
 

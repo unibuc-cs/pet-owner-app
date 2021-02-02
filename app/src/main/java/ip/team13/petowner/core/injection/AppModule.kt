@@ -55,8 +55,8 @@ val appModule = module {
     viewModel { LeaderboardViewModel(get()) }
     viewModel { LoginViewModel(get(), get()) }
     viewModel { MainViewModel() }
-    viewModel { (groupId: String) ->
-        PetDetailsViewModel(groupId, get())
+    viewModel { (petId: Int) ->
+        PetDetailsViewModel(petId, get())
     }
     viewModel { (petId: Int) ->
         PetProfileViewModel(get(), petId)

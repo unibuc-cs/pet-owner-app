@@ -61,4 +61,5 @@
     <string name="years">year(s)</string>
     <string name="category">Category</string>
     <string name="price">Price</string>
+    <string name="update">Update</string>
 </resources>

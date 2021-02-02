@@ -20,10 +20,9 @@ class GroupFragment : BaseFragment<GroupScreenBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.navigateToAddPet = { groupId ->
+        viewModel.navigateToAddPet = {
             findNavController().navigate(
-                R.id.action_groupFragment_to_petDetailsFragment,
-                bundleOf("groupId" to groupId.toString())
+                R.id.action_groupFragment_to_petDetailsFragment
             )
         }
 
@@ -32,6 +31,13 @@ class GroupFragment : BaseFragment<GroupScreenBinding>() {
         viewModel.navigateToPetProfile = { petId ->
             findNavController().navigate(
                 R.id.action_groupFragment_to_petProfile,
+                bundleOf("petId" to petId)
+            )
+        }
+
+        viewModel.navigateToPetDetails = { petId ->
+            findNavController().navigate(
+                R.id.action_groupFragment_to_petDetailsFragment,
                 bundleOf("petId" to petId)
             )
         }
