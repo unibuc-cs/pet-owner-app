@@ -26,6 +26,7 @@ val appModule = module {
 
     single { ActivitiesRepository(get()) }
     single { AuthRepository(get()) }
+    single { GroupRepository(get()) }
     single { LeaderboardRepository(get()) }
     single { PetRepository(get(), get()) }
     single { UserRepository(get(), get()) }
@@ -43,7 +44,7 @@ val appModule = module {
     }
     viewModel { CostDetailsViewModel(get()) }
     viewModel { CostTrackerViewModel() }
-    viewModel { GroupViewModel() }
+    viewModel { GroupViewModel(get(), get()) }
     viewModel { HomeViewModel(get(), get()) }
     viewModel { (leaderboardType: LeaderboardType) ->
         HomeLeaderboardTabViewModel(
@@ -60,10 +61,10 @@ val appModule = module {
     viewModel { (petId: Int) ->
         PetProfileViewModel(get(), petId)
     }
-    viewModel { RegisterViewModel(get(),get()) }
+    viewModel { RegisterViewModel(get(), get()) }
     viewModel { SplashViewModel(get()) }
-    viewModel { (isOwnUserProfile: Boolean) ->
-        UserProfileViewModel(isOwnUserProfile, get(), get(), get())
+    viewModel { (isOwnUserProfile: Boolean, userId: Int) ->
+        UserProfileViewModel(isOwnUserProfile, userId, get(), get(), get())
     }
 
     single { StringResources(androidContext()) }
