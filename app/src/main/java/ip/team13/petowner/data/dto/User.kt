@@ -1,11 +1,25 @@
 package ip.team13.petowner.data.dto
 
 import com.squareup.moshi.Json
+import ip.team13.petowner.data.domain.GroupUser
 import ip.team13.petowner.data.domain.UserProfile
 import ip.team13.petowner.data.domain.VipInfo
 import org.threeten.bp.LocalDateTime
 
+data class ShortUserWrapperModel(
+    @field:Json(name = "userId")
+    val userId: Int,
+    @field:Json(name = "name")
+    val name: String?,
+    @field:Json(name = "photo")
+    val photo: String?,
+    @field:Json(name = "vipId")
+    val vipId: Int?
+)
+
 data class UserWrapperModel(
+    @field:Json(name = "groupId")
+    val groupId: Int,
     @field:Json(name = "name")
     val name: String?,
     @field:Json(name = "photo")
@@ -60,6 +74,7 @@ data class TokensModel(
 
 fun UserWrapperModel.toUserProfile() =
     UserProfile(
+        groupId = groupId,
         name = name,
         photoUrl = photoUrl,
         level = level,
@@ -71,4 +86,12 @@ fun UserWrapperModel.toUserProfile() =
                 expMultiplier = vipModel.expMultiplier
             )
         }
+    )
+
+fun ShortUserWrapperModel.toGroupUser() =
+    GroupUser(
+        userId = userId,
+        name = name,
+        photoUrl = photo,
+        isVip = vipId != null
     )

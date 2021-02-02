@@ -42,14 +42,18 @@ interface PetOwnerAPI {
     @GET("api/pet/{id}")
     suspend fun getPet(@Path("id") petId: Int): PetEntryModel
 
-    // Activities
+    // ******* Activities *******
     @GET("/pet/group/{userId}")
     suspend fun getPetsAndActivities(@Path("userId") userId: String): List<PetEntryModel>
 
     @POST("api/activity/petactivity")
     suspend fun addActivity(@Body body: ActivityEntry)
 
-    // Cost Item
+    // ******* Group *******
+    @GET("api/group/{groupId}")
+    suspend fun getGroup(@Path("groupId") userId: Int): GroupWrapperModel
+
+    // ******* Cost Item *******
     @POST("api/item/{userId}")
     suspend fun addItem(@Path("userId") userId: Int, @Body body: CostItemModel)
 
