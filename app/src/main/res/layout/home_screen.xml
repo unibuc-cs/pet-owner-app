@@ -9,24 +9,49 @@
             type="ip.team13.petowner.ui.home.HomeViewModel" />
     </data>
 
-    <LinearLayout
-        android:id="@+id/home_screen"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:fillViewport="true">
 
-        <include
-            android:id="@+id/home_profile_header"
-            layout="@layout/home_profile_header"
+        <LinearLayout
+            android:id="@+id/home_screen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/padding_16"
-            app:viewModel="@{viewModel}" />
+            android:orientation="vertical">
 
-        <include
-            android:id="@+id/home_leaderboard_layout"
-            layout="@layout/home_leaderboard_layout"
-            app:viewModel="@{viewModel}" />
+            <include
+                android:id="@+id/home_profile_header"
+                layout="@layout/home_profile_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/padding_16"
+                app:viewModel="@{viewModel}" />
 
-    </LinearLayout>
+            <include
+                android:id="@+id/home_leaderboard_layout"
+                layout="@layout/home_leaderboard_layout"
+                app:viewModel="@{viewModel}" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="@dimen/padding_16"
+                    android:background="@drawable/shape_rectangle_cyan_dark_round_corners"
+                    android:onClick="@{() -> viewModel.onSeeTipsClick()}"
+                    android:paddingHorizontal="@dimen/padding_64"
+                    android:text="@string/see_tips"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
 </layout>

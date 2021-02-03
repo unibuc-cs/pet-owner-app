@@ -22,6 +22,7 @@
             android:layout_height="@dimen/padding_32"
             android:layout_margin="@dimen/padding_8"
             android:src="@drawable/ic_user_placeholder"
+            app:loadImageUrl="@{viewModel.imageUrl}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

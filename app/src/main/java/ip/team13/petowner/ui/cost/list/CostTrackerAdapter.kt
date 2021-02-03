@@ -5,11 +5,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import ip.team13.petowner.R
-import ip.team13.petowner.data.dto.CostTrackerModel
-import ip.team13.petowner.data.dto.CostTrackerRecylerViewModel
+import ip.team13.petowner.data.dto.CostTrackerRecyclerViewModel
 import ip.team13.petowner.databinding.ItemCostTrackerBinding
 
-class CostTrackerAdapter(val items: ArrayList<CostTrackerRecylerViewModel>) :
+class CostTrackerAdapter(val items: ArrayList<CostTrackerRecyclerViewModel>) :
     RecyclerView.Adapter<CostTrackerAdapter.CostTrackerViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CostTrackerViewHolder {
@@ -30,7 +29,7 @@ class CostTrackerAdapter(val items: ArrayList<CostTrackerRecylerViewModel>) :
         private val binding: ItemCostTrackerBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(costTrackerModel: CostTrackerRecylerViewModel) {
+        fun bind(costTrackerModel: CostTrackerRecyclerViewModel) {
             binding.viewModel = ItemCostTrackerViewModel(costTrackerModel)
         }
     }

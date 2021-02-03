@@ -34,7 +34,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent="0.35"
-                app:tint="@android:color/white" />
+                app:imageColorTint="@{@android:color/white}" />
 
             <TextView
                 android:layout_width="0dp"

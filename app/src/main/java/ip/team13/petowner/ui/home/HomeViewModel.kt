@@ -28,6 +28,7 @@ class HomeViewModel(
     }
 
     lateinit var navigateToUserProfile: () -> Unit
+    lateinit var seeTips: () -> Unit
 
     private var user: UserProfile = repository.userFlow.value
 
@@ -59,5 +60,9 @@ class HomeViewModel(
 
     fun onProfileHeaderClick() {
         navigateToUserProfile()
+    }
+
+    fun onSeeTipsClick() {
+        seeTips()
     }
 }

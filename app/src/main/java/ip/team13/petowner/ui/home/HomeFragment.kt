@@ -41,6 +41,10 @@ class HomeFragment : BaseFragment<HomeScreenBinding>() {
                 extras
             )
         }
+
+        viewModel.seeTips = {
+            findNavController().navigate(R.id.action_homeFragment_to_tipsFragment)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

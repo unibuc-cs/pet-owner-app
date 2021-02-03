@@ -28,7 +28,7 @@ data class CostTrackerModel(
 
 data class CostItemPeriod(val start: String, val end: String)
 
-data class CostTrackerRecylerViewModel(
+data class CostTrackerRecyclerViewModel(
     @field:Json(name = "category")
     val category: String,
     @field:Json(name = "itemName")
