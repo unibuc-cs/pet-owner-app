@@ -77,7 +77,7 @@ class ItemActivityDetailViewModel(
 
             fieldValue.set(
                 SimpleDateFormat(
-                    "yyyy-MM-dd'T'HH:mm:ss'Z'",
+                    "yyyy-MM-dd HH:mm:ss",
                     Locale.US
                 ).format(calendar.time)
             )

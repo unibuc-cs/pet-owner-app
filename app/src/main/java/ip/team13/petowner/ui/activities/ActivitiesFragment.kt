@@ -64,9 +64,9 @@ class ActivitiesFragment : BaseFragment<ActivitiesScreenBinding>() {
                 preferences = preferences
             )
 
-        viewModel.showAlert = { message ->
+        viewModel.showAlert = { title, message ->
             context?.showAlertDialog(
-                title = "",
+                title = title,
                 message = message,
                 positiveButtonText = "Ok"
             )
