@@ -46,8 +46,11 @@ class HomeFragment : BaseFragment<HomeScreenBinding>() {
             )
         }
 
-        viewModel.seeTips = {
-            findNavController().navigate(R.id.action_homeFragment_to_tipsFragment)
+        viewModel.seeTips = { isVip ->
+            findNavController().navigate(
+                R.id.action_homeFragment_to_tipsFragment,
+                bundleOf("isVip" to isVip)
+            )
         }
     }
 

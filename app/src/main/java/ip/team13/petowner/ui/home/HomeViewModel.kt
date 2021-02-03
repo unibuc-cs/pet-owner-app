@@ -28,7 +28,7 @@ class HomeViewModel(
     }
 
     lateinit var navigateToUserProfile: () -> Unit
-    lateinit var seeTips: () -> Unit
+    lateinit var seeTips: (isVip: Boolean) -> Unit
 
     private var user: UserProfile = repository.userFlow.value
 
@@ -63,6 +63,6 @@ class HomeViewModel(
     }
 
     fun onSeeTipsClick() {
-        seeTips()
+        seeTips(isVip)
     }
 }

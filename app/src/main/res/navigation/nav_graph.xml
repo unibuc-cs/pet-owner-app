@@ -188,5 +188,9 @@
         android:id="@+id/tipsFragment"
         android:name="ip.team13.petowner.ui.tips.TipsFragment"
         android:label="TipsFragment"
-        tools:layout="@layout/tips_screen"/>
+        tools:layout="@layout/tips_screen">
+        <argument
+            android:name="isVip"
+            app:argType="boolean" />
+    </fragment>
 </navigation>
