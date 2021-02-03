@@ -4,6 +4,7 @@ import ip.team13.petowner.core.persistence.Preferences
 import ip.team13.petowner.data.PetOwnerAPI
 import ip.team13.petowner.data.domain.UserProfile
 import ip.team13.petowner.data.domain.VipInfo
+import ip.team13.petowner.data.domain.emptyUserProfile
 import ip.team13.petowner.data.dto.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -14,16 +15,16 @@ class UserRepository(
     private val preferences: Preferences
 ) {
 
-    private val mutableUser: MutableStateFlow<UserProfile> = MutableStateFlow(
-        UserProfile(null, null, 1, 0, null)
-    )
+    private val mutableUser: MutableStateFlow<UserProfile> = MutableStateFlow(emptyUserProfile())
 
     val userFlow: StateFlow<UserProfile>
         get() = mutableUser
 
-    suspend fun fetchUserProfile() {
+    suspend fun fetchOwnUserProfile() {
         mutableUser.value = api.getUser(preferences.getUserId().toString()).toUserProfile()
     }
+
+    suspend fun getUser(userId: Int): UserProfile = api.getUser(userId.toString()).toUserProfile()
 
     suspend fun updateNameAndOrPhotoUrl(name: String? = null, photoUrl: String? = null) {
         api.updateNameAndOrPhotoUrl(

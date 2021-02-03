@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -200,12 +201,13 @@
             android:layout_marginBottom="@dimen/padding_8"
             android:background="@drawable/shape_rectangle_cyan_dark_round_corners"
             android:onClick="@{() -> viewModel.onAdd()}"
-            android:text="@string/add"
+            android:text="@{viewModel.actionButtonText}"
             android:textAllCaps="false"
             android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@id/btn_cancel"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Add" />
 
         <Button
             android:id="@+id/btn_cancel"

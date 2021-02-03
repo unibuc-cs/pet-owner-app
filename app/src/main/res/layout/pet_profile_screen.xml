@@ -89,7 +89,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pet_profile_title_tv"
-            app:loadImageUrl="@{viewModel.pet.pictureUrl}" />
+            app:loadImageUrl="@{viewModel.pet.photoUrl}" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/pet_profile_card_view"

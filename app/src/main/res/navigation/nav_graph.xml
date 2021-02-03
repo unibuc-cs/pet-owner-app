@@ -120,6 +120,10 @@
         <action
             android:id="@+id/action_groupFragment_to_petProfile"
             app:destination="@+id/petProfileFragment" />
+
+        <action
+            android:id="@+id/action_groupFragment_to_userProfile"
+            app:destination="@+id/userProfileFragment" />
     </fragment>
 
     <fragment
@@ -143,6 +147,7 @@
         android:name="ip.team13.petowner.ui.pet.PetProfileFragment"
         android:label="PetProfileFragment"
         tools:layout="@layout/pet_profile_screen">
+
         <argument
             android:name="petId"
             android:defaultValue="-1"
@@ -156,8 +161,9 @@
         tools:layout="@layout/pet_details_screen">
 
         <argument
-            android:name="groupId"
-            app:argType="string" />
+            android:name="petId"
+            android:defaultValue="-1"
+            app:argType="integer" />
     </fragment>
 
     <fragment
@@ -168,9 +174,14 @@
         <argument
             android:name="isOwnUserProfile"
             app:argType="boolean" />
+        <argument
+            android:name="userId"
+            android:defaultValue="-1"
+            app:argType="integer" />
         <action
             android:id="@+id/action_userProfileFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment" />
     </fragment>
 
     <fragment
