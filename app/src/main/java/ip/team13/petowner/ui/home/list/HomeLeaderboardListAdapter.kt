@@ -72,5 +72,9 @@ class HomeLeaderboardListItemViewModel(
 
     val weeklyExp: String
         get() = leaderboardEntry.weeklyExperience.toString()
+
+    fun onClick() {
+        leaderboardEntry.onClick()
+    }
 }
 

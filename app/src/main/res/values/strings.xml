@@ -44,7 +44,7 @@
 
     <!-- Misc -->
     <string name="save">save</string>
-    <string name="happiness">Your pet current happiness</string>
+    <string name="happiness">Your pet\'s current happiness</string>
     <string name="pet_profile">Pet profile</string>
     <string name="pet_name">Name</string>
     <string name="pet_age">Age</string>

@@ -42,7 +42,7 @@
                 android:max="100"
                 android:paddingHorizontal="@dimen/padding_16"
                 android:paddingVertical="@dimen/padding_8"
-                android:progress="50"
+                android:progress="@{viewModel.happinessScore}"
                 android:progressDrawable="@drawable/custom_progress"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -60,22 +60,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/happiness_bar_percentage_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:paddingHorizontal="@dimen/padding_16"
-                android:paddingTop="@dimen/padding_8"
-                android:text="50%"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_11"
-                app:layout_constraintBottom_toBottomOf="@+id/happinessProgressBar"
-                app:layout_constraintEnd_toEndOf="@+id/happinessProgressBar"
-                app:layout_constraintStart_toStartOf="@+id/happinessProgressBar"
-                app:layout_constraintTop_toTopOf="@+id/happinessProgressBar" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <de.hdodenhof.circleimageview.CircleImageView

@@ -8,10 +8,12 @@ import ip.team13.petowner.R
 import ip.team13.petowner.core.BaseFragment
 import ip.team13.petowner.core.helpers.AppConstants.ARG_OBJECT
 import ip.team13.petowner.core.helpers.showAlertDialog
+import ip.team13.petowner.core.persistence.Preferences
 import ip.team13.petowner.data.domain.ActivityData
 import ip.team13.petowner.data.dto.ActivityEntry
 import ip.team13.petowner.databinding.ActivitiesScreenBinding
 import ip.team13.petowner.ui.activities.list.ActivityAdapter
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -23,6 +25,8 @@ class ActivitiesFragment : BaseFragment<ActivitiesScreenBinding>() {
 
     override val layout: Int
         get() = R.layout.activities_screen
+
+    private val preferences: Preferences by inject()
 
     private var adapter: ActivityAdapter? = null
 
@@ -49,15 +53,20 @@ class ActivitiesFragment : BaseFragment<ActivitiesScreenBinding>() {
 
         adapter = ActivityAdapter(
             data = ArrayList<ActivityData>().apply { addAll(viewModel.activityData) },
-            selectedPet = viewModel.selectedPet
+            selectedPet = viewModel.selectedPet,
+            preferences = preferences
         )
         binding.adapter = adapter
         binding.petsAdapter =
-            ActivityAdapter(data = ArrayList(), selectedPet = viewModel.selectedPet)
+            ActivityAdapter(
+                data = ArrayList(),
+                selectedPet = viewModel.selectedPet,
+                preferences = preferences
+            )
 
-        viewModel.showAlert = { message ->
+        viewModel.showAlert = { title, message ->
             context?.showAlertDialog(
-                title = "",
+                title = title,
                 message = message,
                 positiveButtonText = "Ok"
             )

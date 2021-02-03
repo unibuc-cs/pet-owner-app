@@ -27,7 +27,7 @@ class ActivitiesViewModel(
     val activityRepository: ActivitiesRepository
 ) : BaseViewModel() {
 
-    var showAlert: ((String) -> Unit)? = null
+    var showAlert: ((String, String) -> Unit)? = null
 
     val selectedPet = ObservableField<PetEntryModel>().apply {
         addOnPropertyChanged { newSelectedPet ->
@@ -82,19 +82,23 @@ class ActivitiesViewModel(
         viewModelScope.launch(Dispatchers.IO) {
             try {
 
-                activityRepository.addPetActivity(PetActivityRequestModel.fromActivity(
-                    petId = selectedPet.get()?.id ?: return@launch,
-                    activity = activityEntry
-                ))
+                activityRepository.addPetActivity(
+                    PetActivityRequestModel.fromActivity(
+                        petId = selectedPet.get()?.id ?: return@launch,
+                        activity = activityEntry
+                    )
+                )
 
                 withContext(Dispatchers.Main) {
-                    showAlert?.invoke("Activity added with success!")
+                    showAlert?.invoke("", "Activity successfully added!")
                     getPetActivities()
                 }
 
             } catch (e: Exception) {
-                e.message?.logError()
-                showAlert?.invoke("An error has occurred. Please try again later.")
+                withContext(Dispatchers.Main) {
+                    e.message?.logError()
+                    showAlert?.invoke("An error has occurred", "Please try again later.")
+                }
             }
         }
     }
@@ -125,8 +129,10 @@ class ActivitiesViewModel(
             activityRepository.deleteActivity(activity.activityId ?: return@launch)
 
             withContext(Dispatchers.Main) {
+
                 showAlert?.invoke(
-                    "Activity completed. You have earned ${activity.expPoints} experience and ${
+                    "Activity completed",
+                    "Your pet is happier now!\nYou have earned ${activity.expPoints} experience and ${
                         getTokensByRecurring(activity.recurringInterval)
                     } tokens"
                 )

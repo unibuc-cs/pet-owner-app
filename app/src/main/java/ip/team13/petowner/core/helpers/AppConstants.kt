@@ -7,6 +7,7 @@ object AppConstants {
         const val ARG_FCM_TOKEN = "ARG_FCM_TOKEN"
         const val ARG_BEARER_TOKEN = "ARG_BEARER_TOKEN"
         const val ARG_USER_ID = "ARG_USER_ID"
+        const val ARG_HAPPINESS_SCORE = "ARG_ARG_HAPPINESS_SCORE_"
         const val ARG_GROUP_ID = "ARG_GROUP_ID"
     }
 }
