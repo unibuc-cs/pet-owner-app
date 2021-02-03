@@ -3,6 +3,7 @@ package ip.team13.petowner.ui.group
 import androidx.databinding.Bindable
 import androidx.lifecycle.viewModelScope
 import ip.team13.petowner.core.BaseViewModel
+import ip.team13.petowner.core.persistence.Preferences
 import ip.team13.petowner.data.repository.GroupRepository
 import ip.team13.petowner.data.repository.UserRepository
 import ip.team13.petowner.ui.group.list.GroupPetItemViewModel
@@ -12,7 +13,8 @@ import kotlinx.coroutines.launch
 
 class GroupViewModel(
     private val groupRepository: GroupRepository,
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val preferences: Preferences
 ) : BaseViewModel() {
 
     init {
@@ -48,7 +50,7 @@ class GroupViewModel(
         get() = groupRepository.group.value.pets.map { pet ->
             GroupPetItemViewModel(
                 pet = pet,
-                petHappinessScore = 75,
+                petHappinessScore = preferences.getHappinessScore(pet.petId),
                 onClickCallback = this::onPetProfileClick,
                 onEditClickCallback = this::onPetEditClick
             )

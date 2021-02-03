@@ -49,7 +49,7 @@ val appModule = module {
     }
     viewModel { CostDetailsViewModel(get()) }
     viewModel { CostTrackerViewModel(get()) }
-    viewModel { GroupViewModel(get(), get()) }
+    viewModel { GroupViewModel(get(), get(), get()) }
     viewModel { HomeViewModel(get(), get()) }
     viewModel { (leaderboardType: LeaderboardType) ->
         HomeLeaderboardTabViewModel(
@@ -64,7 +64,7 @@ val appModule = module {
         PetDetailsViewModel(petId, get(), get(), get())
     }
     viewModel { (petId: Int) ->
-        PetProfileViewModel(get(), petId)
+        PetProfileViewModel(petId, get(), get())
     }
     viewModel { RegisterViewModel(get(), get()) }
     viewModel { SplashViewModel(get()) }
