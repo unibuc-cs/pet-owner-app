@@ -14,7 +14,7 @@
         android:id="@+id/home_leaderboard_list_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="false">
+        android:onClick="@{_ -> viewModel.onClick()}">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/home_leaderboard_list_image"
@@ -22,10 +22,10 @@
             android:layout_height="@dimen/padding_32"
             android:layout_margin="@dimen/padding_8"
             android:src="@drawable/ic_user_placeholder"
-            app:loadImageUrl="@{viewModel.imageUrl}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:loadImageUrl="@{viewModel.imageUrl}" />
 
         <TextView
             android:id="@+id/home_leaderboard_list_name"

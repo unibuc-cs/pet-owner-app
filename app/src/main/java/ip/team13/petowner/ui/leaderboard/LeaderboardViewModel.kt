@@ -21,6 +21,8 @@ class LeaderboardViewModel(
         refreshData()
     }
 
+    lateinit var navigateToUserProfile: (userId: Int) -> Unit
+
     @get:Bindable
     var leaderboardType: LeaderboardType = LeaderboardType.BASIC
         set(value) {
@@ -46,18 +48,25 @@ class LeaderboardViewModel(
                 withContext(Dispatchers.Main) {
                     person1 = leaderboard.getOrNull(0)?.apply {
                         imageUrl = imageUrl ?: "https://picsum.photos/2${Random.nextUInt().rem(100.toUInt())}"
+                        onClick = this@LeaderboardViewModel::onLeaderboardEntryClick
                         notifyPropertyChanged(BR.person1)
                     }
                     person2 = leaderboard.getOrNull(1)?.apply {
                         imageUrl = imageUrl ?: "https://picsum.photos/2${Random.nextUInt().rem(100.toUInt())}"
+                        onClick = this@LeaderboardViewModel::onLeaderboardEntryClick
                         notifyPropertyChanged(BR.person2)
                     }
                     person3 = leaderboard.getOrNull(2)?.apply {
                         imageUrl = imageUrl ?: "https://picsum.photos/2${Random.nextUInt().rem(100.toUInt())}"
+                        onClick = this@LeaderboardViewModel::onLeaderboardEntryClick
                         notifyPropertyChanged(BR.person3)
                     }
                     if (leaderboard.size >= 3) {
                         items = leaderboard.subList(3, leaderboard.size)
+                        items.forEach {
+                            it.onClick = this@LeaderboardViewModel::onLeaderboardEntryClick
+                        }
+
                         notifyPropertyChanged(BR.items)
                     }
                 }
@@ -65,4 +74,7 @@ class LeaderboardViewModel(
         }
     }
 
+    fun onLeaderboardEntryClick(userId: Int) {
+        navigateToUserProfile(userId)
+    }
 }

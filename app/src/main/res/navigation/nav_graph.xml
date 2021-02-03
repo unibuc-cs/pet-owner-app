@@ -76,14 +76,19 @@
             app:popUpTo="@id/homeFragment" />
         <action
             android:id="@+id/action_homeFragment_to_tipsFragment"
-            app:destination="@id/tipsFragment"/>
+            app:destination="@id/tipsFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/leaderboardFragment"
         android:name="ip.team13.petowner.ui.leaderboard.LeaderboardFragment"
         android:label="LeaderboardFragment"
-        tools:layout="@layout/leaderboard_screen" />
+        tools:layout="@layout/leaderboard_screen">
+
+        <action
+            android:id="@+id/action_leaderboardFragment_to_userProfileFragment"
+            app:destination="@id/userProfileFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/activitiesFragment"

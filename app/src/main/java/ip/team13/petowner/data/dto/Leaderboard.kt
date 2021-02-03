@@ -15,8 +15,8 @@ class LeaderboardEntryModel(
 )
 
 fun LeaderboardEntryModel.toLeaderboardEntry(position: Int) = LeaderboardEntry(
-    name, imageUrl, weeklyExperience, position
-)
+    id, name, imageUrl, weeklyExperience, position
+) {}
 
 class LeaderboardRequestModel(
     @Json(name = "size")
