@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import ip.team13.petowner.R
 import ip.team13.petowner.data.domain.LeaderboardEntry
 import ip.team13.petowner.databinding.HomeLeaderboardListItemBinding
+import kotlin.random.Random
+import kotlin.random.nextUInt
 
 class HomeLeaderboardListAdapter(
     var items: List<LeaderboardEntry>
@@ -61,7 +63,9 @@ class HomeLeaderboardListItemViewModel(
 ) {
 
     val imageUrl: String
-        get() = leaderboardEntry.imageUrl ?: ""
+        get() = leaderboardEntry.imageUrl ?: "https://picsum.photos/2${
+            Random.nextUInt().rem(100.toUInt())
+        }"
 
     val name: String
         get() = leaderboardEntry.name ?: ""

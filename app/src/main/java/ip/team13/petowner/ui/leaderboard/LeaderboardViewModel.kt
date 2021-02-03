@@ -10,6 +10,8 @@ import ip.team13.petowner.data.repository.LeaderboardRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlin.random.Random
+import kotlin.random.nextUInt
 
 class LeaderboardViewModel(
     private val leaderboardRepository: LeaderboardRepository
@@ -42,9 +44,18 @@ class LeaderboardViewModel(
         viewModelScope.launch(Dispatchers.IO) {
             leaderboardRepository.getTop(size = 20, type = leaderboardType).let { leaderboard ->
                 withContext(Dispatchers.Main) {
-                    person1 = leaderboard.getOrNull(0)
-                    person2 = leaderboard.getOrNull(1)
-                    person3 = leaderboard.getOrNull(2)
+                    person1 = leaderboard.getOrNull(0)?.apply {
+                        imageUrl = imageUrl ?: "https://picsum.photos/2${Random.nextUInt().rem(100.toUInt())}"
+                        notifyPropertyChanged(BR.person1)
+                    }
+                    person2 = leaderboard.getOrNull(1)?.apply {
+                        imageUrl = imageUrl ?: "https://picsum.photos/2${Random.nextUInt().rem(100.toUInt())}"
+                        notifyPropertyChanged(BR.person2)
+                    }
+                    person3 = leaderboard.getOrNull(2)?.apply {
+                        imageUrl = imageUrl ?: "https://picsum.photos/2${Random.nextUInt().rem(100.toUInt())}"
+                        notifyPropertyChanged(BR.person3)
+                    }
                     if (leaderboard.size >= 3) {
                         items = leaderboard.subList(3, leaderboard.size)
                         notifyPropertyChanged(BR.items)

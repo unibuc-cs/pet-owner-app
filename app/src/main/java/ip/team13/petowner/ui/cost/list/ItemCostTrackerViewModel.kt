@@ -5,9 +5,9 @@ import android.graphics.drawable.Drawable
 import androidx.core.content.ContextCompat
 import ip.team13.petowner.R
 import ip.team13.petowner.data.dto.CostTrackerCategory
-import ip.team13.petowner.data.dto.CostTrackerRecylerViewModel
+import ip.team13.petowner.data.dto.CostTrackerRecyclerViewModel
 
-class ItemCostTrackerViewModel(val costTrackerModel: CostTrackerRecylerViewModel) {
+class ItemCostTrackerViewModel(val costTrackerModel: CostTrackerRecyclerViewModel) {
 
     fun getPhotoByCategory(context: Context): Drawable? = when (costTrackerModel.category) {
         CostTrackerCategory.FOOD.title -> ContextCompat.getDrawable(

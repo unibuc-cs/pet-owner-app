@@ -1,9 +1,6 @@
 package ip.team13.petowner.core.utils
 
-import android.graphics.ColorMatrix
-import android.graphics.ColorMatrixColorFilter
-import android.graphics.PorterDuff
-import android.graphics.PorterDuffColorFilter
+import android.graphics.*
 import android.text.TextWatcher
 import android.view.View
 import android.view.animation.Animation
@@ -16,15 +13,18 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import ip.team13.petowner.data.domain.ActivityData
 import ip.team13.petowner.data.domain.LeaderboardEntry
-import ip.team13.petowner.data.dto.CostTrackerRecylerViewModel
+import ip.team13.petowner.data.domain.Tip
+import ip.team13.petowner.data.dto.CostTrackerRecyclerViewModel
 import ip.team13.petowner.ui.activities.list.ActivityAdapter
 import ip.team13.petowner.ui.group.list.GroupAdapter
 import ip.team13.petowner.ui.group.list.GroupItemViewModel
 import ip.team13.petowner.ui.cost.list.CostTrackerAdapter
 import ip.team13.petowner.ui.home.list.HomeLeaderboardListAdapter
+import ip.team13.petowner.ui.tips.list.TipsAdapter
 
 // ********* region View *********
 
@@ -47,6 +47,14 @@ fun loadBackgroundColorResource(view: View, colorResource: Int) {
 fun loadImageTint(imageView: ImageView, colorResource: Int) {
     imageView.setColorFilter(
         ContextCompat.getColor(imageView.context, colorResource),
+        PorterDuff.Mode.MULTIPLY
+    )
+}
+
+@BindingAdapter("imageColorTint")
+fun loadImageColorTint(imageView: ImageView, color: Int) {
+    imageView.setColorFilter(
+        color,
         PorterDuff.Mode.MULTIPLY
     )
 }
@@ -109,6 +117,7 @@ fun loadImageUrl(imageView: ImageView, imageUrl: String?) {
     imageUrl?.let {
         Glide.with(imageView.context)
             .load(imageUrl)
+            .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE))
             .into(imageView)
     }
 }
@@ -124,6 +133,7 @@ fun loadImageUrlWithPlaceholder(
     Glide.with(imageView.context)
         .applyDefaultRequestOptions(requestOptions)
         .load(imageUrl)
+        .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE))
         .into(imageView)
 }
 
@@ -181,9 +191,15 @@ fun submitItems(recyclerView: RecyclerView, items: List<Any>) {
                 recyclerView.adapter?.notifyDataSetChanged()
             }
         is CostTrackerAdapter ->
-            (items as? ArrayList<CostTrackerRecylerViewModel>)?.let {
+            (items as? ArrayList<CostTrackerRecyclerViewModel>)?.let {
                 (recyclerView.adapter as? CostTrackerAdapter)?.items?.clear()
                 (recyclerView.adapter as? CostTrackerAdapter)?.items?.addAll(items)
+                recyclerView.adapter?.notifyDataSetChanged()
+            }
+        is TipsAdapter ->
+            (items as? ArrayList<Tip>)?.let {
+                (recyclerView.adapter as? TipsAdapter)?.tips?.clear()
+                (recyclerView.adapter as? TipsAdapter)?.tips?.addAll(items)
                 recyclerView.adapter?.notifyDataSetChanged()
             }
     }

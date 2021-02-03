@@ -67,5 +67,9 @@
     <string name="years">year(s)</string>
     <string name="category">Category</string>
     <string name="price">Price</string>
+    <string name="tips_amp_info"><![CDATA[Tips & Info]]></string>
+    <string name="choose">Choose</string>
+    <string name="show_all">Show all</string>
+    <string name="see_tips">See tips</string>
     <string name="update">Update</string>
 </resources>

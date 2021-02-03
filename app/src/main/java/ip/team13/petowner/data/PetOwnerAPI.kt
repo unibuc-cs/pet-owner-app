@@ -78,5 +78,9 @@ interface PetOwnerAPI {
     suspend fun deleteItem(itemId: Int)
 
     @POST("/api/item/all/{groupid}")
-    suspend fun getItems(@Path("groupid") groupId: Int, @Body period: CostItemPeriod): List<CostTrackerRecylerViewModel>
+    suspend fun getItems(@Path("groupid") groupId: Int, @Body period: CostItemPeriod): List<CostTrackerRecyclerViewModel>
+
+    // Tips
+    @GET("api/tip")
+    suspend fun getAllTips(): List<TipModel>
 }

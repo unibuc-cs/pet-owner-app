@@ -5,7 +5,7 @@ import ip.team13.petowner.core.persistence.Preferences
 import ip.team13.petowner.data.PetOwnerAPI
 import ip.team13.petowner.data.dto.CostItemPeriod
 import ip.team13.petowner.data.dto.CostTrackerModel
-import ip.team13.petowner.data.dto.CostTrackerRecylerViewModel
+import ip.team13.petowner.data.dto.CostTrackerRecyclerViewModel
 import java.lang.Exception
 
 class CostTrackerRepository(
@@ -16,7 +16,7 @@ class CostTrackerRepository(
     suspend fun addCostItem(costTracker: CostTrackerModel) =
         api.addItem(preferences.getUserId(), costTracker)
 
-    suspend fun getExpenses(): List<CostTrackerRecylerViewModel> {
+    suspend fun getExpenses(): List<CostTrackerRecyclerViewModel> {
         return try {
             api.getItems(
                 preferences.getUserId(),

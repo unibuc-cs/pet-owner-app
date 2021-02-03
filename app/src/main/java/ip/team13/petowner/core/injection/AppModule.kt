@@ -17,6 +17,7 @@ import ip.team13.petowner.ui.pet.PetProfileViewModel
 import ip.team13.petowner.ui.pet.details.PetDetailsViewModel
 import ip.team13.petowner.ui.register.RegisterViewModel
 import ip.team13.petowner.ui.splash.SplashViewModel
+import ip.team13.petowner.ui.tips.TipsViewModel
 import ip.team13.petowner.ui.user.UserProfileViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -31,7 +32,10 @@ val appModule = module {
     single { PetRepository(get(), get()) }
     single { UserRepository(get(), get()) }
     single { CostTrackerRepository(get(), get()) }
+    single { TipsRepository(get()) }
 
+
+    viewModel { TipsViewModel(get()) }
     viewModel { (onAddActivity: () -> Unit) ->
         ActivitiesViewModel(
             onAddActivity = onAddActivity,

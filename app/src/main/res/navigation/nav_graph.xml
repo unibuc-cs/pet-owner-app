@@ -74,6 +74,9 @@
             android:id="@+id/action_homeFragment_to_userProfileFragment"
             app:destination="@id/userProfileFragment"
             app:popUpTo="@id/homeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_tipsFragment"
+            app:destination="@id/tipsFragment"/>
     </fragment>
 
     <fragment
@@ -179,5 +182,15 @@
             android:id="@+id/action_userProfileFragment_to_loginFragment"
             app:destination="@id/loginFragment"
             app:popUpTo="@id/loginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/tipsFragment"
+        android:name="ip.team13.petowner.ui.tips.TipsFragment"
+        android:label="TipsFragment"
+        tools:layout="@layout/tips_screen">
+        <argument
+            android:name="isVip"
+            app:argType="boolean" />
     </fragment>
 </navigation>
