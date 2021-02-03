@@ -15,7 +15,11 @@ class LeaderboardEntryModel(
 )
 
 fun LeaderboardEntryModel.toLeaderboardEntry(position: Int) = LeaderboardEntry(
-    id, name, imageUrl, weeklyExperience, position
+    userId = id,
+    name = name,
+    imageUrl = imageUrl,
+    weeklyExperience = weeklyExperience,
+    position = position
 ) {}
 
 class LeaderboardRequestModel(

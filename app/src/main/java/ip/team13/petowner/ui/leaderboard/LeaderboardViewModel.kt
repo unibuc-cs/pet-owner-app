@@ -63,10 +63,6 @@ class LeaderboardViewModel(
                     }
                     if (leaderboard.size >= 3) {
                         items = leaderboard.subList(3, leaderboard.size)
-                        items.forEach {
-                            it.onClick = this@LeaderboardViewModel::onLeaderboardEntryClick
-                        }
-
                         notifyPropertyChanged(BR.items)
                     }
                 }
@@ -74,7 +70,7 @@ class LeaderboardViewModel(
         }
     }
 
-    fun onLeaderboardEntryClick(userId: Int) {
+    private fun onLeaderboardEntryClick(userId: Int) {
         navigateToUserProfile(userId)
     }
 }

@@ -56,9 +56,9 @@
             android:id="@+id/civ_second"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:onClick="@{_ -> viewModel.person2.onClick()}"
             app:civ_border_color="@color/white"
             app:civ_border_width="@dimen/padding_4"
-            app:loadImageUrl="@{viewModel.person2.imageUrl}"
             app:layout_constraintBottom_toTopOf="@id/rv_leaderboard"
             app:layout_constraintDimensionRatio="H, 1:1"
             app:layout_constraintEnd_toStartOf="@id/civ_first"
@@ -67,8 +67,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.4"
-            app:layout_constraintWidth_percent="0.20" />
-        
+            app:layout_constraintWidth_percent="0.20"
+            app:loadImageUrl="@{viewModel.person2.imageUrl}" />
+
         <ImageView
             android:id="@+id/imv_second_trophy"
             android:layout_width="wrap_content"
@@ -85,9 +86,9 @@
             android:id="@+id/civ_first"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:onClick="@{_ -> viewModel.person1.onClick()}"
             app:civ_border_color="@color/white"
             app:civ_border_width="@dimen/padding_4"
-            app:loadImageUrl="@{viewModel.person1.imageUrl}"
             app:layout_constraintBottom_toTopOf="@id/rv_leaderboard"
             app:layout_constraintDimensionRatio="H, 1:1"
             app:layout_constraintEnd_toEndOf="parent"
@@ -95,7 +96,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.3"
-            app:layout_constraintWidth_percent="0.20" />
+            app:layout_constraintWidth_percent="0.20"
+            app:loadImageUrl="@{viewModel.person1.imageUrl}" />
 
         <ImageView
             android:id="@+id/imv_first_trophy"
@@ -113,9 +115,9 @@
             android:id="@+id/civ_third"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:onClick="@{_ -> viewModel.person3.onClick()}"
             app:civ_border_color="@color/white"
             app:civ_border_width="@dimen/padding_4"
-            app:loadImageUrl="@{viewModel.person3.imageUrl}"
             app:layout_constraintBottom_toTopOf="@id/rv_leaderboard"
             app:layout_constraintDimensionRatio="H, 1:1"
             app:layout_constraintEnd_toEndOf="parent"
@@ -124,7 +126,8 @@
             app:layout_constraintStart_toEndOf="@id/civ_first"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.5"
-            app:layout_constraintWidth_percent="0.20" />
+            app:layout_constraintWidth_percent="0.20"
+            app:loadImageUrl="@{viewModel.person3.imageUrl}" />
 
 
         <ImageView
