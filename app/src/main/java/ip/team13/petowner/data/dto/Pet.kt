@@ -1,6 +1,8 @@
 package ip.team13.petowner.data.dto
 
 import com.squareup.moshi.Json
+import ip.team13.petowner.data.domain.GroupPet
+import ip.team13.petowner.data.domain.PetDetails
 import kotlin.math.sign
 import kotlin.random.Random
 
@@ -18,7 +20,7 @@ data class PetEntryModel(
     @field:Json(name = "race")
     val race: String,
     @field:Json(name = "petActivities")
-    val petActivities: List<ActivityEntry>,
+    val petActivities: List<ActivityEntry>?,
     @field:Json(name = "groupId")
     val groupId: Int?,
     @field:Json(name = "photo")
@@ -56,3 +58,36 @@ data class PetEntryModel(
         }
     }
 }
+
+data class PetUpdateModel(
+    @field:Json(name = "petName")
+    val petName: String?,
+    @field:Json(name = "age")
+    val age: Int?,
+    @field:Json(name = "photo")
+    val photo: String?,
+    @field:Json(name = "weigth")
+    val weight: Double?,
+    @field:Json(name = "species")
+    val species: String?,
+    @field:Json(name = "race")
+    val race: String?
+)
+
+fun PetEntryModel.toGroupPet() =
+    GroupPet(
+        petId = id.toInt(),
+        name = name,
+        photoUrl = pictureUrl
+    )
+
+fun PetEntryModel.toPetDetails() =
+    PetDetails(
+        petId = id.toInt(),
+        name = name,
+        photoUrl = pictureUrl,
+        age = age,
+        weight = weight,
+        species = species,
+        race = race
+    )

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="ip.team13.petowner.ui.group.list.GroupPetItemViewModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="@dimen/padding_256"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/padding_16"
+        android:foreground="?selectableItemBackground"
+        android:onClick="@{_ -> viewModel.onClick()}"
+        app:cardCornerRadius="@dimen/padding_16"
+        app:cardElevation="@dimen/padding_4">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/group_pet_image"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="5:3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:loadImageUrl="@{viewModel.photoUrl}" />
+
+            <ImageView
+                android:id="@+id/group_pet_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:foreground="@drawable/ripple_round"
+                android:onClick="@{_ -> viewModel.onEditClick()}"
+                android:padding="@dimen/padding_8"
+                android:src="@drawable/ic_edit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/group_pet_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/padding_16"
+                android:paddingBottom="@dimen/padding_8"
+                android:text="@{viewModel.name}"
+                app:layout_constraintTop_toBottomOf="@id/group_pet_happiness" />
+
+            <ProgressBar
+                android:id="@+id/group_pet_happiness"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="100"
+                android:paddingHorizontal="@dimen/padding_16"
+                android:paddingVertical="@dimen/padding_8"
+                android:progress="@{viewModel.petHappinessScore}"
+                android:progressDrawable="@drawable/custom_progress"
+                app:layout_constraintTop_toBottomOf="@id/group_pet_image"
+                tools:progress="75" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

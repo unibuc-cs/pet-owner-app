@@ -17,19 +17,23 @@ class UserProfileFragment : BaseFragment<UserProfileScreenBinding>() {
     override val layout: Int
         get() = R.layout.user_profile_screen
 
-    override val viewModel: UserProfileViewModel by viewModel { parametersOf(args.isOwnUserProfile) }
+    override val viewModel: UserProfileViewModel by viewModel {
+        parametersOf(args.isOwnUserProfile, args.userId)
+    }
 
     private val args: UserProfileFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        sharedElementEnterTransition =
-            TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
+        if (args.isOwnUserProfile)
+            sharedElementEnterTransition = TransitionInflater.from(requireContext())
+                .inflateTransition(android.R.transition.move)
 
         viewModel.navigateBack = {
             findNavController().popBackStack()
         }
+
         viewModel.navigateToLogin = {
             findNavController().navigate(R.id.action_userProfileFragment_to_loginFragment)
         }

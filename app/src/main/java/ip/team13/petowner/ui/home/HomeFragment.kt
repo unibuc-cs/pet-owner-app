@@ -8,8 +8,10 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import ip.team13.petowner.R
 import ip.team13.petowner.core.BaseFragment
+import ip.team13.petowner.core.persistence.Preferences
 import ip.team13.petowner.databinding.HomeScreenBinding
 import ip.team13.petowner.ui.home.leaderboard.HomeLeaderboardAdapter
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : BaseFragment<HomeScreenBinding>() {
@@ -19,12 +21,14 @@ class HomeFragment : BaseFragment<HomeScreenBinding>() {
 
     override val viewModel: HomeViewModel by viewModel()
 
+    private val preferences: Preferences by inject()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         viewModel.navigateToUserProfile = {
 
-            val args = bundleOf("isOwnUserProfile" to true)
+            val args = bundleOf("isOwnUserProfile" to true, "userId" to preferences.getUserId())
 
             val extras = FragmentNavigatorExtras(
                 binding.homeProfileHeader.homeProfileImage to "userImage",

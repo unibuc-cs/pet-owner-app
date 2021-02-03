@@ -41,6 +41,9 @@ interface PetOwnerAPI {
     @POST("api/pet")
     suspend fun addPet(@Body body: AddPetRequestModel)
 
+    @PATCH("api/pet/{petId}")
+    suspend fun updatePet(@Path("petId") petId: Int, @Body body: PetUpdateModel)
+
     @GET("api/pet/group/{userId}")
     suspend fun getGroupPets(@Path("userId") userId: Int): List<PetEntryModel>
 
@@ -63,7 +66,11 @@ interface PetOwnerAPI {
     @DELETE("api/activity/activity/{activityId}")
     suspend fun deleteActivity(@Path("activityId") activityId: Int)
 
-    // Cost Item
+    // ******* Group *******
+    @GET("api/group/{groupId}")
+    suspend fun getGroup(@Path("groupId") userId: Int): GroupWrapperModel
+
+    // ******* Cost Item *******
     @POST("api/item/{userId}")
     suspend fun addItem(@Path("userId") userId: Int, @Body body: CostTrackerModel)
 

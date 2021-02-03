@@ -1,22 +1,50 @@
 package ip.team13.petowner.ui.pet.details
 
+import androidx.annotation.StringRes
+import androidx.databinding.Bindable
 import androidx.databinding.ObservableField
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import ip.team13.petowner.R
+import ip.team13.petowner.core.BaseViewModel
+import ip.team13.petowner.data.domain.PetDetails
 import ip.team13.petowner.data.dto.AddPetModel
+import ip.team13.petowner.data.dto.PetUpdateModel
+import ip.team13.petowner.data.repository.GroupRepository
 import ip.team13.petowner.data.repository.PetRepository
+import ip.team13.petowner.data.repository.UserRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.lang.Exception
 
 class PetDetailsViewModel(
-    private val groupId: String,
-    private val petRepository: PetRepository
-) : ViewModel() {
+    private val petId: Int,
+    private val groupRepository: GroupRepository,
+    private val petRepository: PetRepository,
+    private val userRepository: UserRepository
+) : BaseViewModel() {
+
+    init {
+        viewModelScope.launch {
+            if (petId != -1)
+                pet = petRepository.getPet(petId)
+        }
+    }
 
     var navigateBack: (() -> Unit)? = null
     var showAlert: ((String) -> Unit)? = null
+
+    @get:Bindable
+    var pet: PetDetails? = null
+        set(value) {
+            field = value
+
+            name.set(field?.name ?: "")
+            species.set(field?.species ?: "")
+            race.set(field?.race ?: "")
+            weight.set(field?.weight?.toString() ?: "")
+            age.set(field?.age?.toString() ?: "")
+        }
 
     val name = ObservableField("")
     val species = ObservableField("")
@@ -31,6 +59,13 @@ class PetDetailsViewModel(
         "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/german-shepherd-dog-1557314959.jpg?crop=0.615xw:1.00xh;0.197xw,0&resize=980:*",
         "https://scontent.ftsr1-2.fna.fbcdn.net/v/t1.15752-9/144131633_193999855782836_5278093711675311070_n.jpg?_nc_cat=105&ccb=2&_nc_sid=ae9488&_nc_ohc=fQcmjTlhtCUAX-Pslvl&_nc_ht=scontent.ftsr1-2.fna&oh=c6c34335e763b4db6abed0053a8c93f3&oe=603B3290"
     )
+
+    @get:StringRes
+    val actionButtonText: Int
+        get() = if (petId != -1)
+            R.string.update
+        else
+            R.string.add
 
     private fun fieldsAreValid(): Boolean {
         if (name.get()?.trim().isNullOrEmpty()) {
@@ -59,26 +94,53 @@ class PetDetailsViewModel(
 
     fun onAdd() {
         if (fieldsAreValid()) {
-            val addPetModel = AddPetModel(
-                name = name.get() ?: "",
-                species = species.get() ?: "",
-                race = race.get() ?: "",
-                weight = weight.get()?.toDouble() ?: 0.toDouble(),
-                age = age.get()?.toInt() ?: 0,
-                groupId = 0,
-                photo = photos.random()
-            )
-            viewModelScope.launch(Dispatchers.IO) {
-                try {
-                    petRepository.addPet(addPetModel)
-                    withContext(Dispatchers.Main) {
-                        showAlert?.invoke("Pet added successfully!")
-                    }
-                } catch (e: Exception) {
-                    withContext(Dispatchers.Main) {
-                        showAlert?.invoke("An error has occurred!")
-                    }
+            if (petId != -1) {
+                val petUpdateModel = PetUpdateModel(
+                    petName = name.get() ?: "",
+                    age = age.get()?.toInt() ?: 0,
+                    photo = photos.random(),
+                    weight = weight.get()?.toDouble() ?: 0.0,
+                    species = species.get() ?: "",
+                    race = race.get() ?: ""
+                )
 
+                viewModelScope.launch(Dispatchers.IO) {
+                    try {
+                        petRepository.updatePet(petId, petUpdateModel)
+                        groupRepository.fetchGroup(userRepository.userFlow.value.groupId)
+                        withContext(Dispatchers.Main) {
+                            showAlert?.invoke("Pet updated successfully!")
+                        }
+                    } catch (e: Exception) {
+                        withContext(Dispatchers.Main) {
+                            showAlert?.invoke("An error has occurred!")
+                        }
+
+                    }
+                }
+            } else {
+
+                val addPetModel = AddPetModel(
+                    name = name.get() ?: "",
+                    species = species.get() ?: "",
+                    race = race.get() ?: "",
+                    weight = weight.get()?.toDouble() ?: 0.toDouble(),
+                    age = age.get()?.toInt() ?: 0,
+                    groupId = 0,
+                    photo = photos.random()
+                )
+                viewModelScope.launch(Dispatchers.IO) {
+                    try {
+                        petRepository.addPet(addPetModel)
+                        groupRepository.fetchGroup(userRepository.userFlow.value.groupId)
+                        withContext(Dispatchers.Main) {
+                            showAlert?.invoke("Pet added successfully!")
+                        }
+                    } catch (e: Exception) {
+                        withContext(Dispatchers.Main) {
+                            showAlert?.invoke("An error has occurred!")
+                        }
+                    }
                 }
             }
         }
