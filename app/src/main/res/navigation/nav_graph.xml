@@ -177,6 +177,7 @@
             app:argType="integer" />
         <action
             android:id="@+id/action_userProfileFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment" />
     </fragment>
 </navigation>

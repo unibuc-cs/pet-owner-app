@@ -14,6 +14,7 @@
         android:layout_width="@dimen/padding_256"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/padding_16"
+        android:foreground="?selectableItemBackground"
         android:onClick="@{_ -> viewModel.onClick()}"
         app:cardCornerRadius="@dimen/padding_16"
         app:cardElevation="@dimen/padding_4">

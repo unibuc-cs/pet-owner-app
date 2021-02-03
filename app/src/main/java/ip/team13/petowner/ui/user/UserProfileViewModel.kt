@@ -27,25 +27,18 @@ class UserProfileViewModel(
     private val stringResources: StringResources
 ) : BaseViewModel() {
 
-    init {
-        viewModelScope.launch {
-            if (isOwnUserProfile)
-                repository.userFlow.collect {
-                    user = it
-                    notifyChange()
-                }
-            else
-                user = repository.getUser(userId)
-        }
-    }
-
     lateinit var navigateBack: () -> Unit
     lateinit var navigateToLogin: () -> Unit
 
-    private var user: UserProfile = if (isOwnUserProfile)
+    var user: UserProfile = if (isOwnUserProfile) {
         repository.userFlow.value
-    else
+    } else {
         emptyUserProfile()
+    }
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR._all)
+        }
 
     @get:Bindable
     val photoUrl: String?
@@ -89,7 +82,7 @@ class UserProfileViewModel(
 
     @get:Bindable
     val isSaveButtonActive: Boolean
-        get() = editableName != name // && editableImage != image
+        get() = editableName != name && isOwnUserProfile
 
     val nameChangedWatcher: TextWatcher = object : TextWatcher {
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -99,6 +92,17 @@ class UserProfileViewModel(
         }
 
         override fun afterTextChanged(s: Editable?) {}
+    }
+
+    init {
+        viewModelScope.launch {
+            if (isOwnUserProfile)
+                repository.userFlow.collect {
+                    user = it
+                }
+            else
+                user = repository.getUser(userId)
+        }
     }
 
     fun logout() {
