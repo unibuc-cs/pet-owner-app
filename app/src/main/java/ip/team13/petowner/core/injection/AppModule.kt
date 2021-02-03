@@ -57,7 +57,7 @@ val appModule = module {
     viewModel { LoginViewModel(get(), get()) }
     viewModel { MainViewModel() }
     viewModel { (petId: Int) ->
-        PetDetailsViewModel(petId, get())
+        PetDetailsViewModel(petId, get(), get(), get())
     }
     viewModel { (petId: Int) ->
         PetProfileViewModel(get(), petId)
