@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import ip.team13.petowner.R
 import ip.team13.petowner.core.helpers.AppConstants
+import kotlin.math.min
 
 class Preferences(context: Context) {
     private val preferences: SharedPreferences = context.getSharedPreferences(
@@ -35,12 +36,18 @@ class Preferences(context: Context) {
         apply()
     }
 
-    fun saveGroupId(groupId: Int) = with(preferences.edit()) {
-        putInt(AppConstants.SharedPrefKeys.ARG_GROUP_ID, groupId)
-        apply()
+    fun getHappinessScore(petId: Int) =
+        preferences.getInt(AppConstants.SharedPrefKeys.ARG_HAPPINESS_SCORE + petId, 25)
+
+    fun increaseHappinessScore(petId: Int) = with(preferences.edit()) {
+        val currentScore = getHappinessScore(petId)
+
+        if (currentScore < 100) {
+            putInt(
+                AppConstants.SharedPrefKeys.ARG_HAPPINESS_SCORE + petId,
+                min(currentScore + 25, 100)
+            )
+            apply()
+        }
     }
-
-    fun getGroupId() =
-        preferences.getInt(AppConstants.SharedPrefKeys.ARG_GROUP_ID, -1)
-
 }

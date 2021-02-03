@@ -9,13 +9,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ip.team13.petowner.R
+import ip.team13.petowner.core.persistence.Preferences
 import ip.team13.petowner.data.domain.*
 import ip.team13.petowner.data.dto.PetEntryModel
 import ip.team13.petowner.databinding.*
 
 class ActivityAdapter(
     var data: ArrayList<ActivityData>,
-    private val selectedPet: ObservableField<PetEntryModel>
+    private val selectedPet: ObservableField<PetEntryModel>,
+    private val preferences: Preferences
 ) : ListAdapter<ActivityData, RecyclerView.ViewHolder>(activityDataDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -149,7 +151,7 @@ class ActivityAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(activity: ActivityItem) {
-            binding.viewModel = ItemActivityViewModel(activity)
+            binding.viewModel = ItemActivityViewModel(activity, preferences)
         }
     }
 }
