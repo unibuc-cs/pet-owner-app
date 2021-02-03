@@ -19,11 +19,11 @@ enum class ItemDetailType {
     REMINDER
 }
 
-enum class RepeatType(val title: String, val value: Int) {
-    NEVER("Never", 0),
-    DAILY("Daily", 1),
-    WEEKLY("Weekly", 7),
-    MONTHLY("Monthly", 30);
+enum class RepeatType(val title: String, val value: Int, val expPoints: Int, val tokens: Int) {
+    NEVER("Never", 0, 0, 0),
+    DAILY("Daily", 1, 15, 10),
+    WEEKLY("Weekly", 7, 20, 15),
+    MONTHLY("Monthly", 30, 50, 40);
 }
 
 class ItemActivityDetailViewModel(

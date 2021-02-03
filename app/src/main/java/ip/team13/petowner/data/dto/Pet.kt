@@ -8,7 +8,7 @@ import kotlin.random.Random
 
 data class PetEntryModel(
     @field:Json(name = "petId")
-    val id: String,
+    val id: Int,
     @field:Json(name = "petName")
     val name: String?,
     @field:Json(name = "age")
@@ -22,7 +22,7 @@ data class PetEntryModel(
     @field:Json(name = "petActivities")
     val petActivities: List<ActivityEntry>?,
     @field:Json(name = "groupId")
-    val groupId: String?,
+    val groupId: Int?,
     @field:Json(name = "photo")
     val pictureUrl: String?
 ) {
@@ -39,9 +39,9 @@ data class PetEntryModel(
 
                 )
             return PetEntryModel(
-                id = "$random",
+                id = random.toInt(),
                 name = "Lex $random",
-                groupId = "$random",
+                groupId = random.toInt(),
                 pictureUrl = pictures.random(),
                 age = random.toInt(),
                 petActivities = random.let {

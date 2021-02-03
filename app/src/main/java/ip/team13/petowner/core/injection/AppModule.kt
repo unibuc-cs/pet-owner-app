@@ -36,14 +36,15 @@ val appModule = module {
         ActivitiesViewModel(
             onAddActivity = onAddActivity,
             petRepository = get(),
-            activityRepository = get()
+            activityRepository = get(),
+            userRepository = get()
         )
     }
     viewModel { (petId: Int) ->
         ActivityDetailsViewModel(petId)
     }
     viewModel { CostDetailsViewModel(get()) }
-    viewModel { CostTrackerViewModel() }
+    viewModel { CostTrackerViewModel(get()) }
     viewModel { GroupViewModel(get(), get()) }
     viewModel { HomeViewModel(get(), get()) }
     viewModel { (leaderboardType: LeaderboardType) ->

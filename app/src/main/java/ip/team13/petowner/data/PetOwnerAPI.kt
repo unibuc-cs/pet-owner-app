@@ -28,29 +28,43 @@ interface PetOwnerAPI {
     @PATCH("api/gamification/{userId}/tokens")
     suspend fun updateTokens(@Path("userId") userId: String, @Body body: TokensModel): Boolean
 
+    @PATCH("api/gamification/{userId}/weeklyexp")
+    suspend fun updateWeeklyExp(
+        @Path("userId") userId: Int,
+        @Body body: UpdateWeeklyExpRequestModel
+    )
     // ******* Leaderboards *******
     @POST("api/user/leaderboards")
     suspend fun getLeaderboards(@Body body: LeaderboardRequestModel): List<LeaderboardEntryModel>
 
     // ******* Pet *******
-    @GET("api/pet/group/{userId}")
-    suspend fun getGroupPets(@Path("userId") userId: Int): List<PetEntryModel>
-
-    @GET("api/pet/{id}")
-    suspend fun getPet(@Path("id") petId: Int): PetEntryModel
-
     @POST("api/pet")
     suspend fun addPet(@Body body: AddPetRequestModel)
 
     @PATCH("api/pet/{petId}")
     suspend fun updatePet(@Path("petId") petId: Int, @Body body: PetUpdateModel)
 
-    // ******* Activities *******
-    @GET("/pet/group/{userId}")
-    suspend fun getPetsAndActivities(@Path("userId") userId: String): List<PetEntryModel>
+    @GET("api/pet/group/{userId}")
+    suspend fun getGroupPets(@Path("userId") userId: Int): List<PetEntryModel>
 
+    @GET("api/activity/{petId}/activities")
+    suspend fun getPetsActivities(@Path("petId") petId: Int): List<ActivityEntry>
+
+    @GET("api/pet/{id}")
+    suspend fun getPet(@Path("id") petId: Int): PetEntryModel
+
+    // Activities
     @POST("api/activity/petactivity")
-    suspend fun addActivity(@Body body: ActivityEntry)
+    suspend fun addPetActivity(@Body body: PetActivityRequestModel)
+
+    @POST("api/activity/activity")
+    suspend fun addActivity(@Body body: ActivityEntry): AddActivityResponseModel
+
+    @POST("api/activity/attach")
+    suspend fun attachActivity(@Body body: AttachActivityRequestModel)
+
+    @DELETE("api/activity/activity/{activityId}")
+    suspend fun deleteActivity(@Path("activityId") activityId: Int)
 
     // ******* Group *******
     @GET("api/group/{groupId}")
@@ -58,8 +72,11 @@ interface PetOwnerAPI {
 
     // ******* Cost Item *******
     @POST("api/item/{userId}")
-    suspend fun addItem(@Path("userId") userId: Int, @Body body: CostItemModel)
+    suspend fun addItem(@Path("userId") userId: Int, @Body body: CostTrackerModel)
 
     @DELETE("api/item/{itemId}")
     suspend fun deleteItem(itemId: Int)
+
+    @POST("/api/item/all/{groupid}")
+    suspend fun getItems(@Path("groupid") groupId: Int, @Body period: CostItemPeriod): List<CostTrackerRecylerViewModel>
 }

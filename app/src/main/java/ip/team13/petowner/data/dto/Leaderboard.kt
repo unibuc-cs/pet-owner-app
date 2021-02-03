@@ -4,14 +4,18 @@ import com.squareup.moshi.Json
 import ip.team13.petowner.data.domain.LeaderboardEntry
 
 class LeaderboardEntryModel(
+    @Json(name = "userId")
     val id: Int,
-    val name: String,
-    val imageUrl: String,
-    val weeklyExperience: Int
+    @field:Json(name = "name")
+    val name: String?,
+    @field:Json(name = "photo")
+    val imageUrl: String?,
+    @field:Json(name = "weeklyExp")
+    val weeklyExperience: Int?
 )
 
-fun LeaderboardEntryModel.toLeaderboardEntry() = LeaderboardEntry(
-    name, imageUrl, weeklyExperience
+fun LeaderboardEntryModel.toLeaderboardEntry(position: Int) = LeaderboardEntry(
+    name, imageUrl, weeklyExperience, position
 )
 
 class LeaderboardRequestModel(

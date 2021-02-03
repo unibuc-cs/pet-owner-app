@@ -27,6 +27,15 @@ class PetRepository(
         ArrayList()
     }
 
+    suspend fun getPetActivities(petId: Int): List<ActivityEntry> {
+        return try {
+            petOwnerAPI.getPetsActivities(petId)
+        } catch (e: Exception) {
+            e.message?.logError()
+            ArrayList()
+        }
+    }
+
     suspend fun addPet(addPetModel: AddPetModel) =
         petOwnerAPI.addPet(
             AddPetRequestModel(
@@ -38,4 +47,5 @@ class PetRepository(
     suspend fun updatePet(petId: Int, pet: PetUpdateModel) {
         petOwnerAPI.updatePet(petId, pet)
     }
+
 }
