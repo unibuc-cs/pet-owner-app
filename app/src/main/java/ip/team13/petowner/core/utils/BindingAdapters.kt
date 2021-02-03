@@ -8,7 +8,6 @@ import android.view.animation.ScaleAnimation
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
@@ -18,8 +17,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import ip.team13.petowner.data.domain.ActivityData
 import ip.team13.petowner.data.domain.LeaderboardEntry
+import ip.team13.petowner.data.domain.Tip
 import ip.team13.petowner.data.dto.CostTrackerRecyclerViewModel
-import ip.team13.petowner.data.dto.TipModel
 import ip.team13.petowner.ui.activities.list.ActivityAdapter
 import ip.team13.petowner.ui.group.list.GroupAdapter
 import ip.team13.petowner.ui.group.list.GroupItemViewModel
@@ -198,7 +197,7 @@ fun submitItems(recyclerView: RecyclerView, items: List<Any>) {
                 recyclerView.adapter?.notifyDataSetChanged()
             }
         is TipsAdapter ->
-            (items as? ArrayList<TipModel>)?.let {
+            (items as? ArrayList<Tip>)?.let {
                 (recyclerView.adapter as? TipsAdapter)?.tips?.clear()
                 (recyclerView.adapter as? TipsAdapter)?.tips?.addAll(items)
                 recyclerView.adapter?.notifyDataSetChanged()

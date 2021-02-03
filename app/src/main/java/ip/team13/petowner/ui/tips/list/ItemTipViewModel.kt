@@ -1,7 +1,7 @@
 package ip.team13.petowner.ui.tips.list
 
-import ip.team13.petowner.data.dto.TipModel
+import ip.team13.petowner.data.domain.Tip
 
 class ItemTipViewModel(
-    val model: TipModel
+    val model: Tip
 )

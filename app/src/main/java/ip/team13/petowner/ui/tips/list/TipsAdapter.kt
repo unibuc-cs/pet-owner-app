@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import ip.team13.petowner.R
-import ip.team13.petowner.data.dto.TipModel
+import ip.team13.petowner.data.domain.Tip
 import ip.team13.petowner.databinding.ItemTipBinding
 
 class TipsAdapter(
-    val tips: ArrayList<TipModel>
+    val tips: ArrayList<Tip>
 ) : RecyclerView.Adapter<TipsAdapter.TipViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TipViewHolder {
@@ -33,7 +33,7 @@ class TipsAdapter(
         private val binding: ItemTipBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(model: TipModel) {
+        fun bind(model: Tip) {
             binding.viewModel = ItemTipViewModel(model)
         }
     }

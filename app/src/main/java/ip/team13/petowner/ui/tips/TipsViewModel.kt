@@ -5,7 +5,7 @@ import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.viewModelScope
 import ip.team13.petowner.core.BaseViewModel
 import ip.team13.petowner.core.helpers.logError
-import ip.team13.petowner.data.dto.TipModel
+import ip.team13.petowner.data.domain.Tip
 import ip.team13.petowner.data.repository.TipsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -16,7 +16,7 @@ class TipsViewModel(
 ) : BaseViewModel() {
 
     @get:Bindable
-    var tips: List<TipModel> = arrayListOf()
+    var tips: List<Tip> = arrayListOf()
 
     init {
         getTips()
@@ -27,7 +27,6 @@ class TipsViewModel(
             val tipsResponse = tipsRepository.getTips()
             withContext(Dispatchers.Main) {
                 tips = tipsResponse
-//                tips = TipModel.getList()
                 notifyPropertyChanged(BR.tips)
             }
         } catch (e: Exception) {

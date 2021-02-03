@@ -1,6 +1,7 @@
 package ip.team13.petowner.data.dto
 
 import com.squareup.moshi.Json
+import ip.team13.petowner.data.domain.Tip
 import kotlin.random.Random
 
 data class TipModel(
@@ -40,3 +41,6 @@ data class TipModel(
         }
     }
 }
+
+fun TipModel.toTip() =
+    Tip(tipId, title?.trim(), description?.trim(), race?.trim(), species?.trim(), category?.trim())
