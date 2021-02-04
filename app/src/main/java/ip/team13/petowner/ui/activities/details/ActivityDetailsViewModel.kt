@@ -63,7 +63,7 @@ class ActivityDetailsViewModel(private val petId: Int) : ViewModel() {
         )
     }
 
-    private fun getRecurringInterval(value: String?) = when (value) {
+    internal fun getRecurringInterval(value: String?) = when (value) {
         RepeatType.NEVER.title -> 0
         RepeatType.DAILY.title -> 1
         RepeatType.WEEKLY.title -> 7
@@ -71,7 +71,7 @@ class ActivityDetailsViewModel(private val petId: Int) : ViewModel() {
         else -> -1
     }
 
-    private fun getExpPoints(value: String?) = when (value) {
+    internal fun getExpPoints(value: String?) = when (value) {
         RepeatType.NEVER.title -> RepeatType.NEVER.expPoints
         RepeatType.DAILY.title -> RepeatType.DAILY.expPoints
         RepeatType.WEEKLY.title -> RepeatType.WEEKLY.expPoints
