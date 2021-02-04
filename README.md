@@ -1,3 +1,3 @@
 # pet-owner-app
 
-Pet Owner is a mobile application where you can create a group with your family / friends and start organizing your pets' feeding and caring recurring activities with reminders and cost tracking.
+Pet Owner is a mobile application that enables a family or a group of friends to sync their pets' data and schedule various repetitive activities, while tracking all the expenses.
