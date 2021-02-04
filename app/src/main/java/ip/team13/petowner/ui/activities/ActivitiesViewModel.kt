@@ -126,7 +126,10 @@ class ActivitiesViewModel(
         viewModelScope.launch(Dispatchers.IO) {
             userRepository.updateTokens(getTokensByRecurring(activity.recurringInterval))
             userRepository.updateWeeklyExp(activity.expPoints ?: return@launch)
-            activityRepository.deleteActivity(activity.activityId ?: return@launch)
+            activityRepository.deleteActivity(
+                selectedPet.get()?.id ?: return@launch,
+                activity.activityId ?: return@launch
+            )
 
             withContext(Dispatchers.Main) {
 

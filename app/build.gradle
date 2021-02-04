@@ -95,7 +95,17 @@ dependencies {
     // Time - ThreeTenABP
     implementation 'com.jakewharton.threetenabp:threetenabp:1.3.0'
 
-    testImplementation 'junit:junit:4.13.1'
+    testImplementation testsDependencies.jUnit
+    testImplementation testsDependencies.mockito
+    testImplementation testsDependencies.robolectric
+    testImplementation 'androidx.test.ext:junit:1.1.2'
+
+    androidTestImplementation testsDependencies.archCore
+    androidTestImplementation testsDependencies.testRunner
+    androidTestImplementation testsDependencies.testEspresso
+    androidTestImplementation testsDependencies.mockito
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation "org.robolectric:annotations:4.4"
+    debugImplementation "androidx.fragment:fragment-testing:1.3.0-rc02"
+    androidTestImplementation "androidx.fragment:fragment-ktx:1.3.0-rc01"
 }

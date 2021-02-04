@@ -1,0 +1,25 @@
+ext {
+
+    versionsTests = [
+            'jUnit'       : '4.13.1',
+            'testRunner'  : '1.3.0',
+            'testEspresso': '3.3.0',
+
+            'ext'         : '1.1.2',
+            'mockito'     : '3.6.0',
+            'archCore'    : '2.1.0',
+            'robolectric' : '4.4'
+    ]
+
+    // Test Libraries Dependencies
+    testsDependencies = [
+            jUnit       : "junit:junit:$versionsTests.jUnit",
+            testRunner  : "androidx.test:runner:$versionsTests.testRunner",
+            testEspresso: "androidx.test.espresso:espresso-core:$versionsTests.testEspresso",
+
+            mockito     : "org.mockito:mockito-core:$versionsTests.mockito",
+            archCore    : "androidx.arch.core:core-testing:$versionsTests.archCore",
+            ext         : "androidx.test.ext:junit:$versionsTests.ext",
+            robolectric : "org.robolectric:robolectric:$versionsTests.robolectric"
+    ]
+}

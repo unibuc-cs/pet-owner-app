@@ -43,4 +43,6 @@
         <item name="android:textSize">@dimen/text_size_24</item>
     </style>
 
+    <style name="TabLayout" parent="Theme.AppCompat"/>
+
 </resources>

@@ -18,6 +18,6 @@ class ActivitiesRepository(
     suspend fun attachActivity(attachActivityRequestModel: AttachActivityRequestModel) =
         petOwnerAPI.attachActivity(attachActivityRequestModel)
 
-    suspend fun deleteActivity(activityId: Int) =
-        petOwnerAPI.deleteActivity(activityId)
+    suspend fun deleteActivity(petId: Int, activityId: Int) =
+        petOwnerAPI.deleteActivity(petId, activityId)
 }

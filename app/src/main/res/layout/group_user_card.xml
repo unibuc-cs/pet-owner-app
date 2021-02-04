@@ -18,6 +18,7 @@
         android:clickable="true"
         android:focusable="true"
         android:foreground="?selectableItemBackground"
+        android:layout_marginBottom="@dimen/padding_8"
         android:onClick="@{_ -> viewModel.onClick()}"
         app:cardCornerRadius="@dimen/padding_16"
         app:cardElevation="@dimen/padding_4">

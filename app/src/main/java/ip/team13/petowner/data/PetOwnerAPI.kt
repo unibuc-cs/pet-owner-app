@@ -63,8 +63,8 @@ interface PetOwnerAPI {
     @POST("api/activity/attach")
     suspend fun attachActivity(@Body body: AttachActivityRequestModel)
 
-    @DELETE("api/activity/activity/{activityId}")
-    suspend fun deleteActivity(@Path("activityId") activityId: Int)
+    @DELETE("api/activity/petactivity/{petId}/{activityId}")
+    suspend fun deleteActivity(@Path("petId") petId: Int, @Path("activityId") activityId: Int)
 
     // ******* Group *******
     @GET("api/group/{groupId}")
